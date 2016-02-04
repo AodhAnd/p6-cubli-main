@@ -16,9 +16,9 @@ Disclaimer: this hierarchy is subject to small changes throughout the semester y
 * Circuits schematics (under schematics/) i.n.
 
 ## Rules when running a test
-1 Create a folder under test/ with an explicit name.  
-2 The latter should use camel case with first letter being small: awesomeTestWithCrazyController/
-3 Organize this folder as follows:
+1. Create a folder under test/ with an explicit name.  
+2. The latter should use camel case with first letter being small: awesomeTestWithCrazyController
+3. Organize this folder as follows:
     * implem/  -> all the C code necessary to run this test as is at the moment the test is performed   
     * matlab/   -> all Matlab scripts and extracted data from the test (under matlab/). If multiple scripts are needed in relation to this test assemble them in one file with section separators and section description: %% DESCRIPTION %%
     * pictures/ -> photos, graphs and drawings related to that test
