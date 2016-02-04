@@ -1,8 +1,9 @@
-# AAU-EIT5: One-frame Cubli project core made @ AAU Electronics and IT by students on a 6th semester (2016)  
+# One-frame Cubli project core 
+#### Project made @ AAU Electronics and IT by students on a 6th semester (2016)  
 
 Legend: 
-i.n. = if needed
-obs. = obsolete
+* i.n. = if needed
+* obs. = obsolete
 
 ## Repository hierarchy
 Disclaimer: this hierarchy is subject to small changes throughout the semester you should read it again from times to times.
