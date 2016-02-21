@@ -1,0 +1,58 @@
+\section{Equation Sample} %<-- IMPORTANT! In American English all Important Words in a Headlines are with Big Letters
+
+%\eq is a macro, which even encludes the equal-sign - this has been done, so that, if we wish to change
+%the appearance of equations, this can easily be done from the macro. Please use it :)
+
+%\unit is an other macro. It makes uses SI units and aligns all the units neatly :)
+%   SI is written with negative exponents rather than using fraction bars, that is:
+%   rad \cdot s^{-2} rather than \frac{ rad }{ s^{2} }
+%Note that \unit is used in the equation, and \unitWh is used in the "Where:"-statements,
+%This is due to a macro workaround - see the macro file for more information on this.
+
+%I know I said never to write something like: \hspace{6mm} Where:\\, this is the exception from the rule :)
+
+\textbf{A normal equation:}
+\begin{flalign}
+  \eq{J_m \cdot \dot{\omega}_m(t)} {\tau_m(t) - B_m \cdot \omega_m(t) - r_m \cdot f_c(t)}\unit{N \cdot m} 
+  \label{MotorGearNewtonSecLaw}
+\end{flalign}
+%
+\hspace{6mm} Where:\\
+\begin{tabular}{ p{1cm} l l l}
+& $J_m$ 					    	& is the motor's inertia                        &\unitWh{kg \cdot m^2} \\
+& $\omega_m(t)$         & is the angular velocity of the motor          &\unitWh{rad \cdot s^{-1}} \\
+& $\dot{\omega}_m(t)$ 	& is the angular acceleration of the motor      &\unitWh{rad \cdot s^{-2}} \\
+& $\tau_m(t)$ 			    & is the torque delivered by the motor          &\unitWh{N \cdot m} \\
+& $B_m$                 & is the motor's friction coefficient           &\unitWh{N \cdot m \cdot s \cdot rad^{-1}} \\
+& $r_m$                 & is the radius of the gear, $G_m$              &\unitWh{m} \\
+& $f_c(t)$							& is the contact force between the two gears    &\unitWh{N}
+\end{tabular}
+
+\textbf{If you need to write some expression without an equal sign:}
+\begin{flalign} 
+  &\si{ \frac{r_m\cdot r_t}{r_d} \cdot M + \frac{r_d}{2\cdot \pi \cdot r_m \cdot r_t} \cdot J_m + \frac{r_m}{2\cdot \pi \cdot r_t \cdot r_d} \cdot J_d }\label{JTotLinear}&
+\end{flalign} 
+
+\Expr{JTotLinear} is referencing to \expr{JTotLinear}, but in the beginning of a sentence.
+
+\textbf{If you need to write something with numbers:}
+\begin{flalign}
+  \eq{B}{\num{2,2}\cdot 10^{-6}} \ \si{N\cdot m \cdot rad^{-1} \cdot s}& \label{eq2} \\ %<-- if you want two equations to
+  \eq{\tau_c}{\num{0.0016}}      \ \si{N\cdot m}                       & \label{eq3}    %    allign in one envirenment,
+\end{flalign}                                                                           %    remember \\
+
+\textbf{To reference several equations in a sentence:}\\ %<-- Usually it is best to use subsubsections rather than \textbf{}
+%                                                             However!
+\eqrefTwo{MotorGearNewtonSecLaw}{eq2}\\                  %    You do not have a subsubsection without also having:
+%                                                        %    A subsection, a section and a chapter above it.
+\eqrefThree{MotorGearNewtonSecLaw}{eq2}{eq3}\\
+
+\textbf{To reference several equations in the beginning of a sentence:}\\
+%
+\EqrefTwo{MotorGearNewtonSecLaw}{eq2}\\
+%
+\EqrefThree{MotorGearNewtonSecLaw}{eq2}{eq3}\\
+
+\textbf{This works for up to 7 equations.}
+
+\pagebreak

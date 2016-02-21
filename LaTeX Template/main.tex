@@ -1,0 +1,87 @@
+%||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+%||||                  READING INSTRUCTIONS                    ||||
+%||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+%||||                                                          ||||
+%|||| > Start by looking over the main file                    ||||
+%|||| > Then go through the Examples                           ||||
+%||||    - It is very important that you have the compiled pdf ||||
+%||||    - on the side when reading the code. Rhe information  ||||
+%||||    - is closely tied together and equally important.     ||||
+%|||| > There are also some notes in the bibliography          ||||
+%||||    - Its location: setup/bibliography.bib                ||||
+%|||| > In "Chapter 1" you will find a text-example            ||||
+%|||| > In "Appendix A" you will find an example of how to     ||||
+%||||   make a measurement report. The text concerning the     ||||
+%||||   test itself is not important, but is left there to     ||||
+%||||   assist in proving a structural example.                ||||
+%||||                                                          ||||
+%|||| I recomend that you do not read the macro file fist :)   ||||
+%||||                                                          ||||
+%|||| The comments have been written on a rather large screen, ||||
+%|||| if it seems messy try disabling word wrap while reading. ||||
+%|||| Remember to switch it back afterwards :)                 ||||
+%||||    In TeXstudio:                                         ||||
+%||||    Options                                               ||||
+%||||    --> Configure Texstudio...                            ||||
+%||||    --> Adv. Editor                                       ||||
+%||||    --> under Special Options                             ||||
+%||||    --> (in the middle) Line Wrapping:                    ||||
+%||||    --> choose No Line Wrap                               ||||
+%||||                                                          ||||
+%||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+%||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+%preamble - package unclusion and set up
+\input{setup/preamble.tex}
+
+%macros - please read this file
+\input{setup/macros.tex} %TIP: If you are using TeXstudio you can open
+                         %     the file by Ctrl+LeftClick on setup/macros.tex
+\begin{document}         %     If the file doesn't exist, you will be asked
+\tableofcontents         %     weather or not you want to create it.
+\pagebreak
+
+%||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+%|||||||     Intended use of Template during Project     ||||||||
+%||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+%||||                                                        ||||
+%|||| In the beginning it seems silly not to just work       ||||
+%|||| directly in the main file, however, as the project     ||||
+%|||| grows it takes more and more time to compile, so       ||||
+%|||| it might be preferable to compile with a template      ||||
+%|||| like this.                                             ||||
+%|||| You can uncomment everything else than the section     ||||
+%|||| you are currently working on, without doing any        ||||
+%|||| damage when you forget to comment the                  ||||
+%|||| section back in :)                                     ||||
+%|||| The intention is also for the template to be used      ||||
+%|||| as a resource when in doubt of conventions or syntax.  ||||
+%||||                                                        ||||
+%||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+%||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+
+%||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+%|||||||                 Example Inputs                  ||||||||
+%||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+%|||||||                                                 ||||||||
+             \input{chapters/aFigureSample.tex}         %|||||||
+             \input{chapters/bTableSample.tex}          %|||||||
+             \input{chapters/cEquationSample.tex}       %|||||||
+%|||||||                                                 ||||||||
+%||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+%||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+%---------- Chapter 1 ---------------------------------------- Introduction
+\input{chapters/chapter1/aChapters1.tex}
+
+%---------- Appendix A ---------------------------------------- Test Title
+\input{appendix/aTest.tex}
+
+%%% Bibliography %%%
+\printbibliography
+
+%%% List of Corrections
+\listoffixmes
+
+\end{document}

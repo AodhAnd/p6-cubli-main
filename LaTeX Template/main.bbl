@@ -1,0 +1,103 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 2.2 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \sortlist{entry}{}
+    \entry{YDing}{book}{}
+      \name{labelname}{2}{}{%
+        {{hash=291f92c307d27592bc0e2d877bf98644}{Ding}{D\bibinitperiod}{Yongwang}{Y\bibinitperiod}{}{}{}{}}%
+        {{hash=0aafea2ffbcf3d6ad4bfef601d7f06b2}{Harjani}{H\bibinitperiod}{Ramesh}{R\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{2}{}{%
+        {{hash=291f92c307d27592bc0e2d877bf98644}{Ding}{D\bibinitperiod}{Yongwang}{Y\bibinitperiod}{}{}{}{}}%
+        {{hash=0aafea2ffbcf3d6ad4bfef601d7f06b2}{Harjani}{H\bibinitperiod}{Ramesh}{R\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{885c4c30403ea8b460c321b6f17d2a86}
+      \strng{fullhash}{885c4c30403ea8b460c321b6f17d2a86}
+      \field{sortinit}{0}
+      \field{labeltitle}{High-Linearity CMOS RF Front-End Circuits}
+      \field{title}{High-Linearity CMOS RF Front-End Circuits}
+      \field{year}{2006}
+    \endentry
+    \entry{Biezl}{online}{}
+      \name{labelname}{1}{}{%
+        {{hash=f6b91a2b3f53afeaa355d1082535ec21}{Biezl}{B\bibinitperiod}{}{}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=f6b91a2b3f53afeaa355d1082535ec21}{Biezl}{B\bibinitperiod}{}{}{}{}{}{}}%
+      }
+      \strng{namehash}{f6b91a2b3f53afeaa355d1082535ec21}
+      \strng{fullhash}{f6b91a2b3f53afeaa355d1082535ec21}
+      \field{sortinit}{0}
+      \field{labeltitle}{Vierquadrantensteller}
+      \field{day}{23}
+      \field{month}{10}
+      \field{title}{Vierquadrantensteller}
+      \field{urlday}{15}
+      \field{urlmonth}{12}
+      \field{urlyear}{2015}
+      \field{year}{2010}
+      \verb{url}
+      \verb https://commons.wikimedia.org/wiki/File:Vierquadrantensteller.svg
+      \endverb
+    \endentry
+  \endsortlist
+  \sortlist{entry}{none}
+    \entry{YDing}{book}{}
+      \name{labelname}{2}{}{%
+        {{hash=291f92c307d27592bc0e2d877bf98644}{Ding}{D\bibinitperiod}{Yongwang}{Y\bibinitperiod}{}{}{}{}}%
+        {{hash=0aafea2ffbcf3d6ad4bfef601d7f06b2}{Harjani}{H\bibinitperiod}{Ramesh}{R\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{2}{}{%
+        {{hash=291f92c307d27592bc0e2d877bf98644}{Ding}{D\bibinitperiod}{Yongwang}{Y\bibinitperiod}{}{}{}{}}%
+        {{hash=0aafea2ffbcf3d6ad4bfef601d7f06b2}{Harjani}{H\bibinitperiod}{Ramesh}{R\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{885c4c30403ea8b460c321b6f17d2a86}
+      \strng{fullhash}{885c4c30403ea8b460c321b6f17d2a86}
+      \field{sortinit}{0}
+      \field{labeltitle}{High-Linearity CMOS RF Front-End Circuits}
+      \field{title}{High-Linearity CMOS RF Front-End Circuits}
+      \field{year}{2006}
+    \endentry
+    \entry{Biezl}{online}{}
+      \name{labelname}{1}{}{%
+        {{hash=f6b91a2b3f53afeaa355d1082535ec21}{Biezl}{B\bibinitperiod}{}{}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=f6b91a2b3f53afeaa355d1082535ec21}{Biezl}{B\bibinitperiod}{}{}{}{}{}{}}%
+      }
+      \strng{namehash}{f6b91a2b3f53afeaa355d1082535ec21}
+      \strng{fullhash}{f6b91a2b3f53afeaa355d1082535ec21}
+      \field{sortinit}{0}
+      \field{labeltitle}{Vierquadrantensteller}
+      \field{day}{23}
+      \field{month}{10}
+      \field{title}{Vierquadrantensteller}
+      \field{urlday}{15}
+      \field{urlmonth}{12}
+      \field{urlyear}{2015}
+      \field{year}{2010}
+      \verb{url}
+      \verb https://commons.wikimedia.org/wiki/File:Vierquadrantensteller.svg
+      \endverb
+    \endentry
+  \endsortlist
+\endrefsection
+\endinput
+

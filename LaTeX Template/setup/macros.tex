@@ -1,0 +1,65 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%             UNITS, EQUATIONS AND TEXT             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Units:
+\newcommand{\unit}[1]{&& \left[\si{#1}\right]} %\newcommand{\unit}[1]{[\si{#1}]}             <<| Use these if you want equations to be
+\newcommand{\unitWh}[1]{[\si{#1}]}             %\newcommand{\eq}[2]{&&\si{#1} &= \si{#2}&&}  <<| centered.. .. will appear scrambled
+\newcommand{\numUnit}[1]{\ \si{#1}&}           %                                               | from one equation to the next though..
+%Equation:                                     %                                               | and does not work with long equations.. :/
+\newcommand{\eq}[2]{\si{#1} &= \si{#2}}
+\newcommand{\arw}{&& &\Updownarrow&&}
+%Text:
+\newcommand{\tx}[1]{\text{#1}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                  REFERENCES                       %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Chapter
+\newcommand{\Chapref}[1]{\emph{Chapter \ref{#1}}}
+\newcommand{\chapref}[1]{\emph{chapter \ref{#1}}}
+%Section
+\newcommand{\Secref}[1]{\emph{Section \ref{#1}}}
+\newcommand{\secref}[1]{\emph{section \ref{#1}}}
+%subSection
+\newcommand{\Subsecref}[1]{\emph{Subsection \ref{#1}}}
+\newcommand{\subsecref}[1]{\emph{subsection \ref{#1}}}
+%Appendix
+\newcommand{\Appref}[1]{\emph{Appendix \ref{#1}}}
+\newcommand{\appref}[1]{\emph{appendix \ref{#1}}}
+%Listings
+\newcommand{\Coderef}[1]{\emph{Listings: \ref{#1}}}
+\newcommand{\coderef}[1]{\emph{listings: \ref{#1}}}
+%Figure:
+\newcommand{\Figref}[1]{\emph{Figure \ref{#1}}}
+\newcommand{\figref}[1]{\emph{figure \ref{#1}}}
+%Table:
+\newcommand{\Tableref}[1]{\emph{Table \ref{#1}}}
+\newcommand{\tableref}[1]{\emph{table \ref{#1}}}
+
+%Expressions:
+\newcommand{\Expr}[1]{\emph{Expression (\ref{#1})}}
+\newcommand{\expr}[1]{\emph{expression (\ref{#1})}}
+
+%Equations:
+%1 equation:
+\newcommand{\Eqref}[1]{\emph{Equation (\ref{#1})}}
+\renewcommand{\eqref}[1]{\emph{equation (\ref{#1})}}
+%2 equations:
+\newcommand{\EqrefTwo}[2]{\emph{Equation (\ref{#1})} and \emph{(\ref{#2})}}
+\newcommand{\eqrefTwo}[2]{\emph{equation (\ref{#1})} and \emph{(\ref{#2})}}
+%3 equations:
+\newcommand{\EqrefThree}[3]{\emph{Equation (\ref{#1})}, \emph{(\ref{#2})} and \emph{(\ref{#3})}}
+\newcommand{\eqrefThree}[3]{\emph{equation (\ref{#1})}, \emph{(\ref{#2})} and \emph{(\ref{#3})}}
+%4 equations:
+\newcommand{\EqrefFour}[4]{\emph{Equation (\ref{#1})}, \emph{(\ref{#2})}, \emph{(\ref{#3})} and \emph{(\ref{#4})}}
+\newcommand{\eqrefFour}[4]{\emph{equation (\ref{#1})}, \emph{(\ref{#2})}, \emph{(\ref{#3})} and \emph{(\ref{#4})}}
+%5 equations:
+\newcommand{\EqrefFive}[5]{\emph{Equation (\ref{#1})}, \emph{(\ref{#2})}, \emph{(\ref{#3})}, \emph{(\ref{#4})} and \emph{(\ref{#5})}}
+\newcommand{\eqrefFive}[5]{\emph{equation (\ref{#1})}, \emph{(\ref{#2})}, \emph{(\ref{#3})}, \emph{(\ref{#4})} and \emph{(\ref{#5})}}
+%6 equations:
+\newcommand{\EqrefSix}[6]{\emph{Equation (\ref{#1})}, \emph{(\ref{#2})}, \emph{(\ref{#3})}, \emph{(\ref{#4})}, \emph{(\ref{#5})} and \emph{(\ref{#6})}}
+\newcommand{\eqrefSix}[6]{\emph{equation (\ref{#1})}, \emph{(\ref{#2})}, \emph{(\ref{#3})}, \emph{(\ref{#4})}, \emph{(\ref{#5})} and \emph{(\ref{#6})}}
+%7 equations:
+\newcommand{\EqrefSeven}[7]{\emph{Equation (\ref{#1})}, \emph{(\ref{#2})}, \emph{(\ref{#3})}, \emph{(\ref{#4})}, \emph{(\ref{#5})}, \emph{(\ref{#6})} and \emph{(\ref{#7})}}
+\newcommand{\eqrefSeven}[7]{\emph{equation (\ref{#1})}, \emph{(\ref{#2})}, \emph{(\ref{#3})}, \emph{(\ref{#4})}, \emph{(\ref{#5})}, \emph{(\ref{#6})} and \emph{(\ref{#7})}}
