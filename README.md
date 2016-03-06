@@ -1,9 +1,12 @@
 # One-frame Cubli project core 
 #### Project made @ AAU Electronics and IT by students on a 6th semester (2016)
 
-Legend: 
-* i.n. = if needed
-* obs. = obsolete
+__Update (06/03/2016)__: To be able to edit full commit messages, for example with Notepad++, you should type (in git bash): 
+```bash
+git config --global core.editor "notepad"
+git config --global format.commitMessageColumns 72
+```
+If you want another text editor, search the internet what should you replace "noteapd" with. Please __do it__ (unless you feel comfortable with the default vim editor) ! :wink:
 
 ## Repository hierarchy
 Disclaimer: this hierarchy is subject to small changes throughout the semester you should read it again from times to times.
