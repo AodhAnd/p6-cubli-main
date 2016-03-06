@@ -1,5 +1,5 @@
 # One-frame Cubli project core 
-#### Project made @ AAU Electronics and IT by students on a 6th semester (2016)  
+#### Project made @ AAU Electronics and IT by students on a 6th semester (2016)
 
 Legend: 
 * i.n. = if needed
@@ -8,20 +8,19 @@ Legend:
 ## Repository hierarchy
 Disclaimer: this hierarchy is subject to small changes throughout the semester you should read it again from times to times.
 ### In this repository stands: 
-* A LaTeX template for supervisor meetings summaries and the corresponding PDFs (under meetings/) 
-* Tests : plotting and testing code and pictures (under tests/) 
-* Third party code used in our project (under rdparty/) 
-* The global project code itself (to be added under global/)
-* Simulations and system's values' cheatsheet (under simulation/)  i.n.
-* Circuits schematics (under schematics/) i.n.
+* A LaTeX template for report writing (under `LaTeX Template/`) 
+* A LaTeX template for supervisor meetings summaries and the corresponding PDFs (under `meetings/`) 
+* Third party code used in our project (including the original given code) (under `rdparty/`) 
+* Our version of the global project code itself (to be added under `global/`)
+* Simulations code and simulink files and system's values' cheatsheet (under `simulation/`)
 
-## Rules when running a test
-1. Create a folder under test/ with an explicit name.  
+## Rules when running a simulation test
+1. Create a folder under `simulation/` with an explicit name.  
 2. The latter should use camel case with first letter being small: awesomeTestWithCrazyController
 3. Organize this folder as follows:
-    * implem/  -> all the C code necessary to run this test as is at the moment the test is performed   
-    * matlab/   -> all Matlab scripts and extracted data from the test (under matlab/). If multiple scripts are needed in relation to this test assemble them in one file with section separators and section description: %% DESCRIPTION %%
-    * pictures/ -> photos, graphs and drawings related to that test
+    * `implem/`  -> all the C code necessary to run this test as is at the moment the test is performed   
+    * `matlab/`   -> all Matlab scripts and extracted data from the test (under `matlab/`). If multiple scripts are needed in relation to this test assemble them in one file with section separators and section description: %% DESCRIPTION %%
+    * `pictures/` -> photos, graphs and drawings related to that test
 
 
 ## Git workflow
@@ -40,9 +39,5 @@ Pushes everything you have on your local copy of the repository to the desired d
 ### Writing history procedure
 You should commit as soon as you apply sensible changes to any part of the repository. 
 When you have made significant changes to the repo throughout the day, you **must** do a few things before leaving. **First**, verify that all your *code works* properly. Then, (if not already done as stated in the previous sentence..) stage and commit all changes that actually work (or that are very important for the others to go on with this the following days). Finally, don't forget to **pull** and then push these changes to Github!
-
-
-## Drivers (i.n.)
-Please **do not** do "driverxx_old" naming, git is here for version control and history. A few versions will be saved whenever concrete improvements have been made to the code. 
 
 
