@@ -6,46 +6,40 @@
 \renewcommand\figurename{Figur}
 \renewcommand\tablename{Tabel}
 
-\section*{Supervisor meeting\\ \small Thursday, 18th of December 2015}
+\section*{Supervisor meeting\\ \small Monday, 7th of February 2016}
 
-\subsection{Study regulations}
-Take these regulations as a whole: the general goal is to be able to:
+\subsection{Sent Material}
+Corrective suggestions from the supervisors have been sent by email for later reference.
+
+\subsection{Linearization}
 \begin{itemize}
-  \item[-] set a model
-  \item[-] evaluate it
-  \item[-] simulate it
-  \item[-] analyze it
-  \item[-] design a contoller with different methods (root locus, etc.)
-  \item[-] ...
+  \item[-] See the comments about the bar notation in the received correction pdfs.
+  \item[-] Say that the $\theta_F$ and its derivative are 0 as well as the angle $\theta_w$. Then the torque ends up being zero.
+  \item[-] About equation 3.19 to 3.21: Sum up what equations the model is made of and regroup the similar terms.
+  \item[-] About figure 3.4: clarify what we want to show with this diagram. The `area' is more of an interval in which the linear approximation stays somewhat close to the real sine function.
 \end{itemize}
 
-\subsection{Model}
+\subsection{Verification of Model}
 \begin{itemize}
-  \item[-] The rotational acceleration of the wheel should also account for the rest of the forces (torques) affecting the wheel.
-  \item[-] The bearing of the wheel also applies some unpredictable force which affects the total movement of the wheel and can be drawn as we want.
-  \item[-] Take a global coordinate system to have a good overview: it should be easier to combine the equations. When we reach the equations from the paper, we can also do it another way with respective (local) coordinate sytem and then use cross products to put back the two equations in the same coordinate system.
-  \item[-] Do the model the "book way" :
-    \begin{enumerate} 
-      \item Free-body diagrams
-      \item Put up all the forces applying on the system
-      \item Describe it with equations
-    \end{enumerate}
-  \item[-] Also possible later if we have time: use Lagrange method using energies, it can be elegant.
+  \item[-] The idea behind figure 3.6 is to compare the linearized equations and block diagram. It is still a good idea to use this graph of comparison between model and equations in the report.
+  \item[-] It is also necessary to compare the original non-linear model with the linearized one.
 \end{itemize}
 
-\subsection{Sensors}
+\subsection{System Test (grouped data points)}
 \begin{itemize}
-\item[-] It is fine to try to use the IMUs, it should be possible to also use some parameters inside the code to run an observer and bypass the pot-meter.
+  \item[-] Try to do a (rolling) average of the potentiometer data.
+  \item[-] Show this process in the report.
 \end{itemize}
 
-\subsection{Code implementation process}
-A lot of code to go through but we should stay on the top layer not to loose time.
+\subsection{Miscelleanous}
+\begin{itemize}
+  \item[-] Motor model $\rightarrow$ use a simple model, matchig the behavior of the motor controller, at first and improve it later, once a working controller has been implemented.
+  \item[-] Sensors $\rightarrow$ same thing: stay with the potentiometer for the moment
+  \item[-] In later iterations, it might be possible to implement some filters for other sensor types.
+\end{itemize}
 
-\subsection{Parameters}
-The approach of using the given parameters and verifying them later when we have made the controller up and running might be better since the point of this semester is the Control Engineering.
-
-\subsection{Next Supervisor meeting}
-Monday, 29th of December at 13.00
+\subsection{Next Supervisor Meeting}
+Monday, 14th of March at 13.00
 
 \end{document}
 
