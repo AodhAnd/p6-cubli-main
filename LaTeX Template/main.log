@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2015.11.30)  21 FEB 2016 21:09
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2015.11.30)  10 MAR 2016 11:15
 entering extended mode
 **main.tex
 (main.tex
@@ -2013,6 +2013,87 @@ File: pgfmodulematrix.code.tex 2013/09/17  (rcs-revision 1.8)
 s\tikzlibrarytopaths.code.tex"
 File: tikzlibrarytopaths.code.tex 2008/06/17 v3.0.1a (rcs-revision 1.2)
 )))
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\librarie
+s\tikzlibraryshapes.code.tex"
+File: tikzlibraryshapes.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\librarie
+s\tikzlibraryshapes.geometric.code.tex"
+File: tikzlibraryshapes.geometric.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1
+)
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\libraries\shapes\pgflibrary
+shapes.geometric.code.tex"
+File: pgflibraryshapes.geometric.code.tex 2008/06/26 v3.0.1a (rcs-revision 1.1)
+
+))
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\librarie
+s\tikzlibraryshapes.misc.code.tex"
+File: tikzlibraryshapes.misc.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\libraries\shapes\pgflibrary
+shapes.misc.code.tex"
+File: pgflibraryshapes.misc.code.tex 2013/07/18 v3.0.1a (rcs-revision 1.5)
+))
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\librarie
+s\tikzlibraryshapes.symbols.code.tex"
+File: tikzlibraryshapes.symbols.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\libraries\shapes\pgflibrary
+shapes.symbols.code.tex"
+File: pgflibraryshapes.symbols.code.tex 2013/09/11 v3.0.1a (rcs-revision 1.6)
+))
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\librarie
+s\tikzlibraryshapes.arrows.code.tex"
+File: tikzlibraryshapes.arrows.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\libraries\shapes\pgflibrary
+shapes.arrows.code.tex"
+File: pgflibraryshapes.arrows.code.tex 2008/06/26 v3.0.1a (rcs-revision 1.1)
+))
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\librarie
+s\tikzlibraryshapes.callouts.code.tex"
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\libraries\shapes\pgflibrary
+shapes.callouts.code.tex"))
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\librarie
+s\tikzlibraryshapes.multipart.code.tex"
+File: tikzlibraryshapes.multipart.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1
+)
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\libraries\shapes\pgflibrary
+shapes.multipart.code.tex"
+File: pgflibraryshapes.multipart.code.tex 2010/01/07 v3.0.1a (rcs-revision 1.2)
+
+\pgfnodepartlowerbox=\box100
+\pgfnodeparttwobox=\box101
+\pgfnodepartthreebox=\box102
+\pgfnodepartfourbox=\box103
+\pgfnodeparttwentybox=\box104
+\pgfnodepartnineteenbox=\box105
+\pgfnodeparteighteenbox=\box106
+\pgfnodepartseventeenbox=\box107
+\pgfnodepartsixteenbox=\box108
+\pgfnodepartfifteenbox=\box109
+\pgfnodepartfourteenbox=\box110
+\pgfnodepartthirteenbox=\box111
+\pgfnodeparttwelvebox=\box112
+\pgfnodepartelevenbox=\box113
+\pgfnodeparttenbox=\box114
+\pgfnodepartninebox=\box115
+\pgfnodeparteightbox=\box116
+\pgfnodepartsevenbox=\box117
+\pgfnodepartsixbox=\box118
+\pgfnodepartfivebox=\box119
+)))
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\librarie
+s\tikzlibraryarrows.code.tex"
+File: tikzlibraryarrows.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\libraries\pgflibraryarrows.
+code.tex"
+File: pgflibraryarrows.code.tex 2013/09/23 v3.0.1a (rcs-revision 1.16)
+\arrowsize=\dimen308
+))
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\circuitikz\circuitikz.sty"
 Package: circuitikz 2015/05/15 The CircuiTikz circuit drawing package version 0
 .4
@@ -2020,11 +2101,6 @@ Package: circuitikz 2015/05/15 The CircuiTikz circuit drawing package version 0
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\librarie
 s\tikzlibrarycalc.code.tex"
 File: tikzlibrarycalc.code.tex 2013/07/15 v3.0.1a (rcs-revision 1.9)
-)
-("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\libraries\pgflibraryarrows.
-code.tex"
-File: pgflibraryarrows.code.tex 2013/09/23 v3.0.1a (rcs-revision 1.16)
-\arrowsize=\dimen308
 )
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\circuitikz\circuitikz.code.tex"
 \pgf@circ@Rlen=\dimen309
@@ -2067,10 +2143,10 @@ Package: eso-pic 2015/07/21 v2.0g eso-pic (RN)
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\pdfpages\pppdftex.def"
 File: pppdftex.def 2015/09/18 v0.5d Pdfpages driver for pdfTeX (AM)
 )
-\AM@pagebox=\box100
+\AM@pagebox=\box120
 \AM@toc@title=\toks73
 \c@AM@survey=\count415
-\AM@templatesizebox=\box101
+\AM@templatesizebox=\box121
 )
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\lastpage\lastpage.sty"
 Package: lastpage 2015/03/29 v1.2m Refers to last page's name (HMM; JPG)
@@ -2130,7 +2206,7 @@ File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count416
 \scratchdimen=\dimen321
-\scratchbox=\box102
+\scratchbox=\box122
 \nofMPsegments=\count417
 \nofMParguments=\count418
 \everyMPshowfont=\toks74
@@ -2197,7 +2273,7 @@ Package biblatex Info: ... file 'main.bbl' found.
 (main.bbl)
 Package biblatex Info: Reference section=0 on input line 40.
 Package biblatex Info: Reference segment=0 on input line 40.
-\AtBeginShipoutBox=\box103
+\AtBeginShipoutBox=\box123
 Package hyperref Info: Link coloring ON on input line 40.
 LaTeX Info: Redefining \ref on input line 40.
 LaTeX Info: Redefining \pageref on input line 40.
@@ -3501,81 +3577,94 @@ CounterClockwise4Q.pdf
 pdfTeX warning: pdflatex.exe (file ./figures/HbridgeCounterClockwise4Q.pdf): PD
 F inclusion: multiple pdfs with page group included in a single page
 >] (chapters/bTableSample.tex) [3] (chapters/cEquationSample.tex) [4]
-(chapters/chapter1/aChapters1.tex
+(chapters/dTikZblockDiagramSample.tex
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <17.28> on input line 21.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <14.4> on input line 31.
+LaTeX Font Info:    Try loading font information for TS1+lmr on input line 69.
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\lm\ts1lmr.fd"
+File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
+))
+(chapters/chapter1/aChapters1.tex [5]
 Chapter 2.
 LaTeX Font Info:    Try loading font information for T1+lmtt on input line 10.
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\lm\t1lmtt.fd"
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 ))
-(appendix/aTest.tex [5
+(appendix/aTest.tex [6
 
-] [6]
+] [7]
 Chapter 3.
-<figures/MotorTest1.pdf, id=242, 445.665pt x 254.45062pt>
+<figures/MotorTest1.pdf, id=251, 445.665pt x 254.45062pt>
 File: figures/MotorTest1.pdf Graphic file (type pdf)
 
 <use figures/MotorTest1.pdf>
 Package pdftex.def Info: figures/MotorTest1.pdf used on input line 11.
 (pdftex.def)             Requested size: 200.5474pt x 114.50171pt.
- [7
+ [8
 
  <./figures/MotorTest1.pdf>]
-<figures/armatureResistance.pdf, id=267, 614.295pt x 794.97pt>
+<figures/armatureResistance.pdf, id=275, 614.295pt x 794.97pt>
 File: figures/armatureResistance.pdf Graphic file (type pdf)
 
 <use figures/armatureResistance.pdf>
 Package pdftex.def Info: figures/armatureResistance.pdf used on input line 83.
 (pdftex.def)             Requested size: 455.24411pt x 589.14197pt.
- [8]) [9 <./figures/armatureResistance.pdf>] [10
+ [9]) [10 <./figures/armatureResistance.pdf>] [11
 
 ] (main.lox)
 \tf@lox=\write7
 \tf@thm=\write8
  
 AED: lastpage setting LastPage
-[11
+[12
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 67.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 67.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 88.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 88.
  (main.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 67.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 67.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 88.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 88.
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: 7C161FE264A1D10C8C2515007FD175B2;331.
 Package logreq Info: Writing requests to 'main.run.xml'.
  ) 
 Here is how much of TeX's memory you used:
- 46144 strings out of 493673
- 941398 string characters out of 3141529
- 1506408 words of memory out of 3000000
- 48685 multiletter control sequences out of 15000+200000
- 109635 words of font info for 81 fonts, out of 3000000 for 9000
+ 48178 strings out of 493673
+ 1000337 string characters out of 3141529
+ 1589870 words of memory out of 3000000
+ 50665 multiletter control sequences out of 15000+200000
+ 124531 words of font info for 97 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
- 57i,19n,92p,10411b,1837s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 57i,19n,92p,10411b,1831s stack positions out of 5000i,500n,10000p,200000b,50000s
 pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exi
 st, replaced by a fixed one
 
 {C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.enc}{C:/Program Fil
-es (x86)/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathsy.enc}{C:/Program Files (x86)/Mi
-KTeX 2.9/fonts/enc/dvips/lm/lm-mathit.enc}{C:/Program Files (x86)/MiKTeX 2.9/fo
-nts/enc/dvips/lm/lm-rm.enc}<C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/publi
-c/lm/lmbx10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmbx12
-.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmcsc10.pfb><C:/P
-rogram Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmmi12.pfb><C:/Program File
-s (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmmi8.pfb><C:/Program Files (x86)/MiKT
-eX 2.9/fonts/type1/public/lm/lmr10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts
-/type1/public/lm/lmr12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/publi
-c/lm/lmr7.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmr8.pfb
-><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmri10.pfb><C:/Progra
-m Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmri12.pfb><C:/Program Files (x8
-6)/MiKTeX 2.9/fonts/type1/public/lm/lmss10.pfb><C:/Program Files (x86)/MiKTeX 2
-.9/fonts/type1/public/lm/lmsy10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/ty
-pe1/public/lm/lmsy8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/l
-m/lmtt12.pfb>
-Output written on main.pdf (11 pages, 443475 bytes).
+es (x86)/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ts1.enc}{C:/Program Files (x86)/MiKTe
+X 2.9/fonts/enc/dvips/lm/lm-rm.enc}{C:/Program Files (x86)/MiKTeX 2.9/fonts/enc
+/dvips/lm/lm-mathex.enc}{C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/lm/l
+m-mathit.enc}{C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathsy.en
+c}<C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmbx10.pfb><C:/Progr
+am Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmbx12.pfb><C:/Program Files (x
+86)/MiKTeX 2.9/fonts/type1/public/lm/lmcsc10.pfb><C:/Program Files (x86)/MiKTeX
+ 2.9/fonts/type1/public/lm/lmex10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/
+type1/public/lm/lmmi12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/publi
+c/lm/lmmi8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmr10.p
+fb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmr12.pfb><C:/Progr
+am Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmr17.pfb><C:/Program Files (x8
+6)/MiKTeX 2.9/fonts/type1/public/lm/lmr7.pfb><C:/Program Files (x86)/MiKTeX 2.9
+/fonts/type1/public/lm/lmr8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/
+public/lm/lmri10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/l
+mri12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmss10.pfb><
+C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmsy10.pfb><C:/Program 
+Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmsy8.pfb><C:/Program Files (x86)/
+MiKTeX 2.9/fonts/type1/public/lm/lmtt12.pfb>
+Output written on main.pdf (12 pages, 469606 bytes).
 PDF statistics:
- 390 PDF objects out of 1000 (max. 8388607)
- 52 named destinations out of 1000 (max. 500000)
+ 408 PDF objects out of 1000 (max. 8388607)
+ 53 named destinations out of 1000 (max. 500000)
  86 words of extra memory for PDF output out of 10000 (max. 10000000)
 

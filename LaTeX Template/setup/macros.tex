@@ -8,8 +8,25 @@
 %Equation:                                     %                                               | and does not work with long equations.. :/
 \newcommand{\eq}[2]{\si{#1} &= \si{#2}}
 \newcommand{\arw}{&& &\Updownarrow&&}
+\newcommand{\eqOne}[2]{\si{#1} &= \si{#2} &\nonumber\\}
+\newcommand{\eqTwo}[1]{&\ \ \ \ \si{#1}&}
 %Text:
 \newcommand{\tx}[1]{\text{#1}}
+%Vectors
+\renewcommand{\vec}[1]{\boldsymbol{\mathbf{#1}}}
+%Vertical line in equations ie. |_x=y (whereTwo stacks two equalities at the line)
+\newcommand{\where}[1]{ \left.\rule{0cm}{.5cm}\right\vert\rule{0cm}{.4cm}_{\substack{\rule{0cm}{.15cm}\\ \si{#1} }} }
+\newcommand{\whereTwo}[2]{ \left.\rule{0cm}{.67cm}\right\vert\rule{0cm}{.5cm}_{\substack{\si{#1} \rule{0cm}{.19cm}\\\vspace{-.1cm}\\ \si{#2}}} }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 TIKZ SETTINGS                     %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\tikzset{
+  block/.style    = {draw, thick, rectangle,
+                     minimum height = 3em,
+                     minimum width = 3em},
+  sum/.style      = {draw, circle}, % Adder
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                  REFERENCES                       %

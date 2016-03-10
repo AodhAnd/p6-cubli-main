@@ -6,50 +6,46 @@
 \renewcommand\figurename{Figur}
 \renewcommand\tablename{Tabel}
 
-\section*{Supervisor meeting\\ \small Thursday, 18th of December 2015}
+\section*{Supervisor meeting\\ \small Monday, 29th of February 2016}
 
-\subsection{Study regulations}
-Take these regulations as a whole: the general goal is to be able to:
+\subsection{Generating Matlab Code (inputs/outputs)}
 \begin{itemize}
-  \item[-] set a model
-  \item[-] evaluate it
-  \item[-] simulate it
-  \item[-] analyze it
-  \item[-] design a contoller with different methods (root locus, etc.)
-  \item[-] ...
+  \item[-] Simon will answer these questions.
+  \item[-] John will forward some Matlab code.
 \end{itemize}
 
-\subsection{Model}
+\subsection{Parameters for Simulation}
 \begin{itemize}
-  \item[-] The rotational acceleration of the wheel should also account for the rest of the forces (torques) affecting the wheel.
-  \item[-] The bearing of the wheel also applies some unpredictable force which affects the total movement of the wheel and can be drawn as we want.
-  \item[-] Take a global coordinate system to have a good overview: it should be easier to combine the equations. When we reach the equations from the paper, we can also do it another way with respective (local) coordinate sytem and then use cross products to put back the two equations in the same coordinate system.
-  \item[-] Do the model the "book way" :
-    \begin{enumerate} 
-      \item Free-body diagrams
-      \item Put up all the forces applying on the system
-      \item Describe it with equations
-    \end{enumerate}
-  \item[-] Also possible later if we have time: use Lagrange method using energies, it can be elegant.
+  \item[-] The parameters are found on page 25 in the \si{AAU^3} report.
 \end{itemize}
 
-\subsection{Sensors}
+\subsection{Cubli Model}
 \begin{itemize}
-\item[-] It is fine to try to use the IMUs, it should be possible to also use some parameters inside the code to run an observer and bypass the pot-meter.
+\item[-] Angle reference should be put on the drawings.
+\item[-] \textbf{F} is not a torque but rather a translational force.
+\item[-] Make complete correspondence between the two figures (concerning \si{\tau_w} and \nolinebreak\si{\tau_m})
+\item[-] Vector notation - specify that the full equation is provided, however the system will only be addressed around the z-axis.
+\item[-] The components of \textbf{F} could have been in a positive direction to match conventions.
+\item[-] Equation 1.12 - for the dot followed immediately by a minus, at least use a parenthesis.
+\item[-] Specify in equation 3.2 that \si{\ddot{\theta}_w} is the angular acceleration with respect to the frame.
+\item[-] We write: "Vector F is composed of two linear [...]", write instead: "[...] decomposed into two forces parallel to the two axes."
+\item[-] Where we write: "To further investigate [...]" \si{\rightarrow} The argument is instead that we want to put up Newtons 2nd law using [...] - too many words in what we write, be concrete.
+\item[-] We write: "[...] composing the vector [...]". Write instead: "The vector is composed of [...]", or "constituting the vector".
+\item[-] \si{\tau_M} should have been \si{\tau_m}.
+\item[-] Vector cross product - scalar on left hand side and vector on the right hand side - can be fixed by using dot product.
+\item[-] Verification of the model - Linear vs nonlinear - analysis of the model in time as well as in frequency domain.
 \end{itemize}
-
-\subsection{Code implementation process}
-A lot of code to go through but we should stay on the top layer not to loose time.
-
-\subsection{Parameters}
-The approach of using the given parameters and verifying them later when we have made the controller up and running might be better since the point of this semester is the Control Engineering.
 
 \subsection{Next Supervisor meeting}
-Monday, 29th of December at 13.00
+Monday, 7th of March at 13.30
 
 \end{document}
 
 
-% TEGN
-%-----------------------------
-% Højrepil:		$\rightarrow$
+
+
+
+
+
+
+
