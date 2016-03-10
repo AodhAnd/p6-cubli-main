@@ -30,3 +30,7 @@
 
 # Debug files
 *.dSYM/
+
+# Project files
+*.sublime-project
+*.sublime-workspace
