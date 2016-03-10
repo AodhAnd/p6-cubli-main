@@ -17,8 +17,8 @@ Disclaimer: this hierarchy is subject to small changes throughout the semester y
 * Our version of the global project code itself (to be added under `global/`)
 * Simulations code and simulink files and system's values' cheatsheet (under `simulation/`)
 
-## Rules when running a simulation test
-1. Create a folder under `simulation/` with an explicit name.  
+## Rules when running a simulation/test
+1. Create a folder under `tests/` with an explicit name.  
 2. The latter should use camel case with first letter being small: awesomeTestWithCrazyController
 3. Organize this folder as follows:
     * `implem/`  -> all the C code necessary to run this test as is at the moment the test is performed   
