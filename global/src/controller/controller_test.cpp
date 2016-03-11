@@ -78,7 +78,6 @@ void ControllerTest::runController(ControllerArgs* args)
 		i_m = i_m_next;
 
 		i_m_out = (signed int)((i_m*1000));
-
 		args->mMotor->setRpm(i_m_out);
 
 		/* ################################
@@ -137,7 +136,7 @@ void ControllerTest::runController(ControllerArgs* args)
 
 			// Init controller and Observer
 			AAU3_DiscLinFeedback_initialize();
-			AAU3_DiscLinFeedback2_initialize();
+			AAU3_DiscLinFeedback2_initialize(THETA_REF);
 		}
 
 		/* ################################
