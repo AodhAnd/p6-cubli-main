@@ -11,7 +11,7 @@ g=9.82;
 l_w=0.093;
 l_f=0.076;
 
-%% Transfer funcition of the system
+%% Transfer function of the system
 s=tf('s');
 G=(-J_w*s^2)/((J_w*s^2+B_w*s)*((J_f+m_w*l_w^2)*s^2+B_f*s-(m_w*l_w+m_f*l_f)*g+((B_w*J_w*s^3)/(J_w*s^2+B_w*s))));
 %figure(1);
@@ -61,7 +61,6 @@ title('Comparison of Linear and Nonlinear Models')
 xlabel('Time (s)');
 ylabel('Angular position (rad)');
 grid on;
-set(gca,'GridLineStyle',':', 'GridColor', 'k', 'GridAlpha', .6);
 legend('Linearized','Nonlinear','Location','Northeast');
 axis([0 6 0 6]);
 
