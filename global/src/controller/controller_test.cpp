@@ -86,9 +86,9 @@ void ControllerTest::runController(ControllerArgs* args)
 		 * ################################ */
 		static double xAcc1, yAcc1, gyroZ1, xAcc2, yAcc2, gyroZ2, potAdc, powerAdc, tachAdc, gyroRads1, gyroRads2, accX1, accX2, accY1, accY2;
 
-		tachAdc = (double) args->mMotorAdc1->get(); // The last part is to correct an offset
+		tachAdc 	= (double) args->mMotorAdc1->get(); // The last part is to correct an offset
 		powerAdc  = args->mMotorAdc2->get(); //must be there or we get errors.. don't ask why; just believe in the code!
-		potAdc   = (double) args->mPotAdc->get();
+		potAdc   	= (double) args->mPotAdc->get();
 
 		xAcc1    = (double) args->mImu1->getAccX();
 		yAcc1    = (double) args->mImu1->getAccY();
@@ -98,44 +98,23 @@ void ControllerTest::runController(ControllerArgs* args)
 		yAcc2    = (double) args->mImu2->getAccY();
 		gyroZ2   = (double) args->mImu2->getGyroZ();
 
-
-
 		//Convert potentiometer reading to radians
 		double potRad;
-		static double potOffset1 = -0.025,
-				      tachOffset1 = 0;
+		static double potOffset1 	= -0.025,
+				      		tachOffset1 = 0;
 
-		if(1){ // New circuit board
-			potRad = (potAdc-655)*0.001068569;
+		potRad = (potAdc-655)*0.001068569;
 
-			if(1){ //This flag enables the Auto-Zeroing feature
-				if( !(potRad<-0.35 || potRad>0.35)){
-					potOffset1 = potOffset1*0.9990 + potRad*0.0009995;
-				}
+		if(1){ //This flag enables the Auto-Zeroing feature
+			if( !(potRad<-0.35 || potRad>0.35)){
+				potOffset1 = potOffset1*0.9990 + potRad*0.0009995;
 			}
-
-		}else{ // Old circuit "board" (hospitals patienten)
-
-			const double potOffset = 0.08629 - 0.0199902 + 0.0034 - 0.005; //+ 0.0034
-			potRad = -(potAdc-1564.5)*0.00339999205 + potOffset;
 		}
 
 		//Convert tachometer reading to radians/sec
 		double tachRads;
 		tachRads = (tachAdc - 882)*0.240734983;
-		if(1){
-			tachRads = (tachAdc - 882)*0.240734983;
-
-		}else{ // This code is legacy code for an earlier version. It is keept for sentimental reasons :)
-			const double a1 = 51.5489, b1 = -97.9109; //+ 4.3046
-			const double a2 = -24.4500, b2 = 286.0935, c2 = 439.7612;
-			tachRads = b1 - (a1*(b2 - sqrt(b2*b2 - 4*a2*c2 + 4*a2*tachAdc)))/(2*a2);
-			if(tachAdc>=1237) tachRads = 143.5; // because of the sqrt, it is not defined for values higher than this.
-		}
-
-		// Old conversion
-		// const double tachOffset = 1.67165 -0.25;
-		// tachRads = (tachAdc-880)*0.238807583786 + tachOffset;
+		tachRads = (tachAdc - 882)*0.240734983;
 
 		// Convert gyroscopes
 		const double PI = 3.141592653589793;
@@ -157,12 +136,8 @@ void ControllerTest::runController(ControllerArgs* args)
 
 
 			// Init controller and Observer
-			AAU3_DiscLinObserver_initialize();
 			AAU3_DiscLinFeedback_initialize();
-			AAU3_DiscSlidingModeController_initialize();
-			AAU3_InOutLinearization_initialize();
-			AAU3_DiscSlidingModeController_new_initialize();
-			DiscreteLurenbergerEstimator_take2_initialize();
+			AAU3_DiscLinFeedback2_initialize();
 		}
 
 		/* ################################
@@ -174,35 +149,10 @@ void ControllerTest::runController(ControllerArgs* args)
 		double y[2] = {potRad,tachRads};
 		double y_[4] = {potRad, gyroRads1, gyroRads2, tachRads - tachOffset1};
 
-
-		if(0){ // Observer
-
-			//x_hat_last[3] = 0;
-			double O_Take2_OffsetRegion = 0.2;
-			if(x_hat[3] > O_Take2_OffsetRegion)
-				x_hat[3] = O_Take2_OffsetRegion;
-			else if(-O_Take2_OffsetRegion > x_hat[0]){
-				x_hat[3] = -O_Take2_OffsetRegion;
-			}
-
-			//x_hat[3] = 0;
-
-			O_Obv2_struct_T ObTake_u_last;
-			ObTake_u_last.O_Obv2_U_m = i_m;
-			ObTake_u_last.O_Obv2_Brake = 0;
-			DiscreteLurenbergerEstimator_take2(Ts, x_hat_last, &ObTake_u_last, y_, x_hat);
-
-			if(potRad<-O_Take2_OffsetRegion || potRad>O_Take2_OffsetRegion){
-				x_hat[3] = x_hat_last[3];
-			}
-
-		}else{
-			//x_hat[1] = (potRad-x_hat_last[0])/Ts;
-			x_hat[1] = (gyroRads1+gyroRads2)/2;
-			x_hat[0] = potRad - potOffset1;
-			x_hat[2] = tachRads - tachOffset1;
-		}
-
+		//x_hat[1] = (potRad-x_hat_last[0])/Ts;
+		x_hat[1] = (gyroRads1+gyroRads2)/2;
+		x_hat[0] = potRad - potOffset1;
+		x_hat[2] = tachRads - tachOffset1;
 
 		/* ################################
 		 * ## 4. Run controller
@@ -212,17 +162,9 @@ void ControllerTest::runController(ControllerArgs* args)
 		if(0){ //The linear state feedback controller
 			C_Lin_struct_T u_next_obs = AAU3_DiscLinFeedback(Ts,x_hat);
 			i_m_next = u_next_obs.C_Lin_U_m;
-		}else if(0){ // The feedback linearization
-			C_InOut_struct_T u_next_inout = AAU3_InOutLinearization(Ts,x_hat);
-			i_m_next = u_next_inout.C_InOut_U_m;
-		}else if(1){ // The sliding mode controller
-			C_SMC_new_struct_T u_next_SMC_new = AAU3_DiscSlidingModeController_new(Ts,x_hat);
-			i_m_next = u_next_SMC_new.C_SMC_new_U_m;
-		}else{ //An early attempt of the Sliding mode controller. It is preserved for semtinental reasons :)
-			C_SM_struct_T u_next_SMC = AAU3_DiscSlidingModeController(Ts,x_hat);
-			i_m_next = u_next_SMC.C_SM_U_m;
+		else if(1){ // Proportional controller
+			Lin_Out_Sig_struct_T u_next_pc.I_m = AAU3_DiscLinFeedback2(x_hat);
 		}
-
 
 		// Controller tester
 		static long ct_count = 0;
@@ -230,7 +172,7 @@ void ControllerTest::runController(ControllerArgs* args)
 		if(0){
 			ct_count++;
 			if(ct_count<450){
-				//Nothing happends in this region
+				//Nothing happens in this region
 			}else if(ct_count<500){
 				i_m_next = i_m_next + i_m_add;
 			}else{
@@ -238,10 +180,6 @@ void ControllerTest::runController(ControllerArgs* args)
 				i_m_add += 0.5;
 			}
 		}
-
-		//if(potRad>0.4){
-		//	i_m_next = 0;
-		//}
 
 		static bool goingPos = true;
 		const double testLim = 80;

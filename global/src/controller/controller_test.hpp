@@ -13,6 +13,11 @@
 #include "../bbb_gpio.hpp"
 #include "../bbb_adc.hpp"
 
+// Angle of the frame (in radians)
+#ifndef THETA_REF
+#define THETA_REF 0.0 
+#endif
+
 using namespace std;
 
 class ControllerTest: public ControllerCbIf,public ControllerBase {
