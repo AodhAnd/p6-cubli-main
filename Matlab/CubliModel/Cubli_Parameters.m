@@ -46,7 +46,7 @@ bode(G_reduced);
 
 % Analysis in the s-domain
 figure(5);
-rlocus(G_reduced);
+rlocus(-G_reduced);
 
 % Analysis in the z-domain
 figure(6);
