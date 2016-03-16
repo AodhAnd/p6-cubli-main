@@ -6,47 +6,41 @@
 \renewcommand\figurename{Figur}
 \renewcommand\tablename{Tabel}
 
-\section*{Supervisor meeting\\ \small Monday, 7th of February 2016}
+\section*{Supervisor meeting\\ \small Monday, 14th of March 2016}
 
-\subsection{Sent Material}
-Corrective suggestions from the supervisors have been sent by email for later reference.
-
-\subsection{Linearization}
+\subsection{Report}
 \begin{itemize}
-  \item[-] See the comments about the bar notation in the received correction pdfs.
-  \item[-] Say that the $\theta_F$ and its derivative are 0 as well as the angle $\theta_w$. Then the torque ends up being zero.
-  \item[-] About equation 3.19 to 3.21: Sum up what equations the model is made of and regroup the similar terms.
-  \item[-] About figure 3.4: clarify what we want to show with this diagram. The `area' is more of an interval in which the linear approximation stays somewhat close to the real sine function.
+  \item[-] Zoom in on the simulation where the approximation is relevant.
+  \item[-] Bode stability margins builds on a system being stable, which can be inferred by Nyquist stability criteria.
+  \item[-] Zoom on the left hand root locus, and explain that the right hand plot is a zoom at origin of the left plot.
+  \item[-] Nyquist - the \si{Z_{RHP} = N + P_{RHP}} equation is not directly the Nyquist Stability Criterion, but you can infer stability from it.
+  \item[-] L(S) instead of OL
+  \item[-] Direction of encirclements = sign of \si{N} in equation: \si{Z_{RHP} = \pm N + P_{RHP}}
+  \item[-] Root locus plot - use the SISOTOOL GUI to create the first controller as a first iteration.
 \end{itemize}
 
-\subsection{Verification of Model}
+\subsection{New Parameters}
 \begin{itemize}
-  \item[-] The idea behind figure 3.6 is to compare the linearized equations and block diagram. It is still a good idea to use this graph of comparison between model and equations in the report.
-  \item[-] It is also necessary to compare the original non-linear model with the linearized one.
+  \item[-] Identify the total moment of inertia and the distance to center of mass (least square estimation).
+  \item[-] See testing... (damping)
 \end{itemize}
 
-\subsection{System Test (grouped data points)}
+\subsection{Testing}
 \begin{itemize}
-  \item[-] Try to do a (rolling) average of the potentiometer data.
-  \item[-] Show this process in the report.
+\item[-] Try to repeat the step test at 10 degrees in order to match initial conditions.
+\item[-] We may have different values of the damping in simulation compared to the system.
+\item[-] Slight difference in frequency might also have something to do with the damping.
+\item[-] Parameter estimation could be done using least square.
+\item[-] Put up discrete time model when using least square method.
 \end{itemize}
 
-\subsection{Miscelleanous}
+\subsection{Date of Examination}
 \begin{itemize}
-  \item[-] Motor model $\rightarrow$ use a simple model, matchig the behavior of the motor controller, at first and improve it later, once a working controller has been implemented.
-  \item[-] Sensors $\rightarrow$ same thing: stay with the potentiometer for the moment
-  \item[-] In later iterations, it might be possible to implement some filters for other sensor types.
+\item[-] Can not promise anything, because of coordination with external censor.
+\item[-] It will be attempted to place the examination around $\pm$20th of June.
 \end{itemize}
 
-\subsection{Next Supervisor Meeting}
-Monday, 14th of March at 13.00
+\subsection{Next Supervisor meeting}
+Monday, 21st of March at 13.00
+
 \end{document}
-
-
-
-
-
-
-
-
-
