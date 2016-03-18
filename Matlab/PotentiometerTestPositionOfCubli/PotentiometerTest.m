@@ -1,10 +1,14 @@
 %------------------- SETUP FOR FIGURE HOLD & CLEANUP ----------------------
 for folding = true
-    if ishandle(a)
-        p = get(a, 'Position')
+    if exist('a','var') == 1
+        if ishandle(a)
+            p = get(a, 'Position')
+        end
     end
-    if ishandle(b)
+    if exist('b','var') == 1
+        if ishandle(b)
         q = get(b, 'Position')
+        end
     end
 
     close all;
@@ -29,6 +33,7 @@ end %<--setting figure position
 
 a = figure;
 plot(time, voltage, 'linewidth', 1.5);
+%%
 hold on;
 
 %---------------------- CALCULATING CONSTANT VALUES -----------------------
@@ -59,7 +64,7 @@ Ymiddle = zeros(size(voltage))+middleVolt;
 plot(time, Ymiddle,...
 'linestyle', '--', 'linewidth', 1.2, 'color', '[ .6 0 .6 ]');
 
-%---------------------------- PLOT SETTINGS -------------------------------
+%% ---------------------------- PLOT SETTINGS -------------------------------
 
 %limmiting the axes
 ylim([-.1 .5])
