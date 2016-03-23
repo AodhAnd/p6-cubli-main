@@ -6,41 +6,57 @@
 \renewcommand\figurename{Figur}
 \renewcommand\tablename{Tabel}
 
-\section*{Supervisor meeting\\ \small Monday, 14th of March 2016}
+\section*{Supervisor meeting\\ \small Monday, 21st of March 2016}
 
 \subsection{Report}
 \begin{itemize}
-  \item[-] Zoom in on the simulation where the approximation is relevant.
-  \item[-] Bode stability margins builds on a system being stable, which can be inferred by Nyquist stability criteria.
-  \item[-] Zoom on the left hand root locus, and explain that the right hand plot is a zoom at origin of the left plot.
-  \item[-] Nyquist - the \si{Z_{RHP} = N + P_{RHP}} equation is not directly the Nyquist Stability Criterion, but you can infer stability from it.
-  \item[-] L(S) instead of OL
-  \item[-] Direction of encirclements = sign of \si{N} in equation: \si{Z_{RHP} = \pm N + P_{RHP}}
-  \item[-] Root locus plot - use the SISOTOOL GUI to create the first controller as a first iteration.
+  \item[-] Use consistent units in figures (if axis are in rad, don't use degrees in the caption)
+  \item[-] "Impulse response" is rather an "Initial value response"
 \end{itemize}
 
-\subsection{New Parameters}
+\subsection{Center of Mass Offset}
 \begin{itemize}
-  \item[-] Identify the total moment of inertia and the distance to center of mass (least square estimation).
-  \item[-] See testing... (damping)
+  \item[-] For this offset, try to use a string with a weight attached to show that it exists
+  \item[-] The offset we think we have found could be caused by cushion pads being non-symmetric, by the wheel being fixed off-center
+  \item[-] We can take the Cubli apart to get the center of mass, by hanging it by 3 different corners
+  \item[-] Later on, we can also estimate this center of mass again, using the known result as a sanity check
+  \item[-] If anything else has to be done with the dismantled Cubli, it should be done now. The setup should not be taken apart again after.
+  \item[-] Try to analyze the potentiometer readout, with angle as a reference.
 \end{itemize}
 
-\subsection{Testing}
+\subsection{10 degrees Fall Test}
 \begin{itemize}
-\item[-] Try to repeat the step test at 10 degrees in order to match initial conditions.
-\item[-] We may have different values of the damping in simulation compared to the system.
-\item[-] Slight difference in frequency might also have something to do with the damping.
-\item[-] Parameter estimation could be done using least square.
-\item[-] Put up discrete time model when using least square method.
+  \item[-] It should be made very clear, why this test has been made.
+  \item[-] It is up to us to decide where to put graphs and conclusions (appendix vs. report body)
+  \item[-] It is fine to place comparison graphs in both places (test appendix + verification section)
+  \item[-] Blue curve is made with non-linear simulation
+  \item[-] Be careful when fixing the wheel in reality: it should also be taken into consideration when simulating
 \end{itemize}
 
-\subsection{Date of Examination}
+\subsection{Estimation of Parameters}
 \begin{itemize}
-\item[-] Can not promise anything, because of coordination with external censor.
-\item[-] It will be attempted to place the examination around $\pm$20th of June.
+  \item[-] The group is currently working on this estimation using `Senstools' toolbox, presented by Tom S. Pedersen in one of the Control Engineering lectures. 
+  \item[-] When fixing the wheel, the corresponding blocks have to be taken out
+\end{itemize}
+
+\subsection{Controller Simulation}
+\begin{itemize}
+  \item[-] It is not necessarily a good idea to try to cancel an unstable pole, which an integrator is
+  \item[-] The system should be strictly proper, i.e. it should have strictly more poles than zeros.
+  \item[-] When transferring the controller from sisotool to simulink, recalculate the gain.
+\end{itemize}
+
+\subsection{Miscelleanous}
+\begin{itemize}
+  \item[-] The code has to be analyzed further on to check which part causes the potentiometer's weird behavior and be sure that the controllers can run with a reduced code.
+  \item[-] The ADC does not cause any problem
+  \item[-] We should now be able to implement our own controller on the Cubli, from scratch
+  \item[-] Later on, the motor's model should be included in the control simulation to design the controller.
+  \item[-] The motor controller is used in open-loop mode with a current reference input.
+  \item[-] Make a test for the motor control, it may introduce a pole. Thereafter, one/two zeros more might be needed.
 \end{itemize}
 
 \subsection{Next Supervisor meeting}
-Monday, 21st of March at 13.00
+Monday, 31st of March at 10.00
 
 \end{document}
