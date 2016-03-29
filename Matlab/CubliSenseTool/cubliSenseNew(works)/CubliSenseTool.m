@@ -48,7 +48,7 @@ offsetVolt = middleVolt-equVolt+.004;
 resRad = (pi/2)/(Vmax-Vmin);
 y = (Yvolt - middleVolt + offsetVolt)*resRad;
 
-plot(t',y)
+scatter(t',y)
 
 %%
 par0 = [ B_f J_f ];% m_f l_f ];
@@ -69,6 +69,23 @@ process = 'Cubli';
 run mainest.m
 
 
+%% PLOTTING IT PRETTILY :)
+
+a = get(findall(gcf, 'Type', 'line', 'color', '[0.8500 0.3250 0.0980]'));
+Ynew = a.YData;
+
+figure;
+scatter(t', y, 'r')
+hold on
+plot(t', Ynew, 'b', 'LineWidth', 1.4)
+grid on, grid minor;
+set(gca,'GridLineStyle',':', 'GridColor', 'k', 'GridAlpha', .6)
+
+title('Parameter Estimation using Sense Tool')
+xlabel('Time (s)')
+ylabel('Angle (rad)')
+
+hold off
 
 
 
