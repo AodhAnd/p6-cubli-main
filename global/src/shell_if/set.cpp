@@ -8,7 +8,7 @@
 #include "shell_client.hpp"
 #include "shell_server.hpp"
 #include <string>
-#include "AauPwmLib.hpp"
+#include "../AauPwmLib.hpp"
 #include <stdlib.h>
 
 class getClass : public ShellClientInterface{
