@@ -18,7 +18,7 @@
 #define typedef_Lin_Controller_struct_T
 
 #define K_T 0.0335
-#define TORQUE_2_CURRENT 1/Kt
+#define TORQUE_2_CURRENT 1/K_T
 
 /**
  * This structure contains all the elements relative to the controller.
@@ -49,7 +49,7 @@ typedef struct {
 static SISOT_Lin_PController_struct_T SISOT_PComp;
 
 /** Runs the controller based on the feedback signal in x_hat */
-SISOT_P_Out_Sig_struct_T AAU3_DiscSISOTool(const real_T x_hat[3]);
+SISOT_P_Out_Sig_struct_T AAU3_DiscSISOTool(const real_T x_hat[3])
 {
   /** Variable declarations */
   SISOT_P_Out_Sig_struct_T SISOT_P_U;
@@ -66,10 +66,10 @@ SISOT_P_Out_Sig_struct_T AAU3_DiscSISOTool(const real_T x_hat[3]);
   // On-the-instant error
   SISOT_PComp.e_del[0] = SISOT_PComp.theta_ref - x_hat[0]; 
   // Controller job
-  SISOT_PComp.taum_del[0] = a[0] * e_del[0] + a[1] * e_del[1] + a[2] * e_del[2] + a[3] * e_del[3]
-                          b[1] * taum_del[1] + b[2] * taum_del[2];
+  SISOT_PComp.taum_del[0] = SISOT_PComp.a[0] * SISOT_PComp.e_del[0] + SISOT_PComp.a[1] * SISOT_PComp.e_del[1] + SISOT_PComp.a[2] * SISOT_PComp.e_del[2] + SISOT_PComp.a[3] * SISOT_PComp.e_del[3]+
+		  SISOT_PComp.b[1] * SISOT_PComp.taum_del[1] + SISOT_PComp.b[2] * SISOT_PComp.taum_del[2];
 
-  SISOT_P_U.I_m = TORQUE_2_CURRENT * taum_del[0];
+  SISOT_P_U.I_m = TORQUE_2_CURRENT * SISOT_PComp.taum_del[0];
   return SISOT_P_U;
 }
 
@@ -103,9 +103,9 @@ void AAU3_DiscSISOTool_initialize(const real_T sys_ref)
   PC0.e_del[0] = 0;
   PC0.e_del[1] = 0;
   PC0.e_del[2] = 0;
-  PC0.im_del[0] = 0;
-  PC0.im_del[1] = 0;
-  PC0.im_del[2] = 0;
+  PC0.taum_del[0] = 0;
+  PC0.taum_del[1] = 0;
+  PC0.taum_del[2] = 0;
 
   // Some math define requirements
   rt_InitInfAndNaN(8U);
@@ -115,3 +115,4 @@ void AAU3_DiscSISOTool_terminate(void)
 {
   // Nothing to do really...
 }
+

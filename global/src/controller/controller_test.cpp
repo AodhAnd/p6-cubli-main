@@ -12,6 +12,8 @@
 
 #include "controller_code/AAU3_DiscLinObserver.hpp" // Discrete lurenberger observer
 #include "controller_code/AAU3_DiscLinFeedback.hpp"
+#include "controller_code/AAU3_DiscLinFeedback2.hpp"
+#include "controller_code/AAU3_DiscSISOTool.hpp"
 #include "controller_code/AAU3_DiscSlidingModeController.hpp"
 #include "controller_code/AAU3_InOutLinearization.hpp"
 #include "controller_code/AAU3_DiscSlidingModeController_new.hpp"
@@ -162,12 +164,13 @@ void ControllerTest::runController(ControllerArgs* args)
 		if(0){ //The linear state feedback controller
 			C_Lin_struct_T u_next_obs = AAU3_DiscLinFeedback(Ts,x_hat);
 			i_m_next = u_next_obs.C_Lin_U_m;
+		}
 		else if(1){ // Proportional controller
-			Lin_Out_Sig_struct_T u_next_pc.I_m = AAU3_DiscLinFeedback2(x_hat);
+			Lin_Out_Sig_struct_T u_next_pc = AAU3_DiscLinFeedback2(x_hat);
 			i_m_next = u_next_pc.I_m;
 		}
 		else if(0){
-			SISOT_P_Out_Sig_struct_T u_next_sisopc.I_m = AAU3_DiscSISOTool(x_hat);
+			SISOT_P_Out_Sig_struct_T u_next_sisopc = AAU3_DiscSISOTool(x_hat);
 			i_m_next = u_next_sisopc.I_m;
 		}
 
@@ -271,3 +274,4 @@ ControllerBase* ControllerTest::createController(string& name)
 }
 
 //REGISTER_CONTROLLER(ControllerTest);
+
