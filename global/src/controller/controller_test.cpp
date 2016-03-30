@@ -137,6 +137,7 @@ void ControllerTest::runController(ControllerArgs* args)
 			// Init controller and Observer
 			AAU3_DiscLinFeedback_initialize();
 			AAU3_DiscLinFeedback2_initialize(THETA_REF);
+			AAU3_DiscSISOTool_initialize(THETA_REF);
 		}
 
 		/* ################################
@@ -163,6 +164,11 @@ void ControllerTest::runController(ControllerArgs* args)
 			i_m_next = u_next_obs.C_Lin_U_m;
 		else if(1){ // Proportional controller
 			Lin_Out_Sig_struct_T u_next_pc.I_m = AAU3_DiscLinFeedback2(x_hat);
+			i_m_next = u_next_pc.I_m;
+		}
+		else if(0){
+			SISOT_P_Out_Sig_struct_T u_next_sisopc.I_m = AAU3_DiscSISOTool(x_hat);
+			i_m_next = u_next_sisopc.I_m;
 		}
 
 		// Controller tester
