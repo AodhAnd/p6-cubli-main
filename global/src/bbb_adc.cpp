@@ -30,7 +30,7 @@ BbbAdc::~BbbAdc()
 unsigned int BbbAdc::get()
 {
 	unsigned int rv = 0;
-	static char buf[6];
+	char buf[6];
 	memset(buf,0,6);
 
 	mAdc_fd = open(mPath,O_RDONLY);
