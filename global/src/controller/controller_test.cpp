@@ -103,13 +103,16 @@ void ControllerTest::runController(ControllerArgs* args)
 		double potRad;
 		static double potOffset1 	= -0.025,
 				      		tachOffset1 = 0;
-
-		potRad = (potAdc-655)*0.001068569;
+		static double adcRes = 0.00043945,		// ADC resolution
+									eqVolt = 0.6945,				// Voltage value at the equilibrium point
+									resRad = 3.2818;				// Voltage-to-radians coefficient
+		// potRad = (potAdc-655)*0.001068569;
+		potRad = ((potAdc * adcRes) - eqVolt) * resRad; 
 
 		if(1){ //This flag enables the Auto-Zeroing feature
 			if( !(potRad<-0.35 || potRad>0.35)){
 				potOffset1 = potOffset1*0.9990 + potRad*0.0009995;
-			}
+			}			
 		}
 
 		//Convert tachometer reading to radians/sec
@@ -153,7 +156,7 @@ void ControllerTest::runController(ControllerArgs* args)
 
 		//x_hat[1] = (potRad-x_hat_last[0])/Ts;
 		x_hat[1] = (gyroRads1+gyroRads2)/2;
-		x_hat[0] = potRad - potOffset1;
+		x_hat[0] = potRad; //- potOffset1;
 		x_hat[2] = tachRads - tachOffset1;
 
 		/* ################################
