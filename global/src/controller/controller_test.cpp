@@ -255,8 +255,9 @@ void ControllerTest::runController(ControllerArgs* args)
 
 
 		if(1){
-			std::cout << potOffset1 << ", " << goingPos << ", " << ct_count << "\ti_m: " << i_m_next << "\ti_m_c: " << i_m_next << "\tPot: " << potRad << "\tTach: " << tachRads << "\tx_hat: " << x_hat[0] << ",\t" << x_hat[1] << ",\t" << x_hat[2] <<
-					accX1 << ", " << accY1 << ", " << accX2 << ", " << accY2 << ", " << potAdc << endl;
+			std::cout << goingPos << "\tcount:" << ct_count << "\ti_m: " << i_m_next << "\ti_m_next: " << i_m_next << "\tPot(rad)t: " << potRad << "\tpotAdc: " << potAdc << endl; //<< "\tTach: " << tachRads << "\tx_hat: " << x_hat[0] << ",\t" << x_hat[1] << ",\t" << x_hat[2] <<
+
+					//accX1 << ", " << accY1 << ", " << accX2 << ", " << accY2 << ", " << potAdc << endl;
 			if(1){
 				if (logfile.is_open())
 				{
