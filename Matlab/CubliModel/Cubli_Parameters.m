@@ -40,6 +40,7 @@ close all;
 % legend('Transfer Function Response','Simulation Response','Location','Northeast');
 % hold off;
 
+%%
 % Frequency domain analysis
 figure(4);
 bode(G_reduced);
@@ -63,6 +64,16 @@ ylabel('Angular position (rad)');
 grid on;
 legend('Linearized','Nonlinear','Location','Northeast');
 axis([0 6 0 6]);
-
-
 warning('on');
+
+%% Response of the closed loop system
+close all;
+D=1;
+T=D*G_reduced/(1-D*G_reduced);
+impulse(T,2);
+hold on;
+T2=-D*G_reduced/(1-D*G_reduced);
+impulse(T2,2);
+hold off;
+
+sisotool(G_reduced);
