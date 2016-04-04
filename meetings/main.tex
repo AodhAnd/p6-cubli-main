@@ -6,57 +6,43 @@
 \renewcommand\figurename{Figur}
 \renewcommand\tablename{Tabel}
 
-\section*{Supervisor meeting\\ \small Monday, 21st of March 2016}
+\section*{Supervisor meeting\\ \small Thursday, 31st of March 2016}
 
-\subsection{Report}
+\subsection{Sense Tool Parameter Estimation}
 \begin{itemize}
-  \item[-] Use consistent units in figures (if axis are in rad, don't use degrees in the caption)
-  \item[-] "Impulse response" is rather an "Initial value response"
+  \item[-] The slower damping of the model, is due to stiction.
+  \item[-] When using SenseTool to estimate the parameters, make sure to describe the method used by the tool.
+  \item[-] In general, use Newton method first then steepest descent.
 \end{itemize}
 
-\subsection{Center of Mass Offset}
+\subsection{Potentiometer}
 \begin{itemize}
-  \item[-] For this offset, try to use a string with a weight attached to show that it exists
-  \item[-] The offset we think we have found could be caused by cushion pads being non-symmetric, by the wheel being fixed off-center
-  \item[-] We can take the Cubli apart to get the center of mass, by hanging it by 3 different corners
-  \item[-] Later on, we can also estimate this center of mass again, using the known result as a sanity check
-  \item[-] If anything else has to be done with the dismantled Cubli, it should be done now. The setup should not be taken apart again after.
-  \item[-] Try to analyze the potentiometer readout, with angle as a reference.
+  \item[-] Resolution of the potentiometer, 0.486 V over a range of 90.35 degrees.
+  \item[-] Maybe there is a gain in the AD-converter - talk to Simon.
+  \item[-] Maybe we can increase the voltage across the potentiometer.
+  \item[-] Remember to document everything.
 \end{itemize}
 
-\subsection{10 degrees Fall Test}
+\subsection{Motor}
 \begin{itemize}
-  \item[-] It should be made very clear, why this test has been made.
-  \item[-] It is up to us to decide where to put graphs and conclusions (appendix vs. report body)
-  \item[-] It is fine to place comparison graphs in both places (test appendix + verification section)
-  \item[-] Blue curve is made with non-linear simulation
-  \item[-] Be careful when fixing the wheel in reality: it should also be taken into consideration when simulating
+  \item[-] The controller on the motor is a closed loop current controller (input: current reference (PWM)).
+  \item[-] Measure how fast the closed loop is.
+  \item[-] In the motor documentation the closed loop current controller sampling time is 53.6 kHz.
+  \item[-] However the closed loop response time is what is interesting in this case.
+  \item[-] We have to argue in the report - we have back EMF, which changes the current - how good is the loop at rejecting this?
+  \item[-] There is probably a limit on the speed in the code since the motor can go really fast.
 \end{itemize}
 
-\subsection{Estimation of Parameters}
+\subsection{Controller}
 \begin{itemize}
-  \item[-] The group is currently working on this estimation using `Senstools' toolbox, presented by Tom S. Pedersen in one of the Control Engineering lectures. 
-  \item[-] When fixing the wheel, the corresponding blocks have to be taken out
-\end{itemize}
-
-\subsection{Controller Simulation}
-\begin{itemize}
-  \item[-] It is not necessarily a good idea to try to cancel an unstable pole, which an integrator is
-  \item[-] The system should be strictly proper, i.e. it should have strictly more poles than zeros.
-  \item[-] When transferring the controller from sisotool to simulink, recalculate the gain.
-\end{itemize}
-
-\subsection{Miscelleanous}
-\begin{itemize}
-  \item[-] The code has to be analyzed further on to check which part causes the potentiometer's weird behavior and be sure that the controllers can run with a reduced code.
-  \item[-] The ADC does not cause any problem
-  \item[-] We should now be able to implement our own controller on the Cubli, from scratch
-  \item[-] Later on, the motor's model should be included in the control simulation to design the controller.
-  \item[-] The motor controller is used in open-loop mode with a current reference input.
-  \item[-] Make a test for the motor control, it may introduce a pole. Thereafter, one/two zeros more might be needed.
+  \item[-] Priority next is to start implementing the controller.
+  \item[-] When describing the Root Locus design, argument how the loci are changed according to new pole/zero placements.
+  \item[-] Also include information on general Root Locus design 
 \end{itemize}
 
 \subsection{Next Supervisor meeting}
-Monday, 31st of March at 10.00
+Send material on Monday, 11th of April\\
+Prepare 7 to 10 minutes of presentation each\\
+Wednesday, 13th of April at 13.00
 
 \end{document}
