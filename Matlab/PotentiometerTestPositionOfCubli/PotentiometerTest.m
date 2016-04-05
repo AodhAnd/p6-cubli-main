@@ -18,7 +18,7 @@ end
 
 %% ---------------------- READING DATA FROM FILE --------------------------
 
-data = csvread('PRINT_05.CSV');
+data = csvread('PRINT_03.CSV');
 
 time = data(:,1)+10;  %making the time Possitive
 voltage = data(:,2);
@@ -81,7 +81,7 @@ legend('Angular movement in volt',...
        'Upper limmit',...
        'Equlibrium point',...
        'Mid-range',...
-       'Location', 'southwest' )
+       'Location', 'northwest' )
 
 %setting grid style
 grid on, grid minor;
@@ -107,19 +107,19 @@ tenDegFromEquLeft  = ( 10-3.7)/resDeg  +  equVolt  % = 0.2679
 %----- TO VOLTAGE ------------------------
 
 %Degrees to Voltage                             % Remember to take the
-%Volt = (inputDeg)/resDeg  +  middleVolt        % offset (3.7 deg) into
+%Volt = (inputDeg)/resDeg  +  equVolt           % offset (3.7 deg) into
                                                 % account (see graphs)
 %Radians to Voltage
-% Volt = (inputRad)/resRad  +  middleVolt
+% Volt = (inputRad)/resRad  +  equVolt
 
 
 %----- TO ANGLE --------------------------
 
 %Voltage to Degrees
-% Deg = (inputVolt - middleVolt)*resDeg;
+% Deg = (inputVolt - equVolt)*resDeg;
 
 %Voltage to Radians
-% Rad = (inputVolt - middleVolt)*resRad;
+% Rad = (inputVolt - equVolt)*resRad;
 
 
 %% -------------------------- EXAMPLE USE ---------------------------------
