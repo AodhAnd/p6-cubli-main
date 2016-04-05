@@ -18,7 +18,7 @@ end
 
 %% ---------------------- READING DATA FROM FILE --------------------------
 
-data = csvread('PRINT_12.CSV');
+data = csvread('PRINT_03.CSV');
 
 time = data(:,1)+10;  %making the time Possitive
 voltage = data(:,2);
