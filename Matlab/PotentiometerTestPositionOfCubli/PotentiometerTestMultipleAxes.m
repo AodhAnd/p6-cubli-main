@@ -64,11 +64,11 @@ Ymiddle = zeros(size(voltage))+middleVolt;
 plot(time, Ymiddle,...
 'linestyle', '--', 'linewidth', 1.2, 'color', '[ .6 0 .6 ]');
 
-%% ---------------------------- PLOT SETTINGS -------------------------------
+%% ------------------------ PLOT SETTINGS ---------------------------------
 
 %limmiting the axes
-%ylim([-.1 .5])
-%xlim([ 0 3 ])
+ylim([-.02 .5])
+xlim([ 0 5 ])
 
 %title and axis labels added
 title('Potentiometer Test')
@@ -106,9 +106,9 @@ tenDegFromEquLeft  = ( 10-3.7)/resDeg  +  equVolt  % = 0.2679
 
 %----- TO VOLTAGE ------------------------
 
-%Degrees to Voltage                             % Remember to take the
-%Volt = (inputDeg)/resDeg  +  equVolt           % offset (3.7 deg) into
-                                                % account (see graphs)
+%Degrees to Voltage
+%Volt = (inputDeg)/resDeg  +  equVolt
+
 %Radians to Voltage
 % Volt = (inputRad)/resRad  +  equVolt
 
@@ -137,74 +137,75 @@ for folding = true
 end %<--setting figure position
 
 b = figure;
-subplot(1,2,1)
-plot(time,deg)
-%setting grid style
-grid on, grid minor;
-set(gca,...
-    'GridLineStyle',':',...
-    'GridColor', 'k',...
-    'GridAlpha', .6,...
-    'YTick', (-50:5:50),...
-    'YLim', [ -45 55 ],...
-    'XLim', [ 0  5 ])
-title('Degree Range of Cubli')
-xlabel('Time (s)')
-ylabel('Degrees (^\circ)')
+[AX, rad1, deg1] = plotyy(time,rad,time,deg)
 
-hold on;%---------- PLOTTING REFFERENCE LINES -----------------------------
-
-YminDeg = (Ymin - equVolt) * resDeg;
-plot(time, YminDeg,...
-'linestyle', '--', 'linewidth', 1.2, 'color', '[ .2 .2 .2 ]');
-
-YmaxDeg = (Ymax - equVolt) * resDeg;
-plot(time, YmaxDeg,...
-'linestyle', '--', 'linewidth', 1.2, 'color', 'r');
-
-YequDeg = (Yequ - equVolt) * resDeg;
-plot(time, YequDeg,...
-'linestyle', '--', 'linewidth', 1.2, 'color', '[ 0 .6 0 ]');
-
-YmiddleDeg = (Ymiddle - equVolt) * resDeg;
-plot(time, YmiddleDeg,...
-'linestyle', '--', 'linewidth', 1.2, 'color', '[ .6 0 .6 ]');
-
-hold off;%-----------------------------------------------------------------
-
-subplot(1,2,2)
-plot(time,rad)
-%setting grid style
-grid on, grid minor;
-set(gca,...
-    'GridLineStyle',':',...
-    'GridColor', 'k',...
-    'GridAlpha', .6,...
-    'YTick', (-8:.1:8),...
-    'YLim', [ -.79 .95 ],...
-    'XLim', [ 0  5 ])
-title('Radian Range of Cubli')
-xlabel('Time (s)')
-ylabel('Radians (rad)')
-
-hold on;%---------- PLOTTING REFFERENCE LINES -----------------------------
+hold on;%------------ PLOTTING REFFERENCE LINES ---------------------------
 
 YminRad = (Ymin - equVolt) * resRad;
-plot(time, YminRad,...
+plot(AX(1), time, YminRad,...
 'linestyle', '--', 'linewidth', 1.2, 'color', '[ .2 .2 .2 ]');
 
 YmaxRad = (Ymax - equVolt) * resRad;
-plot(time, YmaxRad,...
+plot(AX(1), time, YmaxRad,...
 'linestyle', '--', 'linewidth', 1.2, 'color', 'r');
 
 YequRad = (Yequ - equVolt) * resRad;
-plot(time, YequRad,...
+plot(AX(1), time, YequRad,...
 'linestyle', '--', 'linewidth', 1.2, 'color', '[ 0 .6 0 ]');
 
 YmiddleRad = (Ymiddle - equVolt) * resRad;
-plot(time, YmiddleRad,...
+plot(AX(1), time, YmiddleRad,...
 'linestyle', '--', 'linewidth', 1.2, 'color', '[ .6 0 .6 ]');
 
 hold off;%-----------------------------------------------------------------
 
-set(groot,'DefaultFigurePosition','remove')%<--Resets default fig position
+%% ----------------------- PLOT SETTINGS ----------------------------------
+
+set(rad1,'LineWidth', 1.4 )
+
+%setting options for radian axis
+set(AX(1),...
+    'Xgrid', 'on',...
+    'Ygrid', 'on',...
+    'XMinorGrid', 'on',...
+    'YMinorGrid', 'on',...
+    'ytick', (-.9:.1:.9),...
+    'YLim', [ -.785395694 .95992832 ],...     <-- Crummy allignment of
+    'XLim', [ 0  5 ],...                          the two graphs, by
+    'GridLineStyle',':',...                       moving the radian graph
+    'GridColor', 'k',...
+    'GridAlpha', .6)
+
+%turning off degree plot since it is now alligned with the radian plot
+set(deg1,'Visible','off')
+
+%setting options for degree axis
+set(AX(2),...
+    'Xgrid', 'off',...
+    'Ygrid', 'off',...
+    'XMinorGrid', 'off',...
+    'YMinorGrid', 'off',...
+    'ytick', (-50:5:50),...
+    'YLim', [ -45 55 ],...
+    'XLim', [ 0  5 ],...
+    'GridLineStyle', ':',...
+    'GridColor', 'k',...
+    'GridAlpha', .6)
+
+%adding title and axes labels
+title('Angle Range of Cubli')
+xlabel('Time (s)')
+ylabel(AX(1), 'Radians (rad)')
+ylabel(AX(2), 'Degrees (^\circ)')
+
+%adding legend
+legend('Angular movement in volt',...
+       'Lower limmit',...
+       'Upper limmit',...
+       'Equlibrium point',...
+       'Mid-range',...
+       'Location', 'northwest' )
+
+
+
+set(groot,'DefaultFigurePosition','remove')%<--Resets default fig positions

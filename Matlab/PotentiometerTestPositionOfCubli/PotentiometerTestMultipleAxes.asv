@@ -67,7 +67,7 @@ plot(time, Ymiddle,...
 %% ---------------------------- PLOT SETTINGS -------------------------------
 
 %limmiting the axes
-%ylim([-.1 .5])
+ylim([-.1 .5])
 %xlim([ 0 3 ])
 
 %title and axis labels added
@@ -137,74 +137,102 @@ for folding = true
 end %<--setting figure position
 
 b = figure;
-subplot(1,2,1)
-plot(time,deg)
-%setting grid style
-grid on, grid minor;
-set(gca,...
-    'GridLineStyle',':',...
-    'GridColor', 'k',...
-    'GridAlpha', .6,...
-    'YTick', (-50:5:50),...
-    'YLim', [ -45 55 ],...
-    'XLim', [ 0  5 ])
-title('Degree Range of Cubli')
-xlabel('Time (s)')
-ylabel('Degrees (^\circ)')
-
-hold on;%---------- PLOTTING REFFERENCE LINES -----------------------------
-
-YminDeg = (Ymin - equVolt) * resDeg;
-plot(time, YminDeg,...
-'linestyle', '--', 'linewidth', 1.2, 'color', '[ .2 .2 .2 ]');
-
-YmaxDeg = (Ymax - equVolt) * resDeg;
-plot(time, YmaxDeg,...
-'linestyle', '--', 'linewidth', 1.2, 'color', 'r');
-
-YequDeg = (Yequ - equVolt) * resDeg;
-plot(time, YequDeg,...
-'linestyle', '--', 'linewidth', 1.2, 'color', '[ 0 .6 0 ]');
-
-YmiddleDeg = (Ymiddle - equVolt) * resDeg;
-plot(time, YmiddleDeg,...
-'linestyle', '--', 'linewidth', 1.2, 'color', '[ .6 0 .6 ]');
-
-hold off;%-----------------------------------------------------------------
-
-subplot(1,2,2)
-plot(time,rad)
-%setting grid style
-grid on, grid minor;
-set(gca,...
-    'GridLineStyle',':',...
-    'GridColor', 'k',...
-    'GridAlpha', .6,...
-    'YTick', (-8:.1:8),...
-    'YLim', [ -.79 .95 ],...
-    'XLim', [ 0  5 ])
-title('Radian Range of Cubli')
-xlabel('Time (s)')
-ylabel('Radians (rad)')
+[AX, rad1, deg1] = plotyy(time,rad,time,deg)
 
 hold on;%---------- PLOTTING REFFERENCE LINES -----------------------------
 
 YminRad = (Ymin - equVolt) * resRad;
-plot(time, YminRad,...
+plot(AX(1), time, YminRad,...
 'linestyle', '--', 'linewidth', 1.2, 'color', '[ .2 .2 .2 ]');
 
 YmaxRad = (Ymax - equVolt) * resRad;
-plot(time, YmaxRad,...
+plot(AX(1), time, YmaxRad,...
 'linestyle', '--', 'linewidth', 1.2, 'color', 'r');
 
 YequRad = (Yequ - equVolt) * resRad;
-plot(time, YequRad,...
+plot(AX(1), time, YequRad,...
 'linestyle', '--', 'linewidth', 1.2, 'color', '[ 0 .6 0 ]');
 
 YmiddleRad = (Ymiddle - equVolt) * resRad;
-plot(time, YmiddleRad,...
+plot(AX(1), time, YmiddleRad,...
 'linestyle', '--', 'linewidth', 1.2, 'color', '[ .6 0 .6 ]');
 
 hold off;%-----------------------------------------------------------------
+
+%% ---------------------------- PLOT SETTINGS -------------------------------
+
+set(rad1,'LineWidth', 1.4 )
+
+%setting options for radian axis
+set(AX(1),...
+    'Xgrid', 'on',...
+    'Ygrid', 'on',...
+    'XMinorGrid', 'on',...
+    'YMinorGrid', 'on',...
+    'ytick', (-.9:.1:.9),...
+    'YLim', [ -.785395694 .95992832 ],...     <-- Crummy allignment of
+    'XLim', [ 0  5 ],...                          the two graphs, by
+    'GridLineStyle',':',...                       moving the radian graph
+    'GridColor', 'k',...
+    'GridAlpha', .6)
+
+%turning off degree plot since it is now alligned with the radian plot
+set(deg1,'Visible','off')
+
+%setting options for degree axis
+set(AX(2),...
+    'Xgrid', 'off',...
+    'Ygrid', 'off',...
+    'XMinorGrid', 'off',...
+    'YMinorGrid', 'off',...
+    'ytick', (-50:5:50),...
+    'YLim', [ -45 55 ],...
+    'XLim', [ 0  5 ],...
+    'GridLineStyle', ':',...
+    'GridColor', 'k',...
+    'GridAlpha', .6)
+
+%adding title and axes labels
+title('Angle Range of Cubli')
+xlabel('Time (s)')
+ylabel(AX(1), 'Radians (rad)')
+ylabel(AX(2), 'Degrees (^\circ)')
+
+%adding legend
+legend('Angular movement in volt',...
+       'Lower limmit',...
+       'Upper limmit',...
+       'Equlibrium point',...
+       'Mid-range',...
+       'Location', 'northwest' )
+
+
+%set(AX,'NextPlot','add')
+%scatter(AX(2), data(:,1), data(:,2), 'g', '.');
+%scatter(AX(2), data(:,1), data(:,2), 'r', '.');
+%scatter(AX(2), data(:,1), data(:,2)), 'b', '.';
+
+%plot(AX(2), data(:,1), data(:,4), 'Color', [1 0 0], 'LineWidth', 2, 'LineStyle', ':');
+%plot(AX(2), data(:,1), data(:,6), 'Color', [0 .5 0], 'LineWidth', 2, 'LineStyle', ':');
+%plot(AX(2), data(:,1), data(:,5), 'Color', [.8 0 .8], 'LineWidth', 2, 'LineStyle', ':');
+%pAdd = plot(AX(2), data(:,1), data(:,4) );
+%set(pAdd, 'Color', [1 0 0], 'LineWidth', 2 );
+
+
+%pAdd = plot(AX(1), data(:,1), data(:,5) );
+%set(pAdd, 'Color', [0 .5 0], 'LineWidth', 2 );
+
+
+%ylabel(AX(2), 'Voltage [ V ]')
+
+%set(AX(1), 'Xgrid', 'on', 'Ygrid', 'on', 'ytick', [0 .5 1 1.5 2], 'GridLineStyle',':', 'GridColor', 'k', 'GridAlpha', .6)
+%set(AX(2), 'Xgrid', 'on', 'Ygrid', 'on', 'ytick', [3 3.5 4 4.5 5 5.5 6 6.5 7 7.5 8], 'GridLineStyle',':', 'GridColor', 'k', 'GridAlpha', .6)
+
+
+
+% 
+
+
+
 
 set(groot,'DefaultFigurePosition','remove')%<--Resets default fig position
