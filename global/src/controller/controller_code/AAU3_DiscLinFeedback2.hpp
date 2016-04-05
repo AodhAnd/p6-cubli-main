@@ -32,13 +32,13 @@ typedef struct
  * Runs the controller based on the feedback signal in x_hat
  * @param
  */
-extern C_Lin_struct_T AAU3_DiscLinFeedback2(const real_T x_hat[3]);
+extern Lin_Out_Sig_struct_T AAU3_DiscLinFeedback2(const real_T x_hat[3]);
 
 /**
  * Initializes the controller parameters with the reference input and
  * the controller specifics.
  */
-extern void AAU3_DiscLinFeedback2_initialize(void);
+extern void AAU3_DiscLinFeedback2_initialize(real_T sys_ref);
 extern void AAU3_DiscLinFeedback2_terminate(void);
 
 #endif // AAU3_DISC_LIN_FEEDBACK2_HPP
