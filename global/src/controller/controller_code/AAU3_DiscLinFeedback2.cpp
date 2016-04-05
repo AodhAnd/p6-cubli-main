@@ -10,7 +10,7 @@
 
 /* Include files */
 #include "rt_nonfinite.hpp"
-#include "AAU3_DiscLinFeedback.hpp"
+#include "AAU3_DiscLinFeedback2.hpp"
 
 /* Type definitions */
 #ifndef typedef_Lin_Controller_struct_T
@@ -26,11 +26,11 @@ typedef struct {
 static Lin_Controller_struct_T LinC;
 
 /** Runs the controller based on the feedback signal in x_hat */
-Lin_Sig_struct_T AAU3_DiscLinFeedback2(const real_T x_hat[3])
+Lin_Out_Sig_struct_T AAU3_DiscLinFeedback2(const real_T x_hat[3])
 {
   /** Variable declarations */
   // Output signal(s)
-  static Lin_Sig_struct_T Lin_U;
+  static Lin_Out_Sig_struct_T Lin_U;
   // Error signal(s)
   real_T Lin_e = 0.0;
 
