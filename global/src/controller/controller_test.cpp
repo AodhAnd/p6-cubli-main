@@ -103,17 +103,17 @@ void ControllerTest::runController(ControllerArgs* args)
 		double potRad;
 		static double potOffset1 	= -0.025,
 				      		tachOffset1 = 0;
-		potRad = (potAdc-655)*0.001068569;
+		potRad = (potAdc-655)*0.001068569; //655 was the original value
 
 		// static double adcRes = 0.00043945,		// ADC resolution
 		// 							eqVolt = 0.6945,				// Voltage value at the equilibrium point
 		// 							resRad = 3.2818;				// Voltage-to-radians coefficient
-		// potRad = ((potAdc * adcRes) - eqVolt) * resRad; 
+		// potRad = ((potAdc * adcRes) - eqVolt) * resRad;
 
 		if(1){ //This flag enables the Auto-Zeroing feature
 			if( !(potRad<-0.35 || potRad>0.35)){
 				potOffset1 = potOffset1*0.9990 + potRad*0.0009995;
-			}			
+			}
 		}
 
 		//Convert tachometer reading to radians/sec
@@ -169,11 +169,11 @@ void ControllerTest::runController(ControllerArgs* args)
 			C_Lin_struct_T u_next_obs = AAU3_DiscLinFeedback(Ts,x_hat);
 			i_m_next = u_next_obs.C_Lin_U_m;
 		}
-		else if(1){ // Proportional controller
+		else if(0){ // Proportional controller
 			Lin_Out_Sig_struct_T u_next_pc = AAU3_DiscLinFeedback2(x_hat);
 			i_m_next = u_next_pc.I_m;
 		}
-		else if(0){
+		else if(1){
 			SISOT_P_Out_Sig_struct_T u_next_sisopc = AAU3_DiscSISOTool(x_hat);
 			i_m_next = u_next_sisopc.I_m;
 		}
@@ -256,7 +256,7 @@ void ControllerTest::runController(ControllerArgs* args)
 
 
 		if(1){
-			std::cout << goingPos << "\tcount:" << ct_count << "\ti_m: " << i_m_next << "\ti_m_next: " << i_m_next << "\tPot(rad)t: " << potRad << "\tpotAdc: " << potAdc << endl; //<< "\tTach: " << tachRads << "\tx_hat: " << x_hat[0] << ",\t" << x_hat[1] << ",\t" << x_hat[2] <<
+			std::cout << "\tcount:" << ct_count << "\ti_m: " << i_m_next << "\ti_m_next: " << i_m_next << "\tPot(rad)t: " << potRad << "\tpotAdc: " << potAdc << endl; //<< "\tTach: " << tachRads << "\tx_hat: " << x_hat[0] << ",\t" << x_hat[1] << ",\t" << x_hat[2] <<
 
 					//accX1 << ", " << accY1 << ", " << accX2 << ", " << accY2 << ", " << potAdc << endl;
 			if(1){
@@ -264,8 +264,8 @@ void ControllerTest::runController(ControllerArgs* args)
 				{
 					static long count = 0;
 					count++;
-					logfile <<  count << ", " << potRad << ", " << tachRads << ", " << i_m_next << ", " << x_hat[0] << ", " << x_hat[1] << ", " << x_hat[2] << ", " << gyroRads1 << ", " << gyroRads2 << ", "
-							<< accX1 << ", " << accY1 << ", " << accX2 << ", " << accY2 << ", " << i_m_add <<  endl;
+//					logfile <<  count << ", " << potRad << ", " << tachRads << ", " << i_m_next << ", " << x_hat[0] << ", " << x_hat[1] << ", " << x_hat[2] << ", " << gyroRads1 << ", " << gyroRads2 << ", "
+//							<< accX1 << ", " << accY1 << ", " << accX2 << ", " << accY2 << ", " << i_m_add <<  endl;
 				}
 			}
 

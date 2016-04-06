@@ -36,6 +36,7 @@ typedef struct
  * @param
  */
 extern SISOT_P_Out_Sig_struct_T AAU3_DiscSISOTool(const real_T x_hat[3]);
+extern void AAU3_DiscSISOTool_print();
 
 /**
  * Initializes the controller parameters with the reference input and
@@ -45,3 +46,4 @@ extern void AAU3_DiscSISOTool_initialize(const real_T sys_ref);
 extern void AAU3_DiscSISOTool_terminate(void);
 
 #endif // AAU3_DISC_SISO_TOOL_HPP
+
