@@ -18,10 +18,14 @@ end
 
 %% ---------------------- READING DATA FROM FILE --------------------------
 
-data = csvread('PRINT_05.CSV');
+data = csvread('PRINT_04.CSV');
+data2 = csvread('potResTest3.csv');
 
 time = data(:,1)+5;  %making the time Possitive
 voltage = data(:,2);
+
+time2 = data2(:,1)*0.010 -.63; %10 ms per tick (& alligning with volt data)
+ADCval = data2(:,2);
 
 %% -------------------------- PLOTTING DATA -------------------------------
 
@@ -32,60 +36,84 @@ for folding = true
 end %<--setting figure position
 
 a = figure;
-plot(time, voltage, 'linewidth', 1.5);
-%%
-hold on;
+[AAX, volt, ADC] = plotyy(time,voltage,time2,ADCval)
 
-%---------------------- CALCULATING CONSTANT VALUES -----------------------
+%% -------------------- CALCULATING CONSTANT VALUES -----------------------
 
-Vmin =    mean(voltage( 641:1241,1)) %voltage mean from 1.6 to 3.1 in time
+Vmin =    mean(voltage( 753:1241,1)) %voltage mean from 1.88 to 3.1 in time
 
-Vmax =    mean(voltage(1441:2000,1)) %voltage mean from 3.6 to 10 in time
+Vmax =    mean(voltage(1569:2000,1)) %voltage mean from 3.92 to 10 in time
 
-equVolt = mean(voltage(   2: 441,1)) %voltage mean from 0 to 1.1 in time
+equVolt = mean(voltage(   1: 493,1)) %voltage mean from 0 to 1.23 in time
 
 middleVolt = ( (Vmax-Vmin)/2 ) +Vmin  %mid-range voltage
 
 %---------------------- PLOTTING REFFERENCE LINES -------------------------
 
+hold on;
+
 Ymin = zeros(size(voltage))+Vmin;
-plot(time, Ymin,...
+plot(AAX(1), time, Ymin,...
 'linestyle', '--', 'linewidth', 1.2, 'color', '[ .2 .2 .2 ]');
 
 Ymax = zeros(size(voltage))+Vmax;
-plot(time, Ymax,...
+plot(AAX(1), time, Ymax,...
 'linestyle', '--', 'linewidth', 1.2, 'color', 'r');
 
 Yequ = zeros(size(voltage))+equVolt;
-plot(time, Yequ,...
+plot(AAX(1), time, Yequ,...
 'linestyle', '--', 'linewidth', 1.2, 'color', '[ 0 .6 0 ]');
 
 Ymiddle = zeros(size(voltage))+middleVolt;
-plot(time, Ymiddle,...
+plot(AAX(1), time, Ymiddle,...
 'linestyle', '--', 'linewidth', 1.2, 'color', '[ .6 0 .6 ]');
 
 %% ------------------------ PLOT SETTINGS ---------------------------------
 
-%limmiting the axes
-ylim([-.02 .5])
-xlim([ 0 5 ])
+set(volt, 'LineWidth', 1.4 )
+set(ADC, 'LineWidth', 1.4 )
 
-%title and axis labels added
-title('Potentiometer Test')
+%setting options for radian axis
+set(AAX(1),...
+    'Xgrid', 'on',...
+    'Ygrid', 'on',...
+    'XMinorGrid', 'on',...
+    'YMinorGrid', 'on',...
+    'ytick', (0:.1:.5),...
+    'YLim', [ -.02 .5 ],...                   <-- Crummy allignment of
+    'XLim', [ 0  5 ],...                          the two graphs, by
+    'GridLineStyle',':',...                       moving the radian graph
+    'GridColor', 'k',...
+    'GridAlpha', .6)
+
+%turning off degree plot since it is now alligned with the radian plot
+set(ADC,'Visible','off')
+ 
+%setting options for degree axis
+set(AAX(2),...
+    'Xgrid', 'off',...
+    'Ygrid', 'off',...
+    'XMinorGrid', 'off',...
+    'YMinorGrid', 'off',...
+    'ytick', ( 0:200:1600),...
+    'YLim', [ -60 1500 ],...
+    'XLim', [ 0  5 ],...
+    'GridLineStyle', ':',...
+    'GridColor', 'k',...
+    'GridAlpha', .6)
+
+%adding title and axes labels
+title('Potentiometer Range')
 xlabel('Time (s)')
-ylabel('Voltage (V)')
+ylabel(AAX(1), 'Voltage (V)')
+ylabel(AAX(2), 'ADC Values')
 
-%adding legend
-legend('Angular movement in volt',...
+legend('Angular movement',...
        'Lower limmit',...
        'Upper limmit',...
        'Equlibrium point',...
        'Mid-range',...
        'Location', 'northwest' )
-
-%setting grid style
-grid on, grid minor;
-set(gca,'GridLineStyle',':', 'GridColor', 'k', 'GridAlpha', .6)
 
 hold off;
 
@@ -199,7 +227,7 @@ ylabel(AX(1), 'Radians (rad)')
 ylabel(AX(2), 'Degrees (^\circ)')
 
 %adding legend
-legend('Angular movement in volt',...
+legend('Angular movement',...
        'Lower limmit',...
        'Upper limmit',...
        'Equlibrium point',...
