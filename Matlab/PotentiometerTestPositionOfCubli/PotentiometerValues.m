@@ -1,27 +1,3 @@
-%------------------- SETUP FOR FIGURE HOLD & CLEANUP ----------------------
-for folding = true
-    if exist('a','var') == 1
-        if ishandle(a)
-            p = get(a, 'Position')
-        end
-    end
-    if exist('b','var') == 1
-        if ishandle(b)
-        q = get(b, 'Position')
-        end
-    end
-
-    close all;
-    clearvars -except p q
-    clc;
-end
-
-%% ---------------------- READING DATA FROM FILE --------------------------
-
-data = csvread('PRINT_05.CSV');
-
-time = data(:,1)+10;  %making the time Possitive
-voltage = data(:,2);
 
 %---------------------- CALCULATING CONSTANT VALUES -----------------------
 
