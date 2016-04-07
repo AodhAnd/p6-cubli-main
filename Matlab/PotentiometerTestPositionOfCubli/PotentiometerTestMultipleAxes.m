@@ -40,19 +40,30 @@ a = figure;
 
 %% -------------------- CALCULATING CONSTANT VALUES -----------------------
 
-Vmin =    mean(voltage( 753:1241,1)) %voltage mean from 1.88 to 3.1 in time
+%%%%%%%%%%%%%%%%% Potentiometer voltages %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Vmax =    mean(voltage(1569:2000,1)) %voltage mean from 3.92 to 10 in time
+Vmin   = mean(voltage( 753:1241,1))  %voltage mean from 1.88 to 3.1 in time
 
-equVolt = mean(voltage(   1: 493,1)) %voltage mean from 0 to 1.23 in time
+Vmax   = mean(voltage(1569:2000,1))    %voltage mean from 3.92 to 5 in time
+
+equVolt = mean(voltage( 1: 493,1))     %voltage mean from 0 to 1.23 in time
 
 middleVolt = ( (Vmax-Vmin)/2 ) +Vmin  %mid-range voltage
+
+%%%%%%%%%%%%%%%%% ADC Values %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+ADCmin = mean(ADCval( 243:373,1))  %ADC value mean from 1.88 to 3.1 in time
+
+ADCmax = mean(ADCval(455:632,1))   %ADC value mean from 3.92 to 5 in time
+
+ADCequ = mean( ADCval( 63: 186,1)) %ADC value mean from 0 to 1.23 in time
 
 %---------------------- PLOTTING REFFERENCE LINES -------------------------
 
 hold on;
 
 Ymin = zeros(size(voltage))+Vmin;
+
 plot(AAX(1), time, Ymin,...
 'linestyle', '--', 'linewidth', 1.2, 'color', '[ .2 .2 .2 ]');
 
@@ -122,13 +133,17 @@ hold off;
 %Prints out the voltage offset
 offsetVolt = middleVolt-equVolt
 
-%Calculating resolution for convertion to rad and deg:
-resRad = (1.5769)/(Vmax-Vmin)
-resDeg = 90.35/(Vmax-Vmin)
+%Calculating resolution for convertion to rad and deg (Potentiometer Volt)
+resRadVolt = (1.5769)/(Vmax-Vmin)
+resDegVolt = 90.35/(Vmax-Vmin)
 
-%Calculating 10 deg from equlibrium point on either side:
-tenDegFromEquRight = (-10-3.7)/resDeg  +  equVolt  % = 0.1651
-tenDegFromEquLeft  = ( 10-3.7)/resDeg  +  equVolt  % = 0.2679
+%Calculating resolution for convertion to rad and deg (ADC)
+resRadADC = (1.5769)/(ADCmax-ADCmin)
+resDegADC = 90.35/(ADCmax-ADCmin)
+
+%Calculating 10 deg from equlibrium point on either side
+tenDegFromEquRight = (-10-3.7)/resDegVolt  +  equVolt  % = 0.1651
+tenDegFromEquLeft  = ( 10-3.7)/resDegVolt  +  equVolt  % = 0.2679
 
 %% ----------------------- GENERAL CONVERTION -----------------------------
 
@@ -152,8 +167,8 @@ tenDegFromEquLeft  = ( 10-3.7)/resDeg  +  equVolt  % = 0.2679
 
 %% -------------------------- EXAMPLE USE ---------------------------------
 
-rad = (data(:,2) - equVolt)*resRad;
-deg = (data(:,2) - equVolt)*resDeg;
+rad = (data(:,2) - equVolt)*resRadVolt;
+deg = (data(:,2) - equVolt)*resDegVolt;
 
 
 %% ---------------------- PLOTTING THE EXAMPLE ----------------------------
@@ -165,23 +180,23 @@ for folding = true
 end %<--setting figure position
 
 b = figure;
-[AX, rad1, deg1] = plotyy(time,rad,time,deg)
+[AX, rad1, deg1] = plotyy(time,rad,time,deg);
 
 hold on;%------------ PLOTTING REFFERENCE LINES ---------------------------
 
-YminRad = (Ymin - equVolt) * resRad;
+YminRad = (Ymin - equVolt) * resRadVolt;
 plot(AX(1), time, YminRad,...
 'linestyle', '--', 'linewidth', 1.2, 'color', '[ .2 .2 .2 ]');
 
-YmaxRad = (Ymax - equVolt) * resRad;
+YmaxRad = (Ymax - equVolt) * resRadVolt;
 plot(AX(1), time, YmaxRad,...
 'linestyle', '--', 'linewidth', 1.2, 'color', 'r');
 
-YequRad = (Yequ - equVolt) * resRad;
+YequRad = (Yequ - equVolt) * resRadVolt;
 plot(AX(1), time, YequRad,...
 'linestyle', '--', 'linewidth', 1.2, 'color', '[ 0 .6 0 ]');
 
-YmiddleRad = (Ymiddle - equVolt) * resRad;
+YmiddleRad = (Ymiddle - equVolt) * resRadVolt;
 plot(AX(1), time, YmiddleRad,...
 'linestyle', '--', 'linewidth', 1.2, 'color', '[ .6 0 .6 ]');
 
