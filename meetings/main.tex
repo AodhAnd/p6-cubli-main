@@ -6,43 +6,53 @@
 \renewcommand\figurename{Figur}
 \renewcommand\tablename{Tabel}
 
-\section*{Supervisor meeting\\ \small Thursday, 31st of March 2016}
+\section*{Supervisor meeting\\ \small Wednesday, 13th of April 2016}
 
-\subsection{Sense Tool Parameter Estimation}
+\subsection{Testing and Sensors}
 \begin{itemize}
-  \item[-] The slower damping of the model, is due to stiction.
-  \item[-] When using SenseTool to estimate the parameters, make sure to describe the method used by the tool.
-  \item[-] In general, use Newton method first then steepest descent.
+  \item[-] Measure the actual voltage on the board around the filter to verify that the gain given by Simon is effectively 3.
 \end{itemize}
 
-\subsection{Potentiometer}
+\subsection{Complementary Filter}
 \begin{itemize}
-  \item[-] Resolution of the potentiometer, 0.486 V over a range of 90.35 degrees.
-  \item[-] Maybe there is a gain in the AD-converter - talk to Simon.
-  \item[-] Maybe we can increase the voltage across the potentiometer.
-  \item[-] Remember to document everything.
+  \item[-] To compare the different signals, we should maybe try to only take measurements in small motions in the useful are, i.e. around the equilibrium position.
+  \item[-] Kalman filter is a way to optimize all this data combination and filtering, but it is out of scope for this semester.
 \end{itemize}
 
-\subsection{Motor}
+\subsection{Motor and Motor Controller Board}
 \begin{itemize}
-  \item[-] The controller on the motor is a closed loop current controller (input: current reference (PWM)).
-  \item[-] Measure how fast the closed loop is.
-  \item[-] In the motor documentation the closed loop current controller sampling time is 53.6 kHz.
-  \item[-] However the closed loop response time is what is interesting in this case.
-  \item[-] We have to argue in the report - we have back EMF, which changes the current - how good is the loop at rejecting this?
-  \item[-] There is probably a limit on the speed in the code since the motor can go really fast.
+  \item[-] Try to make an experiment to measure the actual current control loop's time constant.
+  \item[-] Electrical time constant is not sufficient.
 \end{itemize}
 
-\subsection{Controller}
+\subsection{Senstool and Gauss-Newton method}
 \begin{itemize}
-  \item[-] Priority next is to start implementing the controller.
-  \item[-] When describing the Root Locus design, argument how the loci are changed according to new pole/zero placements.
-  \item[-] Also include information on general Root Locus design 
+  \item[-] The implementation shown during the presentation should be documented along with the method and principles.
+\end{itemize}
+
+\subsection{Design of the Controller}
+\begin{itemize}
+  \item[-] We are not sure whether any controller can catch the Cubli with initial condition of 6\si{^{\circ}} and no velocity nor torque.
+  \item[-] In simulations, we should put the model in a stable position at first and add a disturbance signal at some point.
+  \item[-] It should be easy to calculate how much torque is neeed to catch it with any initial angle.
+  \item[-] The velocity(-ies) definitely has(-ve) to be used as feedback along with the position. 
+\end{itemize}
+
+\subsection{Discretization and Implementation of the Controller}
+\begin{itemize}
+  \item[-] 
+  \item[-] 
+  \item[-] The paper that we found about cascade control of unstable open loop systems should be sent to the supervisors and maybe used as a reference in the report.
+  \item[-] 
+\end{itemize}
+
+\subsection{Conclusion}
+\begin{itemize}
+  \item[-] Some of us should investigate the state-space way of representing the system.
+  \item[-] Some others should document cascade controller attempts.
 \end{itemize}
 
 \subsection{Next Supervisor meeting}
-Send material on Monday, 11th of April\\
-Prepare 7 to 10 minutes of presentation each\\
-Wednesday, 13th of April at 13.00
+Wednesday, 20th of April at 13.00
 
 \end{document}
