@@ -20,7 +20,7 @@ end
 
 data = csvread('PRINT_05.CSV');
 
-time = data(:,1)+10;  %making the time Possitive
+time = data(:,1)+5;  %making the time Possitive
 voltage = data(:,2);
 
 %% -------------------------- PLOTTING DATA -------------------------------
@@ -38,11 +38,11 @@ hold on;
 
 %---------------------- CALCULATING CONSTANT VALUES -----------------------
 
-Vmin =    mean(voltage( 667:1243,1)) %voltage mean from 3.3 to 6.2 in time
+Vmin =    mean(voltage( 641:1241,1)) %voltage mean from 1.6 to 3.1 in time
 
-Vmax =    mean(voltage(1336:2000,1)) %voltage mean from 6.7 to 10 in time
+Vmax =    mean(voltage(1441:2000,1)) %voltage mean from 3.6 to 10 in time
 
-equVolt = mean(voltage(   1: 591,1)) %voltage mean from 0 to 2.9 in time
+equVolt = mean(voltage(   2: 441,1)) %voltage mean from 0 to 1.1 in time
 
 middleVolt = ( (Vmax-Vmin)/2 ) +Vmin  %mid-range voltage
 
@@ -81,7 +81,7 @@ legend('Angular movement in volt',...
        'Upper limmit',...
        'Equlibrium point',...
        'Mid-range',...
-       'Location', 'southwest' )
+       'Location', 'northwest' )
 
 %setting grid style
 grid on, grid minor;
@@ -107,19 +107,19 @@ tenDegFromEquLeft  = ( 10-3.7)/resDeg  +  equVolt  % = 0.2679
 %----- TO VOLTAGE ------------------------
 
 %Degrees to Voltage                             % Remember to take the
-%Volt = (inputDeg)/resDeg  +  middleVolt        % offset (3.7 deg) into
+%Volt = (inputDeg)/resDeg  +  equVolt           % offset (3.7 deg) into
                                                 % account (see graphs)
 %Radians to Voltage
-% Volt = (inputRad)/resRad  +  middleVolt
+% Volt = (inputRad)/resRad  +  equVolt
 
 
 %----- TO ANGLE --------------------------
 
 %Voltage to Degrees
-% Deg = (inputVolt - middleVolt)*resDeg;
+% Deg = (inputVolt - equVolt)*resDeg;
 
 %Voltage to Radians
-% Rad = (inputVolt - middleVolt)*resRad;
+% Rad = (inputVolt - equVolt)*resRad;
 
 
 %% -------------------------- EXAMPLE USE ---------------------------------
@@ -145,8 +145,9 @@ set(gca,...
     'GridLineStyle',':',...
     'GridColor', 'k',...
     'GridAlpha', .6,...
-    'YTick', (-50:5:50))
-    %'XLim', [ -.5  4 ]
+    'YTick', (-50:5:50),...
+    'YLim', [ -45 55 ],...
+    'XLim', [ 0  5 ])
 title('Degree Range of Cubli')
 xlabel('Time (s)')
 ylabel('Degrees (^\circ)')
@@ -179,9 +180,9 @@ set(gca,...
     'GridLineStyle',':',...
     'GridColor', 'k',...
     'GridAlpha', .6,...
-    'YTick', (-8:.1:8))
-    %'YLim', [ -.9 .9 ],...
-    %'XLim', [ -.5  4 ]...
+    'YTick', (-8:.1:8),...
+    'YLim', [ -.79 .95 ],...
+    'XLim', [ 0  5 ])
 title('Radian Range of Cubli')
 xlabel('Time (s)')
 ylabel('Radians (rad)')

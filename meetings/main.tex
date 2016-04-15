@@ -6,57 +6,53 @@
 \renewcommand\figurename{Figur}
 \renewcommand\tablename{Tabel}
 
-\section*{Supervisor meeting\\ \small Monday, 21st of March 2016}
+\section*{Supervisor meeting\\ \small Wednesday, 13th of April 2016}
 
-\subsection{Report}
+\subsection{Testing and Sensors}
 \begin{itemize}
-  \item[-] Use consistent units in figures (if axis are in rad, don't use degrees in the caption)
-  \item[-] "Impulse response" is rather an "Initial value response"
+  \item[-] Measure the actual voltage on the board around the filter to verify that the gain given by Simon is effectively 3.
 \end{itemize}
 
-\subsection{Center of Mass Offset}
+\subsection{Complementary Filter}
 \begin{itemize}
-  \item[-] For this offset, try to use a string with a weight attached to show that it exists
-  \item[-] The offset we think we have found could be caused by cushion pads being non-symmetric, by the wheel being fixed off-center
-  \item[-] We can take the Cubli apart to get the center of mass, by hanging it by 3 different corners
-  \item[-] Later on, we can also estimate this center of mass again, using the known result as a sanity check
-  \item[-] If anything else has to be done with the dismantled Cubli, it should be done now. The setup should not be taken apart again after.
-  \item[-] Try to analyze the potentiometer readout, with angle as a reference.
+  \item[-] To compare the different signals, we should maybe try to only take measurements in small motions in the useful are, i.e. around the equilibrium position.
+  \item[-] Kalman filter is a way to optimize all this data combination and filtering, but it is out of scope for this semester.
 \end{itemize}
 
-\subsection{10 degrees Fall Test}
+\subsection{Motor and Motor Controller Board}
 \begin{itemize}
-  \item[-] It should be made very clear, why this test has been made.
-  \item[-] It is up to us to decide where to put graphs and conclusions (appendix vs. report body)
-  \item[-] It is fine to place comparison graphs in both places (test appendix + verification section)
-  \item[-] Blue curve is made with non-linear simulation
-  \item[-] Be careful when fixing the wheel in reality: it should also be taken into consideration when simulating
+  \item[-] Try to make an experiment to measure the actual current control loop's time constant.
+  \item[-] Electrical time constant is not sufficient.
 \end{itemize}
 
-\subsection{Estimation of Parameters}
+\subsection{Senstool and Gauss-Newton method}
 \begin{itemize}
-  \item[-] The group is currently working on this estimation using `Senstools' toolbox, presented by Tom S. Pedersen in one of the Control Engineering lectures. 
-  \item[-] When fixing the wheel, the corresponding blocks have to be taken out
+  \item[-] The implementation shown during the presentation should be documented along with the method and principles.
 \end{itemize}
 
-\subsection{Controller Simulation}
+\subsection{Design of the Controller}
 \begin{itemize}
-  \item[-] It is not necessarily a good idea to try to cancel an unstable pole, which an integrator is
-  \item[-] The system should be strictly proper, i.e. it should have strictly more poles than zeros.
-  \item[-] When transferring the controller from sisotool to simulink, recalculate the gain.
+  \item[-] We are not sure whether any controller can catch the Cubli with initial condition of 6\si{^{\circ}} and no velocity nor torque.
+  \item[-] In simulations, we should put the model in a stable position at first and add a disturbance signal at some point.
+  \item[-] It should be easy to calculate how much torque is neeed to catch it with any initial angle.
+  \item[-] The velocity(-ies) definitely has(-ve) to be used as feedback along with the position. 
 \end{itemize}
 
-\subsection{Miscelleanous}
+\subsection{Discretization and Implementation of the Controller}
 \begin{itemize}
-  \item[-] The code has to be analyzed further on to check which part causes the potentiometer's weird behavior and be sure that the controllers can run with a reduced code.
-  \item[-] The ADC does not cause any problem
-  \item[-] We should now be able to implement our own controller on the Cubli, from scratch
-  \item[-] Later on, the motor's model should be included in the control simulation to design the controller.
-  \item[-] The motor controller is used in open-loop mode with a current reference input.
-  \item[-] Make a test for the motor control, it may introduce a pole. Thereafter, one/two zeros more might be needed.
+  \item[-] 
+  \item[-] 
+  \item[-] The paper that we found about cascade control of unstable open loop systems should be sent to the supervisors and maybe used as a reference in the report.
+  \item[-] 
+\end{itemize}
+
+\subsection{Conclusion}
+\begin{itemize}
+  \item[-] Some of us should investigate the state-space way of representing the system.
+  \item[-] Some others should document cascade controller attempts.
 \end{itemize}
 
 \subsection{Next Supervisor meeting}
-Monday, 31st of March at 10.00
+Wednesday, 20th of April at 13.00
 
 \end{document}
