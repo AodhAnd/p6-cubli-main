@@ -67,15 +67,17 @@ SISOT_P_Out_Sig_struct_T AAU3_DiscSISOTool(const real_T x_hat[3])
   /** New calculations */
   // On-the-instant error
   SISOT_PComp.e_del[0] = SISOT_PComp.theta_ref - x_hat[0]; 
-  if(SISOT_PComp.e_del[0] > -0.005 && SISOT_PComp.e_del[0] < 0.005) {
-	  SISOT_PComp.e_del[0] = 0;
-  }
+  // Enlarging the tolerant zone
+//  if(SISOT_PComp.e_del[0] > -0.005 && SISOT_PComp.e_del[0] < 0.005) {
+//	  SISOT_PComp.e_del[0] = 0;
+//  }
 //  else {
 //	  if(SISOT_PComp.e_del[0] < 0)
 //		  SISOT_PComp.e_del[0] -= -0.005;
 //	  else
 //		  SISOT_PComp.e_del[0] -= 0.005;
 //  }
+
   // Controller job
   SISOT_PComp.taum_del[0] = SISOT_PComp.K * (SISOT_PComp.a[0] * SISOT_PComp.e_del[0] + SISOT_PComp.a[1] * SISOT_PComp.e_del[1] + SISOT_PComp.a[2] * SISOT_PComp.e_del[2] + SISOT_PComp.a[3] * SISOT_PComp.e_del[3] +
 		  SISOT_PComp.b[1] * SISOT_PComp.taum_del[1] + SISOT_PComp.b[2] * SISOT_PComp.taum_del[2] + SISOT_PComp.b[3] * SISOT_PComp.taum_del[3]);
@@ -110,17 +112,27 @@ void AAU3_DiscSISOTool_initialize(const real_T sys_ref)
   // Proportional gain
   PC0.K   = 1;
   // Difference equations coefficients
-  // a
-  PC0.a[0] = -8.311;
-  PC0.a[1] = 7.42;
-  PC0.a[2] = -8.299;
-  PC0.a[3] = 7.432;
-  // b
-  PC0.b[0] =  1; // More symoblic than useful, see report
-  PC0.b[1] = 1.383;
-  PC0.b[2] = -0.3435;
-  PC0.b[3] = 0.001351;
+//  // a
+//  PC0.a[0] = -8.311;
+//  PC0.a[1] = 7.42;
+//  PC0.a[2] = -8.299;
+//  PC0.a[3] = 7.432;
+//  // b
+//  PC0.b[0] =  1; // More symoblic than useful, see report
+//  PC0.b[1] = 1.383;
+//  PC0.b[2] = -0.3435;
+//  PC0.b[3] = -0.001351;
 
+  //a
+  PC0.a[0] = -8.314;
+  PC0.a[1] = 7.422;
+  PC0.a[2] = 8.302;
+  PC0.a[3] = -7.434;
+  //b
+  PC0.b[0] =  1; // More symoblic than useful, see report
+  PC0.b[1] = +1,382;//1.383;
+  PC0.b[2] = -0.3415;//-0.3435;
+  PC0.b[3] = -0.001638;//-0.001351;
 
   /*-- Initial signals --*/
   // Angle reference
