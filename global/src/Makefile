@@ -1,5 +1,5 @@
 VPATH = ../inc
-#CXX = g++
+#CXX = g++-4.6
 CXX = arm-linux-gnueabihf-g++
 CXXFLAGS = -std=c++11 -Wall -g3 
 LDLIBS = -lpthread
@@ -50,6 +50,12 @@ DEPS += controller/controller_code/DiscreteLurenbergerEstimator_take2.h
 DEPS += controller/controller_code/DiscreteLurenbergerEstimator_take2_types.h
 OBJ  += controller/controller_code/DiscreteLurenbergerEstimator_take2.o
 
+DEPS += controller/controller_code/AAU3_DiscLinFeedback2.hpp
+OBJ  += controller/controller_code/AAU3_DiscLinFeedback2.o
+
+DEPS += controller/controller_code/AAU3_DiscSISOTool.hpp
+OBJ  += controller/controller_code/AAU3_DiscSISOTool.o
+
 DEPS += i2c.hpp
 OBJ += i2c.o
 
@@ -78,3 +84,4 @@ clean:
 	rm -rf posix_thread/*.o
 
 	
+
