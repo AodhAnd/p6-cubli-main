@@ -6,43 +6,31 @@
 \renewcommand\figurename{Figur}
 \renewcommand\tablename{Tabel}
 
-\section*{Supervisor meeting\\ \small Thursday, 31st of March 2016}
+\section*{Supervisor meeting\\ \small Wednesday, 20th of April 2016}
 
-\subsection{Sense Tool Parameter Estimation}
+\subsection{Requirements}
 \begin{itemize}
-  \item[-] The slower damping of the model, is due to stiction.
-  \item[-] When using SenseTool to estimate the parameters, make sure to describe the method used by the tool.
-  \item[-] In general, use Newton method first then steepest descent.
+  \item[-] Problem formulation rather than requirements
+  \item[-] Instead of setting random requirements we investigate how far the boundaries of control can be pushed while comparing different controller designs.
+  \item[-] Of course a requirement of stabilization is still needed.
 \end{itemize}
 
-\subsection{Potentiometer}
+\subsection{Controller Design}
 \begin{itemize}
-  \item[-] Resolution of the potentiometer, 0.486 V over a range of 90.35 degrees.
-  \item[-] Maybe there is a gain in the AD-converter - talk to Simon.
-  \item[-] Maybe we can increase the voltage across the potentiometer.
-  \item[-] Remember to document everything.
+  \item[-] Go to State Space
+  \item[-] Afterwards go back and investigate the previous design methods: \si{y = \theta + k \omega} and Direct Design Method of Ragazzini (Coefficient Matching).
 \end{itemize}
 
-\subsection{Motor}
+\subsection{Bode Plots of Discretized Controller}
 \begin{itemize}
-  \item[-] The controller on the motor is a closed loop current controller (input: current reference (PWM)).
-  \item[-] Measure how fast the closed loop is.
-  \item[-] In the motor documentation the closed loop current controller sampling time is 53.6 kHz.
-  \item[-] However the closed loop response time is what is interesting in this case.
-  \item[-] We have to argue in the report - we have back EMF, which changes the current - how good is the loop at rejecting this?
-  \item[-] There is probably a limit on the speed in the code since the motor can go really fast.
+  \item[-] The Tustin discretized controller has a \si{-360^\circ} offset in the closed loop plot.
+  \item[-] No reason to show the closed loop plot.
+  \item[-] One argument for Tustin with prewarp is that it has realizable poles.
+  \item[-] Tustin with prewarp is also better than Tustin without prewarp on the open loop plot.
+  \item[-] Phase range is better with Tustin with prewarp no matter what - choose Tustin with prewarp.
 \end{itemize}
 
-\subsection{Controller}
-\begin{itemize}
-  \item[-] Priority next is to start implementing the controller.
-  \item[-] When describing the Root Locus design, argument how the loci are changed according to new pole/zero placements.
-  \item[-] Also include information on general Root Locus design 
-\end{itemize}
-
-\subsection{Next Supervisor meeting}
-Send material on Monday, 11th of April\\
-Prepare 7 to 10 minutes of presentation each\\
-Wednesday, 13th of April at 13.00
+\subsection{Next Supervisor Meeting}
+Wednesday, 27th of April at 13.00
 
 \end{document}
