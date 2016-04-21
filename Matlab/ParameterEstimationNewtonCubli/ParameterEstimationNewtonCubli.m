@@ -1,10 +1,14 @@
 clear all
 close all
 clc
+%If you have conflicting model paths, run this command
+%close_system('CubliParameterEstimation')
+%Warning: It will take longer, since it has to completely reload the model,
+%         but you only have to run the command once
 
 %set documentation to 1 for best report-graph
 %set documentation to 0 for best run-time experience :)
-documentation = 1;
+documentation = 0;
 
 %----- IMPORTING TEST-DATA ------------------------------------------------
 testData = csvread('PRINT_03.CSV');%, 0, 0, [0 0 1500 1]);% <-- simTime=3.75
@@ -44,7 +48,7 @@ simIn = [ t u ];        %<--variables for simulation input
 if documentation == 1
     figure('Position', [412, 313, 660, 485])
 else
-    figure('Position', [300, 50, 1049, 700])
+    figure('Position', [277, 84, 1049, 700])
 end
 
 scatter(t,Y, 'r', '.')
@@ -95,9 +99,9 @@ if exist('tex', 'var')
 end
 if exist('errn', 'var')
     if documentation == 1
-        errorSTR = ['Normed RMS error = ', num2str(errn)];
+        errorSTR = ['Normed RMS error = ', num2str(errn), ' %'];
     else
-        errorSTR = ['Normed RMS error  =  ', num2str(errn)];
+        errorSTR = ['Normed RMS error  =  ', num2str(errn), ' %'];
     end
         tex = text(0.52, 0.13,...
                errorSTR,...
