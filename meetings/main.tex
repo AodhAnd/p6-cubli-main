@@ -15,13 +15,14 @@
 
 \subsection{Complementary Filter}
 \begin{itemize}
-  \item[-] To compare the different signals, we should maybe try to only take measurements in small motions in the useful are, i.e. around the equilibrium position.
+  \item[-] To compare the different signals, we should maybe try to only take measurements in small motions in the useful area, i.e. around the equilibrium position.
   \item[-] Kalman filter is a way to optimize all this data combination and filtering, but it is out of scope for this semester.
 \end{itemize}
 
 \subsection{Motor and Motor Controller Board}
 \begin{itemize}
   \item[-] Try to make an experiment to measure the actual current control loop's time constant.
+  \item[-] If it becomes too complicated to hook up to the board while doing the test, we might contact Maxon directly.
   \item[-] Electrical time constant is not sufficient.
 \end{itemize}
 
@@ -34,21 +35,20 @@
 \begin{itemize}
   \item[-] We are not sure whether any controller can catch the Cubli with initial condition of 6\si{^{\circ}} and no velocity nor torque.
   \item[-] In simulations, we should put the model in a stable position at first and add a disturbance signal at some point.
-  \item[-] It should be easy to calculate how much torque is neeed to catch it with any initial angle.
+  \item[-] It should be easy to calculate how much torque is needed to catch it with any initial angle.
   \item[-] The velocity(-ies) definitely has(-ve) to be used as feedback along with the position. 
 \end{itemize}
 
 \subsection{Discretization and Implementation of the Controller}
 \begin{itemize}
-  \item[-] 
-  \item[-] 
+  \item[-] We could use Zero Order Hold to get the discrete version of the plant and controller instead of Tustin to see what it gives. Instead of going through all the intermediary steps, we would have an exact discrete-time description of the plant.
   \item[-] The paper that we found about cascade control of unstable open loop systems should be sent to the supervisors and maybe used as a reference in the report.
-  \item[-] 
 \end{itemize}
 
 \subsection{Conclusion}
 \begin{itemize}
-  \item[-] Some of us should investigate the state-space way of representing the system.
+  \item[-] We will spend some time documenting the new material.
+  \item[-] After that, some of us should investigate the state-space way of representing the system.
   \item[-] Some others should document cascade controller attempts.
 \end{itemize}
 
