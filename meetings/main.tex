@@ -6,53 +6,31 @@
 \renewcommand\figurename{Figur}
 \renewcommand\tablename{Tabel}
 
-\section*{Supervisor meeting\\ \small Wednesday, 13th of April 2016}
+\section*{Supervisor meeting\\ \small Wednesday, 20th of April 2016}
 
-\subsection{Testing and Sensors}
+\subsection{Requirements}
 \begin{itemize}
-  \item[-] Measure the actual voltage on the board around the filter to verify that the gain given by Simon is effectively 3.
+  \item[-] Problem formulation rather than requirements
+  \item[-] Instead of setting random requirements we investigate how far the boundaries of control can be pushed while comparing different controller designs.
+  \item[-] Of course a requirement of stabilization is still needed.
 \end{itemize}
 
-\subsection{Complementary Filter}
+\subsection{Controller Design}
 \begin{itemize}
-  \item[-] To compare the different signals, we should maybe try to only take measurements in small motions in the useful area, i.e. around the equilibrium position.
-  \item[-] Kalman filter is a way to optimize all this data combination and filtering, but it is out of scope for this semester.
+  \item[-] Go to State Space
+  \item[-] Afterwards go back and investigate the previous design methods: \si{y = \theta + k \omega} and Direct Design Method of Ragazzini (Coefficient Matching).
 \end{itemize}
 
-\subsection{Motor and Motor Controller Board}
+\subsection{Bode Plots of Discretized Controller}
 \begin{itemize}
-  \item[-] Try to make an experiment to measure the actual current control loop's time constant.
-  \item[-] If it becomes too complicated to hook up to the board while doing the test, we might contact Maxon directly.
-  \item[-] Electrical time constant is not sufficient.
+  \item[-] The Tustin discretized controller has a \si{-360^\circ} offset in the closed loop plot.
+  \item[-] No reason to show the closed loop plot.
+  \item[-] One argument for Tustin with prewarp is that it has realizable poles.
+  \item[-] Tustin with prewarp is also better than Tustin without prewarp on the open loop plot.
+  \item[-] Phase range is better with Tustin with prewarp no matter what - choose Tustin with prewarp.
 \end{itemize}
 
-\subsection{Senstool and Gauss-Newton method}
-\begin{itemize}
-  \item[-] The implementation shown during the presentation should be documented along with the method and principles.
-\end{itemize}
-
-\subsection{Design of the Controller}
-\begin{itemize}
-  \item[-] We are not sure whether any controller can catch the Cubli with initial condition of 6\si{^{\circ}} and no velocity nor torque.
-  \item[-] In simulations, we should put the model in a stable position at first and add a disturbance signal at some point.
-  \item[-] It should be easy to calculate how much torque is needed to catch it with any initial angle.
-  \item[-] The velocity(-ies) definitely has(-ve) to be used as feedback along with the position. 
-\end{itemize}
-
-\subsection{Discretization and Implementation of the Controller}
-\begin{itemize}
-  \item[-] We could use Zero Order Hold to get the discrete version of the plant and controller instead of Tustin to see what it gives. Instead of going through all the intermediary steps, we would have an exact discrete-time description of the plant.
-  \item[-] The paper that we found about cascade control of unstable open loop systems should be sent to the supervisors and maybe used as a reference in the report.
-\end{itemize}
-
-\subsection{Conclusion}
-\begin{itemize}
-  \item[-] We will spend some time documenting the new material.
-  \item[-] After that, some of us should investigate the state-space way of representing the system.
-  \item[-] Some others should document cascade controller attempts.
-\end{itemize}
-
-\subsection{Next Supervisor meeting}
-Wednesday, 20th of April at 13.00
+\subsection{Next Supervisor Meeting}
+Wednesday, 27th of April at 13.00
 
 \end{document}
