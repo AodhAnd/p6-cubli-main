@@ -77,9 +77,13 @@ int main(int argc, char const *argv[])
   cout << endl << "---------------- IMU Test ---------------" << endl;
 
   I2C myI2c(filename);
-  Imu myImu(0x68,&myI2c);
+  Imu myImu1(0x68,&myI2c);
+  Imu myImu2(0x69,&myI2c);
 
-  readSensorConfig(&myImu);
+  cout << "IMU 1:" < endl;
+  readSensorConfig(&myImu1);
+  cout << "IMU 2:" < endl;
+  readSensorConfig(&myImu2);
   // setSensorConfig(&myImu);
   // readSensorConfig(&myImu);
 
