@@ -1,5 +1,5 @@
 /*
-* AAU3_DiscLinFeedback2.hpp
+* AAU3_PController.hpp
 * Simple LTI discrete proportional controller
 * 
 * Code written by 16gr630 
@@ -10,7 +10,7 @@
 
 /* Include files */
 #include "rt_nonfinite.hpp"
-#include "AAU3_DiscLinFeedback2.hpp"
+#include "AAU3_PController.hpp"
 
 /* Type definitions */
 #ifndef typedef_Lin_Controller_struct_T
@@ -26,7 +26,7 @@ typedef struct {
 static Lin_Controller_struct_T LinC;
 
 /** Runs the controller based on the feedback signal in x_hat */
-Lin_Out_Sig_struct_T AAU3_DiscLinFeedback2(const real_T x_hat[3])
+Lin_Out_Sig_struct_T AAU3_PController(const real_T x_hat[3])
 {
   /** Variable declarations */
   // Output signal(s)
@@ -47,7 +47,7 @@ Lin_Out_Sig_struct_T AAU3_DiscLinFeedback2(const real_T x_hat[3])
 * Initializes the controller parameters with the reference input and
 * the controller specifics.
 */
-void AAU3_DiscLinFeedback2_initialize(real_T sys_ref)
+void AAU3_PController_initialize(real_T sys_ref)
 {
   /*-- Controller parameters --*/
   // Proportional gain
@@ -61,7 +61,7 @@ void AAU3_DiscLinFeedback2_initialize(real_T sys_ref)
   rt_InitInfAndNaN(8U);
 }
 
-void AAU3_DiscLinFeedback2_terminate(void)
+void AAU3_PController_terminate(void)
 {
   // Nothing to do really...
 }
