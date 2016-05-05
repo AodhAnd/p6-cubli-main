@@ -69,7 +69,7 @@ void AAU3_DiscLinFeedback2_print(){
 */
 void AAU3_DiscLinFeedback2_initialize()
 {
-  static SISOT_Lin_PController_struct_T LSF0;
+  static  LSF_Controller_Param_struct_T LSF0;
 
   /** Controller parameters - Uncomment the part you want */
   // Poles: -6, -7 and -15

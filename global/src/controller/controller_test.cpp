@@ -13,7 +13,7 @@
 #include "controller_code/AAU3_DiscLinObserver.hpp" // Discrete lurenberger observer
 #include "controller_code/AAU3_DiscLinFeedback.hpp"
 #include "controller_code/AAU3_DiscLinFeedback2.hpp"
-#include "controller_code/AAU3_DiscPController.hpp"
+#include "controller_code/AAU3_PController.hpp"
 #include "controller_code/AAU3_DiscSISOTool.hpp"
 #include "controller_code/AAU3_DiscSlidingModeController.hpp"
 #include "controller_code/AAU3_InOutLinearization.hpp"
@@ -143,7 +143,7 @@ void ControllerTest::runController(ControllerArgs* args)
 
 			// Init controller and Observer
 			AAU3_DiscLinFeedback_initialize();
-			AAU3_DiscLinFeedback2_initialize(THETA_REF);
+			AAU3_PController_initialize(THETA_REF);
 			AAU3_DiscSISOTool_initialize(THETA_REF);
 			AAU3_DiscLinFeedback2_initialize();
 		}
@@ -166,19 +166,19 @@ void ControllerTest::runController(ControllerArgs* args)
 		 * ## 4. Run controller
 		 * ################################ */
 
-		if(0){ // Simon's linear state feedback (LSF) controller
+		if(1){ // Simon's linear state feedback (LSF) controller
 			C_Lin_struct_T u_next_obs = AAU3_DiscLinFeedback(Ts,x_hat);
 			i_m_next = u_next_obs.C_Lin_U_m;
 		}
 		else if(0){ // Proportional controller
-			Lin_Out_Sig_struct_T u_next_pc = AAU3_DiscPController(x_hat);
+			Lin_Out_Sig_struct_T u_next_pc = AAU3_PController(x_hat);
 			i_m_next = u_next_pc.I_m;
 		}
 		else if(0){ // SISOTool-designed controller
 			SISOT_P_Out_Sig_struct_T u_next_sisopc = AAU3_DiscSISOTool(x_hat);
 			i_m_next = u_next_sisopc.I_m;
 		}
-		else if(1){ // 16Gr630 LSF controller
+		else if(0){ // 16Gr630 LSF controller
 			LSF_COutput_struct_T u_next_lsf = AAU3_DiscLinFeedback2(x_hat);
 			i_m_next = u_next_lsf.I_m;
 		}

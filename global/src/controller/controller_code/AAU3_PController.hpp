@@ -38,6 +38,7 @@ extern Lin_Out_Sig_struct_T AAU3_PController(const real_T x_hat[3]);
  * Initializes the controller parameters with the reference input and
  * the controller specifics.
  */
+
 extern void AAU3_PController_initialize(real_T sys_ref);
 extern void AAU3_PController_terminate(void);
 
