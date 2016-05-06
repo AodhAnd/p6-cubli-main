@@ -8,56 +8,38 @@
 \renewcommand\figurename{Figur}
 \renewcommand\tablename{Tabel}
 
-\section*{Supervisor meeting\\ \small Wednesday, 27th of April 2016}
+\section*{Supervisor meeting\\ \small Wednesday, 4th of May 2016}
 
-\subsection{Parameter Estimation - Optimization}
+\subsection{State Space}
 \begin{itemize}
-  \item[-] Remember to reference the previous project regarding parameters.
-  \item[-] The steepest descent is using the gradient then a line search.
-  \item[-] The Newton method is using the gradient and the Hessian then a line search (only suggested direction).
-  \item[-] Squared (\si{^2}) should be the squared norm (inner product)
-  \item[-] Gauss-Newton method is minimization of a vector function.
-  \item[-] In equation 5.10 - correct the notation regarding vectors.
-  \item[-] Remove left side in equation 5.2 and 5.4.
-  \item[-] Explicitly write the algorithms used.
-  \item[-] Gradient should not be a vector in figure 5.6 and 5.7 on page 27 (gradient is a scalar - give instead a line which leads to the point where the gradient method would make us go)
-  \item[-] Reformulation: This expression can then be used to choose the value of \si{\vec{\delta}} such that THE APPROXIMATION OF \si{f(x)} is minimized.
-  \item[-] 2nd derivative in 5.12 should not be P, but instead \si{y_m}.
-  \item[-] In equation 5.11 and 5.12 write the derivatives reduced to \si{\partial\vec{\theta} ^2}.
-  \item[-] Use a known parameter to test how close the estimation gets both with SensTool and our own implementation.
-  \item[-] "Evident from figure 5.2 [...]". Make better/more description and list the parameters used.
-  \item[-] Try to calculate the normed RMS error only until time 3 just to see the difference.
-  \item[-] Write more clearly which is our own implementation between figure 5.11 and 5.12.
-  \item[-] We can just use the line search implemented in matrix course, just remember source.
-  \item[-] Gauss-Newton method, see slide 17-18 lecture 7 in matrix course.
+  \item[-] Choice of states - it should be mentioned that it is something we chose.
+  \item[-] We can define the different outputs - can be done in different ways - in our case we define the outputs as what we want to control.
+  \item[-] Write up how the \si{\vec{A}} and \si{\vec{B}} matrices are the derivatives of \si{f(\vec{x},\vec{u})} in the equilibrium position.
+  \item[-] Controllability matrix should be \si{[\vec{B}\ \vec{AB}\ \vec{A}^2\vec{B}]} $\rightarrow$ nxn matrix for single input (\si{3x3} in our case). Observability and Controllability matrices are only allowed to have rank n.
+  \item[-] Consider choosing the controller constants corresponding to the red graph.
+  \item[-] Should be initial velocity not initial acceleration in description preceding figure 8.3.
+  \item[-] Section on practical implementation of the controller - how to measure the three states needed for the controller.
+  \item[-] Could it be implemented as just a feedback - just with the angle?
 \end{itemize}
 
-\subsection{Controller Analysis Section}
+\subsection{Complementary Filter}
 \begin{itemize}
-  \item[-] Try to calculate the closed loop poles of system with proportional controller. That is, root locus of closed loop with P-controller.
-  \item[-] Root Locus of P-controller confirms the behavior in figure 7.1
-  \item[-] In figure 7.2, correct figure text: It is not a Nyquist plot.
-  \item[-] Block diagram in figure 7.3 is not saying much, however, we could add a K and D'(s) instead of D(s), and then use it to explain how K is scaled to generate the loci.
-  \item[-] Root locus, figure 7.4, better described as using a proportional controller.
-  \item[-] Reformulate conclusion on controller: "This means that another kind of controller in needed, which also takes care of the velocity of the wheel.", we should not imply that it is not possible.
-  \item[-] Reason for pole left of zero is friction in motor.
-  \item[-] Include the transfer function on pole/zero-form with parameters.
-  \item[-] If the torque goes to zero then the velocity would decay because of the motor friction.
+  \item[-] It is working! :D
+  \item[-] The complementary filter might not be able to take into account the low frequency accelerations added by movement of the frame, however because of the small magnitude of the disturbances in relation to gravity, it should not be a problem - look into this and document findings.
+  \item[-] Placement of the IMU can be changed such that disturbances to the accelerometer are reduced.
+  \item[-] Make difference equation for complementary filter.
+  \item[-] Include comparison in frequency domain of the two filter implementations (the comparison could also be done in the time domain with step tests).
+  \item[-] The complementary filter can be seen as some kind of rudimentary observer - an other option is to make a more general observer (next semester scope).
 \end{itemize}
 
-\subsection{State Space Controller}
+\subsection{Further Remarks}
 \begin{itemize}
-  \item[-] Working controller! :D
-  \item[-] Continue investigating in frequency domain.
-  \item[-] Focus on making feedback come from the sensors.
-\end{itemize}
-
-\subsection{Exam Date}
-\begin{itemize}
-  \item[-] Suggested dates: Friday 17th of June or Monday 20th of June
+  \item[-] Make sure that it is easy to change between controller implementations.
+  \item[-] Comment clearly in the code.
 \end{itemize}
 
 \subsection{Next Supervisor Meeting}
-Wednesday, 4th of May at 13.00
+Friday, 13th of May (possibly at 10.00)\\
+Time of meeting will be updated/confirmed by mail.
 
 \end{document}
