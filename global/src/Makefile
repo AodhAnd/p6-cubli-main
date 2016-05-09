@@ -56,6 +56,9 @@ OBJ  += controller/controller_code/AAU3_DiscLinFeedback2.o
 DEPS += controller/controller_code/AAU3_DiscSISOTool.hpp
 OBJ  += controller/controller_code/AAU3_DiscSISOTool.o
 
+DEPS += controller/controller_code/AAU3_PController.hpp
+OBJ  += controller/controller_code/AAU3_PController.o
+
 DEPS += i2c.hpp
 OBJ += i2c.o
 
