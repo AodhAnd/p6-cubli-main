@@ -163,6 +163,45 @@ void ControllerTest::runController(ControllerArgs* args)
 		x_hat[1] = (gyroRads1+gyroRads2)/2;
 		x_hat[2] = tachRads - tachOffset1;
 
+		if(1) { // Enables the complementary filter
+			const double acc_off 	= 0.82;   	// accel measurement offset, used to correct data to 0 pos.
+		    const double tau 		= 0.1;   	// cut-off time-constant for the complementary filter
+		    const double k 			= 0.99;
+
+		    // Calculate the 2 constants of the complementary filter
+		    const double K1 = (2*tau-Ts)/(2*tau+Ts);
+		    const double K2 = Ts/(2*tau + Ts);
+
+		    static double acc_angle[2]={atan(accY1/accX1) + acc_off,0},
+		        a=gyroRads1,
+		        gyro_angle[9]={a,a,a,a,a,a,a,a,a},
+		        comp_angle[2]={acc_angle[0],0};
+
+		    // Set old measurement data
+		    acc_angle[1] = acc_angle[0];
+		    for (int i=8; i>0; i--)
+		      gyro_angle[i] = gyro_angle[i-1];
+		    gyro_angle[0] = gyroRads1;
+		    comp_angle[1] = comp_angle[0];
+
+		    // Get angle from accel axis measurements
+		    acc_angle[0] = atan(accY1/accX1) + acc_off;
+
+		    // Get gyro angle from gyro measurement
+		    static double sum=0;
+		    for (int i=0; i<9; i++)
+		      sum += gyro_angle[i];
+		    gyro_angle[0] =  sum * 9 * Ts;
+		    sum=0;
+
+		    //Complementary equation using Tustin
+		    //comp_angle[0] = K1*comp_angle[1] + K2*(acc_angle[0] + acc_angle[1] + tau*gyro_angle[0] + tau*gyro_angle[1]);
+		    //Complementry equation using backward Euler
+		    comp_angle[0] = k * (comp_angle[1] + gyroRads1 * Ts) + (1-k) * acc_angle[0];
+		    // Also updating the x_hat value
+		    x_hat[0]=comp_angle[0];;
+		}
+
 		/* ################################
 		 * ## 4. Run controller
 		 * ################################ */
