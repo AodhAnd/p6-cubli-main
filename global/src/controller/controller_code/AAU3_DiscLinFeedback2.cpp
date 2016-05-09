@@ -73,9 +73,9 @@ void AAU3_DiscLinFeedback2_initialize()
 
   /** Controller parameters - Uncomment the part you want */
   // Poles: -6, -7 and -15
-  LSF0.K[0] = -2.3021;
-  LSF0.K[1] = -0.227;
-  LSF0.K[2] = -0.0039;
+  LSF0.K[0] = 2.3021;
+  LSF0.K[1] = 0.2274;
+  LSF0.K[2] = 0.0039;
   // Poles: -4, -5 and -15
   // LSF0.K[0] = 1.7252;
   // LSF0.K[1] = 0.1759;
