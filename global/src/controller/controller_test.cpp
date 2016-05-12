@@ -61,259 +61,284 @@ void ControllerTest::writeDebug()
 
 void ControllerTest::runController(ControllerArgs* args)
 {
+	args->mRaisePin->setValue(true);
 	static double Ts = this->getPeriodicityMsStatic()/1e6, x_hat_last[4] = {0,0,0,0}, x_hat[4] = {0,0,0,0};
-	static ofstream logfile("data.csv", ios::app );
+	static ofstream logfile("tests/potRegularity.csv", ios::app );
 
+	static bool value = true;
+	value=!value;
 
-		static bool value = true;
-		value=!value;
+	static long count = 0;
 
-		static long count = 0;
+	signed int i_m_out = 0;
+	static bool brake = true, brake_next = true;
+	static double i_m = 0, i_m_next = 0;
 
-		signed int i_m_out = 0;
-		static bool brake = true, brake_next = true;
-		static double i_m = 0, i_m_next = 0;
+	/* ################################
+	 * ## 1. Apply control
+	 * ################################ */
 
-		/* ################################
-		 * ## 1. Apply control
-		 * ################################ */
+	i_m = 0;//i_m_next;
 
-		i_m = i_m_next;
+	i_m_out = (signed int)((i_m*1000));
+	args->mMotor->setRpm(i_m_out);
 
-		i_m_out = (signed int)((i_m*1000));
-		args->mMotor->setRpm(i_m_out);
+	/* ################################
+	 * ## 2. Perform Readings
+	 * ################################ */
+	static double xAcc1, yAcc1, gyroZ1, xAcc2, yAcc2, gyroZ2, potAdc, powerAdc, tachAdc, gyroRads1, gyroRads2, accX1, accX2, accY1, accY2;
 
-		/* ################################
-		 * ## 2. Perform Readings
-		 * ################################ */
-		static double xAcc1, yAcc1, gyroZ1, xAcc2, yAcc2, gyroZ2, potAdc, powerAdc, tachAdc, gyroRads1, gyroRads2, accX1, accX2, accY1, accY2;
+	tachAdc 	= (double) args->mMotorAdc1->get(); // The last part is to correct an offset
+	powerAdc  = args->mMotorAdc2->get(); //must be there or we get errors.. don't ask why; just believe in the code!
+	potAdc   	= (double) args->mPotAdc->get();
 
-		tachAdc 	= (double) args->mMotorAdc1->get(); // The last part is to correct an offset
-		powerAdc  = args->mMotorAdc2->get(); //must be there or we get errors.. don't ask why; just believe in the code!
-		potAdc   	= (double) args->mPotAdc->get();
+	xAcc1    = (double) args->mImu1->getAccX();
+	yAcc1    = (double) args->mImu1->getAccY();
+	gyroZ1   = (double) args->mImu1->getGyroZ();
 
-		xAcc1    = (double) args->mImu1->getAccX();
-		yAcc1    = (double) args->mImu1->getAccY();
-		gyroZ1   = (double) args->mImu1->getGyroZ();
+	xAcc2    = (double) args->mImu2->getAccX();
+	yAcc2    = (double) args->mImu2->getAccY();
+	gyroZ2   = (double) args->mImu2->getGyroZ();
 
-		xAcc2    = (double) args->mImu2->getAccX();
-		yAcc2    = (double) args->mImu2->getAccY();
-		gyroZ2   = (double) args->mImu2->getGyroZ();
+	//Convert potentiometer reading to radians
+	double potRad;
+	static double potOffset1 	= -0.025,
+			      		tachOffset1 = 0;
+	potRad = (potAdc-655)*0.001068569; //655 was the original value
 
-		//Convert potentiometer reading to radians
-		double potRad;
-		static double potOffset1 	= -0.025,
-				      		tachOffset1 = 0;
-		potRad = (potAdc-655)*0.001068569; //655 was the original value
+	// static double adcRes = 0.00043945,		// ADC resolution
+	// 							eqVolt = 0.6945,				// Voltage value at the equilibrium point
+	// 							resRad = 3.2818;				// Voltage-to-radians coefficient
+	// potRad = ((potAdc * adcRes) - eqVolt) * resRad;
 
-		// static double adcRes = 0.00043945,		// ADC resolution
-		// 							eqVolt = 0.6945,				// Voltage value at the equilibrium point
-		// 							resRad = 3.2818;				// Voltage-to-radians coefficient
-		// potRad = ((potAdc * adcRes) - eqVolt) * resRad;
-
-		if(0){ //This flag enables the Auto-Zeroing feature
-			if( !(potRad<-0.35 || potRad>0.35)){
-				potOffset1 = potOffset1*0.9990 + potRad*0.0009995;
-			}
+	if(0){ //This flag enables the Auto-Zeroing feature
+		if( !(potRad<-0.35 || potRad>0.35)){
+			potOffset1 = potOffset1*0.9990 + potRad*0.0009995;
 		}
+	}
 
-		//Convert tachometer reading to radians/sec
-		double tachRads;
-		tachRads = (tachAdc - 882)*0.240734983;
-		tachRads = (tachAdc - 882)*0.240734983;
+	//Convert tachometer reading to radians/sec
+	double tachRads;
+	tachRads = (tachAdc - 882)*0.240734983;
+	tachRads = (tachAdc - 882)*0.240734983;
 
-		// Convert gyroscopes
-		const double PI = 3.141592653589793;
-		gyroRads1 = -gyroZ1*PI/(131*180);
-		gyroRads2 = -gyroZ2*PI/(131*180);
-		// Convert Accelerometers
-		accX1 = xAcc1*9.82/16384;
-		accX2 = xAcc2*9.82/16384;
-		accY1 = yAcc1*9.82/16384;
-		accY2 = yAcc2*9.82/16384;
-
-
-
-		static bool init = false;
-		if(!init){
-			init = true;
-			//Open read file
-			ofstream myfile ("data.csv", ios::app );
+	// Convert gyroscopes
+	const double PI = 3.141592653589793;
+	gyroRads1 = -gyroZ1*PI/(131*180);
+	gyroRads2 = -gyroZ2*PI/(131*180);
+	// Convert Accelerometers
+	accX1 = xAcc1*9.82/16384;
+	accX2 = xAcc2*9.82/16384;
+	accY1 = yAcc1*9.82/16384;
+	accY2 = yAcc2*9.82/16384;
 
 
-			// Init controller and Observer
-			AAU3_DiscLinFeedback_initialize();
-			AAU3_PController_initialize(THETA_REF);
-			AAU3_DiscSISOTool_initialize(THETA_REF);
-			AAU3_DiscLinFeedback2_initialize();
+
+	static bool init = false;
+	if(!init){
+		init = true;
+		//Open read file
+		ofstream myfile ("tests/potRegularity.csv", ios::app );
+
+
+		// Init controller and Observer
+		AAU3_DiscLinFeedback_initialize();
+		AAU3_PController_initialize(THETA_REF);
+		AAU3_DiscSISOTool_initialize(THETA_REF);
+		AAU3_DiscLinFeedback2_initialize();
+	}
+
+	/* ################################
+	 * ## 3. Run observer
+	 * ################################ */
+	x_hat_last[0] = x_hat[0]; x_hat_last[1] = x_hat[1]; x_hat_last[2] = x_hat[2]; x_hat_last[3] = x_hat[3];
+
+
+	double y[2] = {potRad,tachRads};
+	double y_[4] = {potRad, gyroRads1, gyroRads2, tachRads - tachOffset1};
+
+
+	x_hat[0] = potRad - potOffset1;
+	//x_hat[1] = (potRad-x_hat_last[0])/Ts;
+	x_hat[1] = (gyroRads1+gyroRads2)/2;
+	x_hat[2] = tachRads - tachOffset1;
+
+	if(1) { // Enables the complementary filter
+		// const double acc_off 	= 0.82;   	// accel measurement offset, used to correct data to 0 pos.
+	 //    const double tau 		= 0.1;   	// cut-off time-constant for the complementary filter
+	 //    const double k 			= 0.99;
+
+	 //    // Calculate the 2 constants of the complementary filter
+	 //    const double K1 = (2*tau-Ts)/(2*tau+Ts);
+	 //    const double K2 = Ts/(2*tau + Ts);
+
+	 //    static double acc_angle[2]={atan(accY1/accX1) + acc_off,0},
+	 //        a=gyroRads1,
+	 //        gyro_angle[9]={a,a,a,a,a,a,a,a,a},
+	 //        comp_angle[2]={acc_angle[0],0};
+
+	 //    // Set old measurement data
+	 //    acc_angle[1] = acc_angle[0];
+	 //    for (int i=8; i>0; i--)
+	 //      gyro_angle[i] = gyro_angle[i-1];
+	 //    gyro_angle[0] = gyroRads1;
+	 //    comp_angle[1] = comp_angle[0];
+
+	 //    // Get angle from accel axis measurements
+	 //    acc_angle[0] = atan(accY1/accX1) + acc_off;
+
+	 //    // Get gyro angle from gyro measurement
+	 //    static double sum=0;
+	 //    for (int i=0; i<9; i++)
+	 //      sum += gyro_angle[i];
+	 //    gyro_angle[0] =  sum * 9 * Ts;
+	 //    sum=0;
+
+	 //    //Complementary equation using Tustin
+	 //    //comp_angle[0] = K1*comp_angle[1] + K2*(acc_angle[0] + acc_angle[1] + tau*gyro_angle[0] + tau*gyro_angle[1]);
+	 //    //Complementry equation using backward Euler
+	 //    comp_angle[0] = k * (comp_angle[1] + gyroRads1 * Ts) + (1-k) * acc_angle[0];
+
+
+
+		const double acc_off = 0.84;  	// accel meass offset
+		const double tau = 0.5399;	// cut-off for the complementary filter
+
+		static double acc_angle[2]={atan(accY1/accX1) + acc_off,0},
+				gyro_angle[2]={gyroRads1,gyroRads1},
+				comp_angle[2]={acc_angle[0],0};
+
+		// Set old measurement data
+		acc_angle[1] = acc_angle[0];
+		gyro_angle[1] = gyro_angle[0];
+		gyro_angle[0] = gyroRads1;
+		comp_angle[1] = comp_angle[0];
+
+		// Get angle from accel axis measurements
+		acc_angle[0] = atan(accY1/accX1) + acc_off;
+
+		//Complementary equation using Tustin
+		const double K1 = (2*tau-Ts)/(2*tau+Ts);
+		const double K2 = Ts/(2*tau + Ts);
+		comp_angle[0] = K1*comp_angle[1] + K2*(acc_angle[0] + acc_angle[1] + tau*gyro_angle[0] + tau*gyro_angle[1]);
+		// Also updating the x_hat value
+	    x_hat[0]=comp_angle[0];
+	}
+
+	/* ################################
+	 * ## 4. Run controller
+	 * ################################ */
+
+	if(0){ // Simon's linear state feedback (LSF) controller
+		C_Lin_struct_T u_next_obs = AAU3_DiscLinFeedback(Ts,x_hat);
+		i_m_next = u_next_obs.C_Lin_U_m;
+	}
+	else if(0){ // Proportional controller
+		Lin_Out_Sig_struct_T u_next_pc = AAU3_PController(x_hat);
+		i_m_next = u_next_pc.I_m;
+	}
+	else if(0){ // SISOTool-designed controller
+		SISOT_P_Out_Sig_struct_T u_next_sisopc = AAU3_DiscSISOTool(x_hat);
+		i_m_next = u_next_sisopc.I_m;
+	}
+	else if(1){ // 16Gr630 LSF controller
+		LSF_COutput_struct_T u_next_lsf = AAU3_DiscLinFeedback2(x_hat);
+		i_m_next = u_next_lsf.I_m;
+	}
+
+	// Controller tester
+	static long ct_count = 0;
+	static double i_m_add = 0;
+	if(0){
+		ct_count++;
+		if(ct_count<450){
+			//Nothing happens in this region
+		}else if(ct_count<500){
+			i_m_next = i_m_next + i_m_add;
+		}else{
+			ct_count = 0;
+			i_m_add += 0.5;
 		}
+	}
 
-		/* ################################
-		 * ## 3. Run observer
-		 * ################################ */
-		x_hat_last[0] = x_hat[0]; x_hat_last[1] = x_hat[1]; x_hat_last[2] = x_hat[2]; x_hat_last[3] = x_hat[3];
+	static bool goingPos = true;
+	const double testLim = 80;
+	static double testLim_n = 0;
+	static double count__=0;
 
-
-		double y[2] = {potRad,tachRads};
-		double y_[4] = {potRad, gyroRads1, gyroRads2, tachRads - tachOffset1};
-
-
-		x_hat[0] = potRad - potOffset1;
-		//x_hat[1] = (potRad-x_hat_last[0])/Ts;
-		x_hat[1] = (gyroRads1+gyroRads2)/2;
-		x_hat[2] = tachRads - tachOffset1;
-
-		if(1) { // Enables the complementary filter
-			const double acc_off 	= 0.82;   	// accel measurement offset, used to correct data to 0 pos.
-		    const double tau 		= 0.1;   	// cut-off time-constant for the complementary filter
-		    const double k 			= 0.99;
-
-		    // Calculate the 2 constants of the complementary filter
-		    const double K1 = (2*tau-Ts)/(2*tau+Ts);
-		    const double K2 = Ts/(2*tau + Ts);
-
-		    static double acc_angle[2]={atan(accY1/accX1) + acc_off,0},
-		        a=gyroRads1,
-		        gyro_angle[9]={a,a,a,a,a,a,a,a,a},
-		        comp_angle[2]={acc_angle[0],0};
-
-		    // Set old measurement data
-		    acc_angle[1] = acc_angle[0];
-		    for (int i=8; i>0; i--)
-		      gyro_angle[i] = gyro_angle[i-1];
-		    gyro_angle[0] = gyroRads1;
-		    comp_angle[1] = comp_angle[0];
-
-		    // Get angle from accel axis measurements
-		    acc_angle[0] = atan(accY1/accX1) + acc_off;
-
-		    // Get gyro angle from gyro measurement
-		    static double sum=0;
-		    for (int i=0; i<9; i++)
-		      sum += gyro_angle[i];
-		    gyro_angle[0] =  sum * 9 * Ts;
-		    sum=0;
-
-		    //Complementary equation using Tustin
-		    //comp_angle[0] = K1*comp_angle[1] + K2*(acc_angle[0] + acc_angle[1] + tau*gyro_angle[0] + tau*gyro_angle[1]);
-		    //Complementry equation using backward Euler
-		    comp_angle[0] = k * (comp_angle[1] + gyroRads1 * Ts) + (1-k) * acc_angle[0];
-		    // Also updating the x_hat value
-		    x_hat[0]=comp_angle[0];;
-		}
-
-		/* ################################
-		 * ## 4. Run controller
-		 * ################################ */
-
-		if(0){ // Simon's linear state feedback (LSF) controller
-			C_Lin_struct_T u_next_obs = AAU3_DiscLinFeedback(Ts,x_hat);
-			i_m_next = u_next_obs.C_Lin_U_m;
-		}
-		else if(0){ // Proportional controller
-			Lin_Out_Sig_struct_T u_next_pc = AAU3_PController(x_hat);
-			i_m_next = u_next_pc.I_m;
-		}
-		else if(0){ // SISOTool-designed controller
-			SISOT_P_Out_Sig_struct_T u_next_sisopc = AAU3_DiscSISOTool(x_hat);
-			i_m_next = u_next_sisopc.I_m;
-		}
-		else if(1){ // 16Gr630 LSF controller
-			LSF_COutput_struct_T u_next_lsf = AAU3_DiscLinFeedback2(x_hat);
-			i_m_next = u_next_lsf.I_m;
-		}
-
-		// Controller tester
-		static long ct_count = 0;
-		static double i_m_add = 0;
-		if(0){
-			ct_count++;
-			if(ct_count<450){
-				//Nothing happens in this region
-			}else if(ct_count<500){
-				i_m_next = i_m_next + i_m_add;
+	if( 0 ){
+		count__++;
+		if(count__>100){
+			if(goingPos){
+				if(x_hat[2]>testLim){
+					goingPos = !goingPos;
+					testLim_n++;
+				}
 			}else{
-				ct_count = 0;
-				i_m_add += 0.5;
-			}
-		}
-
-		static bool goingPos = true;
-		const double testLim = 80;
-		static double testLim_n = 0;
-		static double count__=0;
-
-		if( 0 ){
-			count__++;
-			if(count__>100){
-				if(goingPos){
-					if(x_hat[2]>testLim){
-						goingPos = !goingPos;
-						testLim_n++;
-					}
-				}else{
-					if(x_hat[2]<-testLim){
-						goingPos = !goingPos;
-						testLim_n++;
-					}
+				if(x_hat[2]<-testLim){
+					goingPos = !goingPos;
+					testLim_n++;
 				}
+			}
 
-				if(goingPos)
-					i_m_next = 0.5*(1+testLim_n/2);
-				else
-					i_m_next = -0.5*(1+testLim_n/2);
-			}else
+			if(goingPos)
+				i_m_next = 0.5*(1+testLim_n/2);
+			else
+				i_m_next = -0.5*(1+testLim_n/2);
+		}else
+			i_m_next = 0;
+	}
+
+	if(1){ // 1 = set first part. 0 = set second part
+		// If fallen over, then stop the wheel
+		const double act_region = 0.35;
+		if(potRad<-act_region || potRad>act_region){
+			i_m_next = -0.15*tachRads;
+			if(-2 < tachRads && tachRads < 2 ){
 				i_m_next = 0;
+			}
+		}
+	}else{ // keep constant velocity
+		double error = 90 - tachRads; // reference error
+		const double act_region2 = 0.35;
+		if(potRad<-act_region2 || potRad>act_region2){
+			i_m_next = 0.15*error;
 		}
 
-		if(1){ // 1 = set first part. 0 = set second part
-			// If fallen over, then stop the wheel
-			const double act_region = 0.35;
-			if(potRad<-act_region || potRad>act_region){
-				i_m_next = -0.15*tachRads;
-				if(-2 < tachRads && tachRads < 2 ){
-					i_m_next = 0;
-				}
-			}
-		}else{ // keep constant velocity
-			double error = 90 - tachRads; // reference error
-			const double act_region2 = 0.35;
-			if(potRad<-act_region2 || potRad>act_region2){
-				i_m_next = 0.15*error;
-			}
-
-		}
+	}
 
 
-		const double i_m_sat = 4;
-		if(i_m_next>i_m_sat) i_m_next = i_m_sat;
-		if(i_m_next<-i_m_sat) i_m_next = -i_m_sat;
+	const double i_m_sat = 4;
+	if(i_m_next>i_m_sat) i_m_next = i_m_sat;
+	if(i_m_next<-i_m_sat) i_m_next = -i_m_sat;
 
 
-		/* ################################
-		 * ## 5. Logging
-		 * ################################ */
+	/* ################################
+	 * ## 5. Logging
+	 * ################################ */
 
-		// Toggle
-		static bool enableSchedIO = false;
-		enableSchedIO = !enableSchedIO;
-		args->mAwesomeGpio->setValue(enableSchedIO);
+	// Toggle
+	static bool enableSchedIO = false;
+	enableSchedIO = !enableSchedIO;
+	args->mAwesomeGpio->setValue(enableSchedIO);
 
 
+	if(1){
+		std::cout << "Hello from the other \tcount:" << ct_count << "\tPotentiometer: " << potAdc << endl;//"\ti_m: " << i_m_next << "\ti_m_next: " << i_m_next << "\tTach: " << tachRads << "\tx_hat: " << endl;
+				//accX1 << ", " << accY1 << ", " << accX2 << ", " << accY2 << ", " << potAdc << endl;
 		if(1){
-			std::cout << "\tcount:" << ct_count << "\ti_m: " << i_m_next << "\ti_m_next: " << i_m_next << "\tTach: " << tachRads << "\tx_hat: " << endl;
-					//accX1 << ", " << accY1 << ", " << accX2 << ", " << accY2 << ", " << potAdc << endl;
-			if(1){
-				if (logfile.is_open())
-				{
-					static long count = 0;
-					count++;
+			if (logfile.is_open())
+			{
+				static long count = 0;
+				count++;
 //					logfile <<  count << ", " << potRad << ", " << tachRads << ", " << i_m_next << ", " << x_hat[0] << ", " << x_hat[1] << ", " << x_hat[2] << ", " << gyroRads1 << ", " << gyroRads2 << ", "
 //							<< accX1 << ", " << accY1 << ", " << accX2 << ", " << accY2 << ", " << i_m_add <<  endl;
-				}
 			}
-
 		}
+
+	}
+	args->mRaisePin->setValue(false);
+
 
 }
 
