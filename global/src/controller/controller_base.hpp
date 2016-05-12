@@ -24,7 +24,7 @@ class ControllerCbIf;
 class ControllerArgs
 {
 public:
-	ControllerArgs(Imu *imu1,Imu *imu2,MomentumMotor *motor, BbbAdc *potAdc, BbbAdc *motorAdc1, BbbAdc *motorAdc2, ControllerCbIf* pControllerIf, bool *debugEnable, BbbGpio *awesomeGpio)
+	ControllerArgs(Imu *imu1,Imu *imu2,MomentumMotor *motor, BbbAdc *potAdc, BbbAdc *motorAdc1, BbbAdc *motorAdc2, ControllerCbIf* pControllerIf, bool *debugEnable, BbbGpio *awesomeGpio, BbbGpio *raisePin)
 	:
 	mImu1(imu1),
 	mImu2(imu2),
@@ -34,7 +34,8 @@ public:
 	mMotorAdc2(motorAdc2),
 	mpControllerIf(pControllerIf),
 	mDebugEnable(debugEnable),
-	mAwesomeGpio(awesomeGpio)
+	mAwesomeGpio(awesomeGpio),
+	mRaisePin(raisePin)
 	{
 
 	}
@@ -49,6 +50,7 @@ public:
 	BbbAdc *mMotorAdc2;
 	bool *mDebugEnable;
 	BbbGpio *mAwesomeGpio;
+	BbbGpio *mRaisePin;
 };
 
 
@@ -97,10 +99,10 @@ private:
 	BbbAdc mMotorRpm;
 	BbbAdc mMotorPower;
 	MomentumMotor mMotor;
-	//Imu mImu2;
 
 	ControllerArgs mControllerArgs;
 	BbbGpio mAwesomeGpio;
+	BbbGpio mRaisePin;
 };
 
 
