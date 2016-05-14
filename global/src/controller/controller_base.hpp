@@ -24,18 +24,19 @@ class ControllerCbIf;
 class ControllerArgs
 {
 public:
-	ControllerArgs(Imu *imu1,Imu *imu2,MomentumMotor *motor, BbbAdc *potAdc, BbbAdc *motorAdc1, BbbAdc *motorAdc2, ControllerCbIf* pControllerIf, bool *debugEnable, BbbGpio *awesomeGpio, BbbGpio *raisePin)
-	:
-	mImu1(imu1),
-	mImu2(imu2),
-	mMotor(motor),
-	mPotAdc(potAdc),
-	mMotorAdc1(motorAdc1),
-	mMotorAdc2(motorAdc2),
-	mpControllerIf(pControllerIf),
-	mDebugEnable(debugEnable),
-	mAwesomeGpio(awesomeGpio),
-	mRaisePin(raisePin)
+	ControllerArgs(Imu *imu1, Imu *imu2, bool *compFilterEnable, MomentumMotor *motor, BbbAdc *potAdc, BbbAdc *motorAdc1, BbbAdc *motorAdc2, ControllerCbIf* pControllerIf, bool *debugEnable, BbbGpio *awesomeGpio, BbbGpio *raisePin)
+		:
+		mImu1(imu1),
+		mImu2(imu2),
+		mCompFilterEnable(compFilterEnable),
+		mMotor(motor),
+		mPotAdc(potAdc),
+		mMotorAdc1(motorAdc1),
+		mMotorAdc2(motorAdc2),
+		mpControllerIf(pControllerIf),
+		mDebugEnable(debugEnable),
+		mAwesomeGpio(awesomeGpio),
+		mRaisePin(raisePin)
 	{
 
 	}
@@ -44,6 +45,7 @@ public:
 	ControllerCbIf* mpControllerIf;
 	Imu *mImu1;
 	Imu *mImu2;
+	bool *mCompFilterEnable;
 	MomentumMotor *mMotor;
 	BbbAdc *mPotAdc;
 	BbbAdc *mMotorAdc1;
@@ -57,13 +59,12 @@ public:
 class ControllerCbIf
 {
 public:
-	virtual ~ControllerCbIf()
-	{}
+	virtual ~ControllerCbIf()	{}
 
 	virtual const char* getControllerName() = 0;
 	virtual void writeDebug() = 0;
 	virtual void runController(ControllerArgs* args) = 0;
-	virtual unsigned int getPeriodicityMs() = 0;
+	virtual unsigned int getPeriodicityMus() = 0;
 };
 
 
@@ -84,11 +85,12 @@ public:
 	static void* controllerStatic(void* args);
 
 public: // Implementing ShellClientInterface
-	void receiveShellCommand(string* argv,unsigned int& argc);
+	void receiveShellCommand(string* argv, unsigned int& argc);
 	const char* getClientName();
 
 private:
 	bool mDebugEnable;
+	bool mCompFilterEnable;
 	ControllerCbIf* mpControllerIf;
 	ShellClient mShell;
 	PosixThread* mpThread;

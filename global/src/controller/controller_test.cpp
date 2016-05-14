@@ -32,7 +32,7 @@ const char* ControllerTest::getControllerNameStatic()
 	return "c";
 }
 
-unsigned int ControllerTest::getPeriodicityMsStatic()
+unsigned int ControllerTest::getPeriodicityMusStatic()
 {
 	//Given in us!
 	//  2500 => 400 Hz
@@ -49,9 +49,9 @@ const char* ControllerTest::getControllerName()
 	return getControllerNameStatic();
 }
 
-unsigned int ControllerTest::getPeriodicityMs()
+unsigned int ControllerTest::getPeriodicityMus()
 {
-	return getPeriodicityMsStatic();
+	return getPeriodicityMusStatic();
 }
 
 void ControllerTest::writeDebug()
@@ -61,12 +61,13 @@ void ControllerTest::writeDebug()
 
 void ControllerTest::runController(ControllerArgs* args)
 {
+	// Setting GPIO_61 up
 	args->mRaisePin->setValue(true);
-	static double Ts = this->getPeriodicityMsStatic() / 1e6, x_hat_last[4] = {0, 0, 0, 0}, x_hat[4] = {0, 0, 0, 0};
+
+	static double Ts = this->getPeriodicityMusStatic() / 1e6, x_hat_last[4] = {0, 0, 0, 0}, x_hat[4] = {0, 0, 0, 0};
 	static ofstream logfile("tests/potRegularity.csv", ios::app );
 
-	static bool value = true;
-	value = !value;
+	static bool compFilterEnable = args->mCompFilterEnable;
 
 	static long count = 0;
 
@@ -103,7 +104,7 @@ void ControllerTest::runController(ControllerArgs* args)
 	//Convert potentiometer reading to radians
 	double potRad;
 	static double potOffset1 	= -0.025,
-	                tachOffset1 = 0;
+	              tachOffset1 = 0;
 	potRad = (potAdc - 655) * 0.001068569; //655 was the original value
 
 	// static double adcRes = 0.00043945,		// ADC resolution
@@ -159,9 +160,11 @@ void ControllerTest::runController(ControllerArgs* args)
 	x_hat[1] = (gyroRads1 + gyroRads2) / 2;
 	x_hat[2] = tachRads - tachOffset1;
 
-	if (1) { // Enables the complementary filter
-		// Also updating the x_hat value
-		x_hat[0] = (double) args->mImu1->getPosition((double) atan(accY1/accX1), gyroRads1, Ts);
+	// Enables the complementary filter
+	if (compFilterEnable) {
+		// The x_hat value is updated accordingly with the complementary filter output
+		cout << "Using complementary filter..." << endl;
+		x_hat[0] = (double) args->mImu1->getPosition((double) atan(accY1 / accX1), gyroRads1, Ts);
 	}
 
 	/* ################################
@@ -262,7 +265,7 @@ void ControllerTest::runController(ControllerArgs* args)
 	args->mAwesomeGpio->setValue(enableSchedIO);
 
 
-	if (1) {
+	if (0) {
 		std::cout << "Hello from the other side !\tcount:" << ct_count << "\tPotentiometer: " << potAdc << endl;//"\ti_m: " << i_m_next << "\ti_m_next: " << i_m_next << "\tTach: " << tachRads << "\tx_hat: " << endl;
 		//accX1 << ", " << accY1 << ", " << accX2 << ", " << accY2 << ", " << potAdc << endl;
 		if (1) {
