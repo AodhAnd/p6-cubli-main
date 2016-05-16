@@ -13,6 +13,7 @@
 #include "controller_code/AAU3_DiscLinObserver.hpp" // Discrete lurenberger observer
 #include "controller_code/AAU3_DiscLinFeedback.hpp"
 #include "controller_code/AAU3_DiscLinFeedback2.hpp"
+#include "controller_code/AAU3_PController.hpp"
 #include "controller_code/AAU3_DiscSISOTool.hpp"
 #include "controller_code/AAU3_DiscSlidingModeController.hpp"
 #include "controller_code/AAU3_InOutLinearization.hpp"
@@ -110,7 +111,7 @@ void ControllerTest::runController(ControllerArgs* args)
 		// 							resRad = 3.2818;				// Voltage-to-radians coefficient
 		// potRad = ((potAdc * adcRes) - eqVolt) * resRad;
 
-		if(1){ //This flag enables the Auto-Zeroing feature
+		if(0){ //This flag enables the Auto-Zeroing feature
 			if( !(potRad<-0.35 || potRad>0.35)){
 				potOffset1 = potOffset1*0.9990 + potRad*0.0009995;
 			}
@@ -142,8 +143,9 @@ void ControllerTest::runController(ControllerArgs* args)
 
 			// Init controller and Observer
 			AAU3_DiscLinFeedback_initialize();
-			AAU3_DiscLinFeedback2_initialize(THETA_REF);
+			AAU3_PController_initialize(THETA_REF);
 			AAU3_DiscSISOTool_initialize(THETA_REF);
+			AAU3_DiscLinFeedback2_initialize();
 		}
 
 		/* ################################
@@ -155,27 +157,70 @@ void ControllerTest::runController(ControllerArgs* args)
 		double y[2] = {potRad,tachRads};
 		double y_[4] = {potRad, gyroRads1, gyroRads2, tachRads - tachOffset1};
 
+
+		x_hat[0] = potRad - potOffset1;
 		//x_hat[1] = (potRad-x_hat_last[0])/Ts;
 		x_hat[1] = (gyroRads1+gyroRads2)/2;
-		x_hat[0] = potRad - potOffset1;
 		x_hat[2] = tachRads - tachOffset1;
+
+		if(1) { // Enables the complementary filter
+			const double acc_off 	= 0.82;   	// accel measurement offset, used to correct data to 0 pos.
+		    const double tau 		= 0.1;   	// cut-off time-constant for the complementary filter
+		    const double k 			= 0.99;
+
+		    // Calculate the 2 constants of the complementary filter
+		    const double K1 = (2*tau-Ts)/(2*tau+Ts);
+		    const double K2 = Ts/(2*tau + Ts);
+
+		    static double acc_angle[2]={atan(accY1/accX1) + acc_off,0},
+		        a=gyroRads1,
+		        gyro_angle[9]={a,a,a,a,a,a,a,a,a},
+		        comp_angle[2]={acc_angle[0],0};
+
+		    // Set old measurement data
+		    acc_angle[1] = acc_angle[0];
+		    for (int i=8; i>0; i--)
+		      gyro_angle[i] = gyro_angle[i-1];
+		    gyro_angle[0] = gyroRads1;
+		    comp_angle[1] = comp_angle[0];
+
+		    // Get angle from accel axis measurements
+		    acc_angle[0] = atan(accY1/accX1) + acc_off;
+
+		    // Get gyro angle from gyro measurement
+		    static double sum=0;
+		    for (int i=0; i<9; i++)
+		      sum += gyro_angle[i];
+		    gyro_angle[0] =  sum * 9 * Ts;
+		    sum=0;
+
+		    //Complementary equation using Tustin
+		    //comp_angle[0] = K1*comp_angle[1] + K2*(acc_angle[0] + acc_angle[1] + tau*gyro_angle[0] + tau*gyro_angle[1]);
+		    //Complementry equation using backward Euler
+		    comp_angle[0] = k * (comp_angle[1] + gyroRads1 * Ts) + (1-k) * acc_angle[0];
+		    // Also updating the x_hat value
+		    x_hat[0]=comp_angle[0];;
+		}
 
 		/* ################################
 		 * ## 4. Run controller
 		 * ################################ */
 
-
-		if(0){ //The linear state feedback controller
+		if(0){ // Simon's linear state feedback (LSF) controller
 			C_Lin_struct_T u_next_obs = AAU3_DiscLinFeedback(Ts,x_hat);
 			i_m_next = u_next_obs.C_Lin_U_m;
 		}
 		else if(0){ // Proportional controller
-			Lin_Out_Sig_struct_T u_next_pc = AAU3_DiscLinFeedback2(x_hat);
+			Lin_Out_Sig_struct_T u_next_pc = AAU3_PController(x_hat);
 			i_m_next = u_next_pc.I_m;
 		}
-		else if(1){
+		else if(0){ // SISOTool-designed controller
 			SISOT_P_Out_Sig_struct_T u_next_sisopc = AAU3_DiscSISOTool(x_hat);
 			i_m_next = u_next_sisopc.I_m;
+		}
+		else if(1){ // 16Gr630 LSF controller
+			LSF_COutput_struct_T u_next_lsf = AAU3_DiscLinFeedback2(x_hat);
+			i_m_next = u_next_lsf.I_m;
 		}
 
 		// Controller tester
@@ -256,8 +301,7 @@ void ControllerTest::runController(ControllerArgs* args)
 
 
 		if(1){
-			std::cout << "\tcount:" << ct_count << "\ti_m: " << i_m_next << "\ti_m_next: " << i_m_next << "\tPot(rad)t: " << potRad << "\tpotAdc: " << potAdc << endl; //<< "\tTach: " << tachRads << "\tx_hat: " << x_hat[0] << ",\t" << x_hat[1] << ",\t" << x_hat[2] <<
-
+			std::cout << "\tcount:" << ct_count << "\ti_m: " << i_m_next << "\ti_m_next: " << i_m_next << "\tTach: " << tachRads << "\tx_hat: " << endl;
 					//accX1 << ", " << accY1 << ", " << accX2 << ", " << accY2 << ", " << potAdc << endl;
 			if(1){
 				if (logfile.is_open())

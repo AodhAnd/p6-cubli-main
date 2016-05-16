@@ -1,9 +1,13 @@
 /*
 * AAU3_DiscLinFeedback2.hpp
+* This is an implementation of a state space linearized feedback 
+* controller
+* 
 * Code written by 16gr630
-* at Aalborg University
+* @ Aalborg University - March 2016
 *
 */
+
 
 #ifndef AAU3_DISC_LIN_FEEDBACK2_HPP
 #define AAU3_DISC_LIN_FEEDBACK2_HPP
@@ -13,32 +17,33 @@
 #include <stdlib.h>
 
 #include "rtwtypes.hpp"
-#include "AAU3_DiscLinFeedback_types.hpp"
 
 /* Type Definitions */
-#ifndef typedef_Lin_Sig_struct_T
-#define typedef_Lin_Sig_struct_T
+#ifndef typedef_LSF_COutput_struct_T
+#define typedef_LSF_COutput_struct_T
 
-typedef struct
+typedef struct LSFControllerOutput
 {
-  real_T I_m;
-} Lin_Out_Sig_struct_T;
+  real_T I_m; // output current = tau_m/K_t
+}LSF_COutput_struct_T;
 
-#endif /*typedef_Lin_Sig_struct_T*/
+#endif /*typedef_LSF_COutput_struct_T*/
 
 /* Function Declarations */
 
-/** 
+/**
  * Runs the controller based on the feedback signal in x_hat
- * @param
+ * @param (const real_T*) x_hat corresponds to the states of the state space representation 
+ * @return (LSF_COutput_struct_T)
  */
-extern Lin_Out_Sig_struct_T AAU3_DiscLinFeedback2(const real_T x_hat[3]);
+extern LSF_COutput_struct_T AAU3_DiscLinFeedback2(const real_T x_hat[3]);
+extern void AAU3_DiscLinFeedback2_print();
 
 /**
  * Initializes the controller parameters with the reference input and
  * the controller specifics.
  */
-extern void AAU3_DiscLinFeedback2_initialize(real_T sys_ref);
+extern void AAU3_DiscLinFeedback2_initialize();
 extern void AAU3_DiscLinFeedback2_terminate(void);
 
 #endif // AAU3_DISC_LIN_FEEDBACK2_HPP
