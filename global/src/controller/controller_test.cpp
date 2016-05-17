@@ -115,8 +115,9 @@ void ControllerTest::runController(ControllerArgs* args)
 	// 							eqVolt = 0.6945,				// Voltage value at the equilibrium point
 	// 							resRad = 3.2818;				// Voltage-to-radians coefficient
 	// potRad = ((potAdc * adcRes) - eqVolt) * resRad;
-
-	if (0) { //This flag enables the Auto-Zeroing feature
+	
+	// Enables auto-zeroing feature if the complementary filter is desactivated, i.e. it runs with the potmeter
+	if (!compFilterEnable) { 
 		if ( !(potRad < -0.45 || potRad > 0.45)) {
 			potOffset1 = potOffset1 * 0.9990 + potRad * 0.0009995;
 		}
@@ -168,7 +169,7 @@ void ControllerTest::runController(ControllerArgs* args)
 	if (compFilterEnable) {
 		// The x_hat value is updated accordingly with the complementary filter output
 		cout << "Using complementary filter..." << endl;
-		x_hat[0] = (double) args->mImu1->getPosition((double) atan(accY1 / accX1), gyroRads1, Ts);
+		x_hat[0] = (double) args->mImu1->getPosition((double) atan(accY1 / accX1), gyroRads1, Ts, 1);
 	}
 
 	/* ################################
@@ -269,10 +270,10 @@ void ControllerTest::runController(ControllerArgs* args)
 	args->mAwesomeGpio->setValue(enableSchedIO);
 
 
-	if (0) {
-		std::cout << "Hello from the other side !\tcount:" << ct_count << "\tPotentiometer: " << potAdc << endl;//"\ti_m: " << i_m_next << "\ti_m_next: " << i_m_next << "\tTach: " << tachRads << "\tx_hat: " << endl;
+	if (logEnabled) {
+		std::cout << "\tPotentiometer: " << potRad << "\tComplementary filter angle:" << x_hat[0] << endl;//"\ti_m: " << i_m_next << "\ti_m_next: " << i_m_next << "\tTach: " << tachRads << "\tx_hat: " << endl;
 		//accX1 << ", " << accY1 << ", " << accX2 << ", " << accY2 << ", " << potAdc << endl;
-		if (1) {
+		if (logFileEnabled) {
 			if (logfile.is_open())
 			{
 				static long count = 0;

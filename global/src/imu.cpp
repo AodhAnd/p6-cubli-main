@@ -116,69 +116,52 @@ Imu::accAll_t Imu::getAccAll(void)
 */
 
 /** Returns the angular position of the frame using a complementary filter. */
-double Imu::getPosition(double accAngleNow, double gyroVelocityNow, double Ts)
+double Imu::getPosition(double accAngleNow, double gyroVelocityNow, double Ts, int imuNb)
 {
 	//-------------- Tustin discretization ----------------//
-	const double acc_off = 0.84;  	// accel meass offset
+	const double acc_off_1 = 0.84;  	// accel meass offset
+	const double acc_off_2 = 0.74;  	// accel meass offset
 	const double tau = 0.5399;	// cut-off for the complementary filter
 
 	// Coefficients for the complementary equation
 	const double K1 = (2 * tau - Ts) / (2 * tau + Ts);
 	const double K2 = Ts / (2 * tau + Ts);
 
-	static double acc_angle[2] = {accAngleNow + acc_off, 0},
-	                             gyro_angle[2] = {gyroVelocityNow, gyroVelocityNow},
-	                             comp_angle[2] = {acc_angle[0], 0};
-
-	// Set old measurement data
-	acc_angle[1] = acc_angle[0];
-	gyro_angle[1] = gyro_angle[0];
-	gyro_angle[0] = gyroVelocityNow;
-	comp_angle[1] = comp_angle[0];
-
 	// Get angle from accel axis measurements
-	acc_angle[0] = accAngleNow + acc_off;
+	if(imuNb == 1) 
+	{
+		static double acc_angle_1[2] = {accAngleNow + acc_off_1, 0},
+	                             gyro_angle_1[2] = {gyroVelocityNow, gyroVelocityNow},
+	                             comp_angle_1[2] = {acc_angle_1[0], 0};
 
-	//Complementary equation using Tustin
+		// Set old measurement data
+		acc_angle_1[1] = acc_angle_1[0];
+		gyro_angle_1[1] = gyro_angle_1[0];
+		gyro_angle_1[0] = gyroVelocityNow;
+		comp_angle_1[1] = comp_angle_1[0];
 
-	comp_angle[0] = K1 * comp_angle[1] + K2 * (acc_angle[0] + acc_angle[1] + tau * gyro_angle[0] + tau * gyro_angle[1]);
+		acc_angle_1[0] = accAngleNow + acc_off_1;
 
+		//Complementary equation using Tustin
+		comp_angle_1[0] = K1 * comp_angle_1[1] + K2 * (acc_angle_1[0] + acc_angle_1[1] + tau * gyro_angle_1[0] + tau * gyro_angle_1[1]);
+		return comp_angle_1[0];
+	}
+	else if(imuNb == 2)
+	{
+		static double acc_angle_2[2] = {accAngleNow - acc_off_2, 0},
+	                             gyro_angle_2[2] = {gyroVelocityNow, gyroVelocityNow},
+	                             comp_angle_2[2] = {acc_angle_2[0], 0};
 
-	//-------------- Euler discretization ----------------//
-	// const double acc_off 	= 0.82;   	// accel measurement offset, used to correct data to 0 pos.
-	//    const double tau 		= 0.1;   	// cut-off time-constant for the complementary filter
-	//    const double k 			= 0.99;
+		// Set old measurement data
+		acc_angle_2[1] = acc_angle_2[0];
+		gyro_angle_2[1] = gyro_angle_2[0];
+		gyro_angle_2[0] = gyroVelocityNow;
+		comp_angle_2[1] = comp_angle_2[0];
 
-	//    // Calculate the 2 constants of the complementary filter
-	//    const double K1 = (2*tau-Ts)/(2*tau+Ts);
-	//    const double K2 = Ts/(2*tau + Ts);
+		acc_angle_2[0] = accAngleNow - acc_off_2;
 
-	//    static double acc_angle[2]={accAngleNow + acc_off,0},
-	//        a=gyroVelocityNow,
-	//        gyro_angle[9]={a,a,a,a,a,a,a,a,a},
-	//        comp_angle[2]={acc_angle[0],0};
-
-	//    // Set old measurement data
-	//    acc_angle[1] = acc_angle[0];
-	//    for (int i=8; i>0; i--)
-	//      gyro_angle[i] = gyro_angle[i-1];
-	//    gyro_angle[0] = gyroVelocityNow;
-	//    comp_angle[1] = comp_angle[0];
-
-	//    // Get angle from accel axis measurements
-	//    acc_angle[0] = accAngleNow + acc_off;
-
-	//    // Get gyro angle from gyro measurement
-	//    static double sum=0;
-	//    for (int i=0; i<9; i++)
-	//      sum += gyro_angle[i];
-	//    gyro_angle[0] =  sum * 9 * Ts;
-	//    sum=0;
-
-	//    //Complementary equation using Tustin
-	//    //comp_angle[0] = K1*comp_angle[1] + K2*(acc_angle[0] + acc_angle[1] + tau*gyro_angle[0] + tau*gyro_angle[1]);
-	//    //Complementry equation using backward Euler
-	//    comp_angle[0] = k * (comp_angle[1] + gyroVelocityNow * Ts) + (1-k) * acc_angle[0];
-
-	return comp_angle[0];
+		//Complementary equation using Tustin
+		comp_angle_2[0] = K1 * comp_angle_2[1] + K2 * (acc_angle_2[0] + acc_angle_2[1] + tau * gyro_angle_2[0] + tau * gyro_angle_2[1]);
+		return comp_angle_2[0];
+	}
 }

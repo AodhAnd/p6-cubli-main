@@ -83,9 +83,10 @@ public:
 	 * @param  accAngleNow  		Current angle of the acceleration relative to the vertical imaginary line
 	 * @param  gyroVelocityNow 	Current angular velocity of the gyroscope
 	 * @param	 Ts 							Sampling time
+	 * @param  imuNb						Number of the imu (changes the calculations)
 	 * @return           Angle of the frame relative to the vertical imaginary line.
 	 */
-	double getPosition(double accAngleNow, double gyroAngleNow, double Ts);
+	double getPosition(double accAngleNow, double gyroAngleNow, double Ts, int imuNb);
 
 	signed short getTemp(void);
 
