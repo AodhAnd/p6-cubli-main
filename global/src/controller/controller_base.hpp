@@ -9,6 +9,8 @@
 #define CONTROLLER_BASE_HPP_
 
 #include <iostream>
+#include <algorithm>
+#include <iterator>
 #include "../shell_if/shell_client.hpp"
 #include "controller_factory.hpp"
 #include "../posix_thread/posix_thread.hpp"
@@ -19,12 +21,20 @@
 
 using namespace std;
 
+enum ControllerType
+{
+	LSF,
+	LSF2,
+	PROP,
+	SISOT
+};
+
 class ControllerCbIf;
 
 class ControllerArgs
 {
 public:
-	ControllerArgs(Imu *imu1, Imu *imu2, bool *compFilterEnable, MomentumMotor *motor, BbbAdc *potAdc, BbbAdc *motorAdc1, BbbAdc *motorAdc2, ControllerCbIf* pControllerIf, bool *debugEnable, BbbGpio *awesomeGpio, BbbGpio *raisePin)
+	ControllerArgs(Imu *imu1, Imu *imu2, bool *compFilterEnable, MomentumMotor *motor, BbbAdc *potAdc, BbbAdc *motorAdc1, BbbAdc *motorAdc2, ControllerCbIf* pControllerIf, bool* debugEnable, BbbGpio* awesomeGpio, BbbGpio* raisePin, ControllerType* controlType)
 		:
 		mImu1(imu1),
 		mImu2(imu2),
@@ -36,7 +46,8 @@ public:
 		mpControllerIf(pControllerIf),
 		mDebugEnable(debugEnable),
 		mAwesomeGpio(awesomeGpio),
-		mRaisePin(raisePin)
+		mRaisePin(raisePin),
+		mControlType(controlType)
 	{
 
 	}
@@ -53,6 +64,7 @@ public:
 	bool *mDebugEnable;
 	BbbGpio *mAwesomeGpio;
 	BbbGpio *mRaisePin;
+	ControllerType *mControlType;
 };
 
 
@@ -71,9 +83,6 @@ public:
 class ControllerBase : public ShellClientInterface {
 public:
 
-
-
-
 	/*
 	 * Controllers inheriting the base class must implement a creation function having this outline:
 	 * static bool createController(string controllerName);
@@ -83,6 +92,9 @@ public:
 
 	void* controller(void* args);
 	static void* controllerStatic(void* args);
+	void checkForRunOptions(string* argv, unsigned int& argc);
+	string getCmdOption(string* begin, string* end, const std::string& option);
+	bool cmdOptionExists(string* begin, string* end, const std::string& option);
 
 public: // Implementing ShellClientInterface
 	void receiveShellCommand(string* argv, unsigned int& argc);
@@ -91,6 +103,7 @@ public: // Implementing ShellClientInterface
 private:
 	bool mDebugEnable;
 	bool mCompFilterEnable;
+
 	ControllerCbIf* mpControllerIf;
 	ShellClient mShell;
 	PosixThread* mpThread;
@@ -102,9 +115,10 @@ private:
 	BbbAdc mMotorPower;
 	MomentumMotor mMotor;
 
-	ControllerArgs mControllerArgs;
 	BbbGpio mAwesomeGpio;
 	BbbGpio mRaisePin;
+	ControllerType mControlType;
+	ControllerArgs mControllerArgs;
 };
 
 

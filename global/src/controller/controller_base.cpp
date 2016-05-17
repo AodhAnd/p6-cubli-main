@@ -25,7 +25,8 @@ ControllerBase::ControllerBase(ControllerCbIf* pControllerIf)
 	mMotorPower(BbbAdc::AIN3),
 	mAwesomeGpio(BbbGpio::BBB_GPIO_60, false, BbbGpio::BBB_GPIO_DIRECTION_OUT),
 	mRaisePin(BbbGpio::BBB_GPIO_61, false, BbbGpio::BBB_GPIO_DIRECTION_OUT),
-	mControllerArgs(&mImu1, &mImu2, &mCompFilterEnable, &mMotor, &mPotAdc, &mMotorRpm, &mMotorPower, mpControllerIf, &mDebugEnable, &mAwesomeGpio, &mRaisePin)
+	mControlType(LSF2),
+	mControllerArgs(&mImu1, &mImu2, &mCompFilterEnable, &mMotor, &mPotAdc, &mMotorRpm, &mMotorPower, mpControllerIf, &mDebugEnable, &mAwesomeGpio, &mRaisePin, &mControlType)
 {
 //mShell(mpControllerIf->getControllerName(),this),
 
@@ -62,6 +63,8 @@ void ControllerBase::receiveShellCommand(string* argv, unsigned int& argc)
 	}
 	else if (argv[1].compare("run") == 0)
 	{
+		// Checking for supplementary arguments
+		checkForRunOptions(argv, argc);
 
 		if (mpThread == NULL)
 		{
@@ -81,14 +84,18 @@ void ControllerBase::receiveShellCommand(string* argv, unsigned int& argc)
 		else
 			cout << "Debug Disabled" << endl;
 
-		*mControllerArgs.mDebugEnable = mDebugEnable;
+		*(mControllerArgs.mDebugEnable) = mDebugEnable;
 	}
-	else if (argv[1].compare("compfilter") == 0) {
-		if (argc >= 2) {
-			if (argv[2].compare("on") == 0) {
+	else if (argv[1].compare("compfilter") == 0) 
+	{
+		if (argc >= 2) 
+		{
+			if (argv[2].compare("on") == 0) 
+			{
 				mCompFilterEnable = true;
 			}
-			else if(argv[2].compare("off") == 0) {
+			else if (argv[2].compare("off") == 0) 
+			{
 				mCompFilterEnable = false;
 			}
 		}
@@ -100,7 +107,7 @@ void ControllerBase::receiveShellCommand(string* argv, unsigned int& argc)
 		else
 			cout << "Complementary Filter Disabled" << endl;
 
-		*mControllerArgs.mCompFilterEnable = mCompFilterEnable;
+		*(mControllerArgs.mCompFilterEnable) = mCompFilterEnable;
 	}
 	else
 	{
@@ -108,6 +115,50 @@ void ControllerBase::receiveShellCommand(string* argv, unsigned int& argc)
 	}
 }
 
+void ControllerBase::checkForRunOptions(string* argv, unsigned int& argc)
+{
+	string optionBuffer;
+	if (argc < 2) {
+		return;
+	}
+
+	if (cmdOptionExists(&argv[1], &argv[sizeof(argv)], "--no-comp") || cmdOptionExists(&argv[1], &argv[sizeof(argv)], "-nc")) {
+		mCompFilterEnable = false;
+		*(mControllerArgs.mCompFilterEnable) = mCompFilterEnable;
+		cout << "Complementary Filter Disabled" << endl;
+	}
+	else if (cmdOptionExists(&argv[1], &argv[sizeof(argv)], "-c")) {
+		mCompFilterEnable = true;
+		*(mControllerArgs.mCompFilterEnable) = mCompFilterEnable;
+		cout << "Complementary Filter Enabled" << endl;
+	}
+	else if (cmdOptionExists(&argv[1], &argv[sizeof(argv)], "-t")) {
+		optionBuffer = getCmdOption(&argv[1], &argv[sizeof(argv)], "-t");
+		if (optionBuffer.c_str() != NULL) {
+			if (optionBuffer.compare("lsf") == 0) {
+				mControlType = LSF;
+			}
+			else if (optionBuffer.compare("lsf2") == 0) {
+				mControlType = LSF2;
+			}
+			else if (optionBuffer.compare("prop") == 0) {
+				mControlType = PROP;
+			}
+			else if (optionBuffer.compare("sisotool") == 0) {
+				mControlType = SISOT;
+			}
+			else {
+				cout << "Wrong options, -l works with:" << endl;
+				cout << "lsf" << endl;
+				cout << "lsf2" << endl;
+				cout << "prop" << endl;
+				cout << "sisotool" << endl;
+				cout << "Now running with default lsf2..." << endl;
+			}
+			* (mControllerArgs.mControlType) = mControlType;
+		}
+	}
+}
 
 void* ControllerBase::controllerStatic(void* args)
 {
@@ -125,4 +176,19 @@ void* ControllerBase::controllerStatic(void* args)
 const char* ControllerBase::getClientName()
 {
 	return mpControllerIf->getControllerName();
+}
+
+string ControllerBase::getCmdOption(string* begin, string* end, const std::string& option)
+{
+	string* itr = std::find(begin, end, option);
+	if (itr != end && ++itr != end)
+	{
+		return *itr;
+	}
+	return 0;
+}
+
+bool ControllerBase::cmdOptionExists(string* begin, string* end, const std::string& option)
+{
+	return std::find(begin, end, option) != end;
 }

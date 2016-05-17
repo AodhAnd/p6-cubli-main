@@ -67,7 +67,11 @@ void ControllerTest::runController(ControllerArgs* args)
 	static double Ts = this->getPeriodicityMusStatic() / 1e6, x_hat_last[4] = {0, 0, 0, 0}, x_hat[4] = {0, 0, 0, 0};
 	static ofstream logfile("tests/potRegularity.csv", ios::app );
 
-	static bool compFilterEnable = args->mCompFilterEnable;
+	// Has to be updated each time in case the controller is stopped and re-started
+	static bool compFilterEnable;
+	compFilterEnable = *(args->mCompFilterEnable);
+	static ControllerType contType;
+	contType = *(args->mControlType);
 
 	static long count = 0;
 
@@ -171,19 +175,19 @@ void ControllerTest::runController(ControllerArgs* args)
 	 * ## 4. Run controller
 	 * ################################ */
 
-	if (0) { // Simon's linear state feedback (LSF) controller
+	if (contType == LSF) { // Simon's linear state feedback (LSF) controller
 		C_Lin_struct_T u_next_obs = AAU3_DiscLinFeedback(Ts, x_hat);
 		i_m_next = u_next_obs.C_Lin_U_m;
 	}
-	else if (0) { // Proportional controller
+	else if (contType == PROP) { // Proportional controller (unstable)
 		Lin_Out_Sig_struct_T u_next_pc = AAU3_PController(x_hat);
 		i_m_next = u_next_pc.I_m;
 	}
-	else if (0) { // SISOTool-designed controller
+	else if (contType == SISOT) { // SISOTool-designed controller (unstable)
 		SISOT_P_Out_Sig_struct_T u_next_sisopc = AAU3_DiscSISOTool(x_hat);
 		i_m_next = u_next_sisopc.I_m;
 	}
-	else if (1) { // 16Gr630 LSF controller
+	else if (contType == LSF2) { // 16Gr630 LSF controller
 		LSF_COutput_struct_T u_next_lsf = AAU3_DiscLinFeedback2(x_hat);
 		i_m_next = u_next_lsf.I_m;
 	}
