@@ -63,15 +63,21 @@ void ControllerTest::runController(ControllerArgs* args)
 {
 	// Setting GPIO_61 up
 	args->mRaisePin->setValue(true);
-
-	static double Ts = this->getPeriodicityMusStatic() / 1e6, x_hat_last[4] = {0, 0, 0, 0}, x_hat[4] = {0, 0, 0, 0};
-	static ofstream logfile("tests/potRegularity.csv", ios::app );
-
+	
 	// Has to be updated each time in case the controller is stopped and re-started
 	static bool compFilterEnable;
 	compFilterEnable = *(args->mCompFilterEnable);
 	static ControllerType contType;
 	contType = *(args->mControlType);
+	static bool log2FileEnable;
+	log2FileEnable = *(args->mLog2FileEnable);
+	static string logFilename;
+	logFilename = *(args->mLogFilename);
+	static bool debugEnable;
+	debugEnable = *(args->mDebugEnable);
+
+	static double Ts = this->getPeriodicityMusStatic() / 1e6, x_hat_last[4] = {0, 0, 0, 0}, x_hat[4] = {0, 0, 0, 0};
+	static ofstream logfile(logFilename, ios::app );
 
 	static long count = 0;
 
@@ -115,9 +121,9 @@ void ControllerTest::runController(ControllerArgs* args)
 	// 							eqVolt = 0.6945,				// Voltage value at the equilibrium point
 	// 							resRad = 3.2818;				// Voltage-to-radians coefficient
 	// potRad = ((potAdc * adcRes) - eqVolt) * resRad;
-	
+
 	// Enables auto-zeroing feature if the complementary filter is desactivated, i.e. it runs with the potmeter
-	if (!compFilterEnable) { 
+	if (!compFilterEnable) {
 		if ( !(potRad < -0.45 || potRad > 0.45)) {
 			potOffset1 = potOffset1 * 0.9990 + potRad * 0.0009995;
 		}
@@ -270,19 +276,18 @@ void ControllerTest::runController(ControllerArgs* args)
 	args->mAwesomeGpio->setValue(enableSchedIO);
 
 
-	if (logEnabled) {
+	if (debugEnable) {
 		std::cout << "\tPotentiometer: " << potRad << "\tComplementary filter angle:" << x_hat[0] << endl;//"\ti_m: " << i_m_next << "\ti_m_next: " << i_m_next << "\tTach: " << tachRads << "\tx_hat: " << endl;
 		//accX1 << ", " << accY1 << ", " << accX2 << ", " << accY2 << ", " << potAdc << endl;
-		if (logFileEnabled) {
-			if (logfile.is_open())
-			{
-				static long count = 0;
-				count++;
-//					logfile <<  count << ", " << potRad << ", " << tachRads << ", " << i_m_next << ", " << x_hat[0] << ", " << x_hat[1] << ", " << x_hat[2] << ", " << gyroRads1 << ", " << gyroRads2 << ", "
-//							<< accX1 << ", " << accY1 << ", " << accX2 << ", " << accY2 << ", " << i_m_add <<  endl;
-			}
+	}
+	if (log2FileEnable) {
+		if (logfile.is_open())
+		{
+			static long count = 0;
+			count++;
+					logfile <<  count << ", " << potRad << ", " << tachRads << ", " << i_m_next << ", " << x_hat[0] << ", " << x_hat[1] << ", " << x_hat[2] << ", " << gyroRads1 << ", " << gyroRads2 << ", "
+							<< accX1 << ", " << accY1 << ", " << accX2 << ", " << accY2 << ", " << i_m_add <<  endl;
 		}
-
 	}
 	args->mRaisePin->setValue(false);
 

@@ -14,6 +14,8 @@ ControllerBase::ControllerBase(ControllerCbIf* pControllerIf)
 	mpControllerIf(pControllerIf),
 	mShell("", this),
 	mDebugEnable(false),
+	mLog2FileEnable(false),
+	mLogFilename("log.csv"),
 	mpThread(NULL),
 	mI2c(IMU1_PATH),
 	mImu1(0x69, &mI2c),
@@ -26,10 +28,9 @@ ControllerBase::ControllerBase(ControllerCbIf* pControllerIf)
 	mAwesomeGpio(BbbGpio::BBB_GPIO_60, false, BbbGpio::BBB_GPIO_DIRECTION_OUT),
 	mRaisePin(BbbGpio::BBB_GPIO_61, false, BbbGpio::BBB_GPIO_DIRECTION_OUT),
 	mControlType(LSF2),
-	mControllerArgs(&mImu1, &mImu2, &mCompFilterEnable, &mMotor, &mPotAdc, &mMotorRpm, &mMotorPower, mpControllerIf, &mDebugEnable, &mAwesomeGpio, &mRaisePin, &mControlType)
+	mControllerArgs(mpControllerIf, &mDebugEnable, &mLog2FileEnable, &mLogFilename, &mImu1, &mImu2, &mCompFilterEnable, &mMotor, &mPotAdc, &mMotorRpm, &mMotorPower, &mAwesomeGpio, &mRaisePin, &mControlType)
 {
 //mShell(mpControllerIf->getControllerName(),this),
-
 }
 
 ControllerBase::~ControllerBase()
@@ -42,11 +43,14 @@ ControllerBase::~ControllerBase()
 // Implementing ShellClientInterface
 void ControllerBase::receiveShellCommand(string* argv, unsigned int& argc)
 {
+	bool helpWanted;
+
 	if (argc == 0)
 	{
 		cout << endl << mpControllerIf->getControllerName() << " commands:" << endl;
-		cout << "+" << "stop" << endl;
-		cout << "+" << "run" << endl;
+		cout << "+" << "stop" << "\t Stops the controller" << endl;
+		cout << "+" << "run" << "\t Launches the controller with specified options" << endl;
+		cout << "+" << "compfilter" << "\t Toggles the complementary filter" << endl;
 
 		cout << endl;
 	}
@@ -64,9 +68,21 @@ void ControllerBase::receiveShellCommand(string* argv, unsigned int& argc)
 	else if (argv[1].compare("run") == 0)
 	{
 		// Checking for supplementary arguments
-		checkForRunOptions(argv, argc);
+		helpWanted = checkForRunOptions(argv, argc);
 
-		if (mpThread == NULL)
+		if(helpWanted) {
+			cout << endl;
+			cout << "SYNOPSIS" << endl;
+			cout << argv[0] << " run [-nc/-c] [-t [controller type]] [-d] [-l2f [filename]]" << endl << endl;
+			cout << "ARGUMENTS" << endl;
+			cout << "-c\t" <<  "Enables the complementary filter. Has priority over -nc." << endl; 
+			cout << "-nc\t" << "Disables the complementary filter and uses the potentiometer instead. Is cancelled by -c." << endl; 
+			cout << "--no-comp\t" << "Equivalent to -nc." << endl; 
+			cout << "-t\t" << "Allows to choose the desired type of controller. [controller type] should be either one of {lsf, lsf2, prop, sisot}." << endl; 
+			cout << "-d\t" << "Enables the debug option. Prints sensor readings and current applied to the motor." << endl; 
+			cout << "-l2f\t" << "Enables logging into a file which should be specified right after (default is log.csv). All log files are situated in the logs/ folder." << endl; 
+		}
+		else if (mpThread == NULL)
 		{
 			mpThread = new PosixThread(&controllerStatic, mpControllerIf->getPeriodicityMus(), 2);
 			mpThread->startThread((void*)&mControllerArgs);
@@ -86,15 +102,15 @@ void ControllerBase::receiveShellCommand(string* argv, unsigned int& argc)
 
 		*(mControllerArgs.mDebugEnable) = mDebugEnable;
 	}
-	else if (argv[1].compare("compfilter") == 0) 
+	else if (argv[1].compare("compfilter") == 0)
 	{
-		if (argc >= 2) 
+		if (argc >= 2)
 		{
-			if (argv[2].compare("on") == 0) 
+			if (argv[2].compare("on") == 0)
 			{
 				mCompFilterEnable = true;
 			}
-			else if (argv[2].compare("off") == 0) 
+			else if (argv[2].compare("off") == 0)
 			{
 				mCompFilterEnable = false;
 			}
@@ -115,11 +131,12 @@ void ControllerBase::receiveShellCommand(string* argv, unsigned int& argc)
 	}
 }
 
-void ControllerBase::checkForRunOptions(string* argv, unsigned int& argc)
+bool ControllerBase::checkForRunOptions(string* argv, unsigned int& argc)
 {
 	string optionBuffer;
+	stringstream temp;
 	if (argc < 2) {
-		return;
+		return false;
 	}
 
 	if (cmdOptionExists(&argv[1], &argv[sizeof(argv)], "--no-comp") || cmdOptionExists(&argv[1], &argv[sizeof(argv)], "-nc")) {
@@ -148,21 +165,47 @@ void ControllerBase::checkForRunOptions(string* argv, unsigned int& argc)
 				mControlType = SISOT;
 			}
 			else {
-				cout << "Wrong options, -l works with:" << endl;
+				cerr << "Wrong options! -t only works with:" << endl;
 				cout << "lsf" << endl;
 				cout << "lsf2" << endl;
 				cout << "prop" << endl;
 				cout << "sisotool" << endl;
-				cout << "Now running with default lsf2..." << endl;
+				cerr << "Now running with default lsf2..." << endl;
 			}
 			* (mControllerArgs.mControlType) = mControlType;
 		}
 	}
+	else if (cmdOptionExists(&argv[1], &argv[sizeof(argv)], "-d")) {
+		mDebugEnable = true;
+		*(mControllerArgs.mDebugEnable) = mDebugEnable;
+	}
+	else if (cmdOptionExists(&argv[1], &argv[sizeof(argv)], "-l2f")) {
+		mLog2FileEnable = true;
+		*(mControllerArgs.mLog2FileEnable) = true;
+		optionBuffer = getCmdOption(&argv[1], &argv[sizeof(argv)], "-l2f");
+		optionBuffer = getFileName(optionBuffer);
+		if (optionBuffer.compare("") == 0) {
+			temp << "logs/" << mLogFilename;
+		}
+		else {
+			temp << "logs/" << optionBuffer;
+		}
+		mLogFilename = temp.str();
+		*(mControllerArgs.mLogFilename) = mLogFilename;
+	}
+	else if(cmdOptionExists(&argv[1], &argv[sizeof(argv)], "--help")) {
+		return true;
+	}
+	else {
+		cout << "Wrong argument(s) ! Try to run again with the --help option." << endl;
+		cout << "Running with defaults..." << endl;
+	}
+
+	return false;
 }
 
 void* ControllerBase::controllerStatic(void* args)
 {
-
 	ControllerArgs* controllerArgs = (ControllerArgs*)args;
 
 	if (controllerArgs->mpControllerIf != NULL)
@@ -178,6 +221,11 @@ const char* ControllerBase::getClientName()
 	return mpControllerIf->getControllerName();
 }
 
+
+/****************************
+ * Command-line utilities
+* ***************************/
+
 string ControllerBase::getCmdOption(string* begin, string* end, const std::string& option)
 {
 	string* itr = std::find(begin, end, option);
@@ -191,4 +239,17 @@ string ControllerBase::getCmdOption(string* begin, string* end, const std::strin
 bool ControllerBase::cmdOptionExists(string* begin, string* end, const std::string& option)
 {
 	return std::find(begin, end, option) != end;
+}
+
+string ControllerBase::getFileName(string filepath)
+{
+	string result;
+	std::size_t found = filepath.find_last_of("/\\");
+	try {
+		result = filepath.substr(found + 1);
+	}
+	catch (const std::out_of_range& oore) {
+		std::cerr << oore.what() << '\n';
+	}
+	return result;
 }
