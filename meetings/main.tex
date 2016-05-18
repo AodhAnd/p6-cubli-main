@@ -8,38 +8,37 @@
 \renewcommand\figurename{Figur}
 \renewcommand\tablename{Tabel}
 
-\section*{Supervisor meeting\\ \small Wednesday, 4th of May 2016}
+\section*{Supervisor meeting\\ \small Friday, 13th of May 2016}
 
-\subsection{State Space}
+\subsection{Requirements}
 \begin{itemize}
-  \item[-] Choice of states - it should be mentioned that it is something we chose.
-  \item[-] We can define the different outputs - can be done in different ways - in our case we define the outputs as what we want to control.
-  \item[-] Write up how the \si{\vec{A}} and \si{\vec{B}} matrices are the derivatives of \si{f(\vec{x},\vec{u})} in the equilibrium position.
-  \item[-] Controllability matrix should be \si{[\vec{B}\ \vec{AB}\ \vec{A}^2\vec{B}]} $\rightarrow$ nxn matrix for single input (\si{3x3} in our case). Observability and Controllability matrices are only allowed to have rank n.
-  \item[-] Consider choosing the controller constants corresponding to the red graph.
-  \item[-] Should be initial velocity not initial acceleration in description preceding figure 8.3.
-  \item[-] Section on practical implementation of the controller - how to measure the three states needed for the controller.
-  \item[-] Could it be implemented as just a feedback - just with the angle?
+  \item[-] The base plate level requirement: Angle/inclination not level, and only within reasonable limits.
+  \item[-] Remove requirement on duration of stable operation.
+  \item[-] Correct spelling errors.
+  \item[-] Theory for maximum catching angle with no initial velocity of the wheel should be presented with the test itself.
+  \item[-] The theoretical angle (maximum angle with the limited current) is estimated not considering capabilities of the controller. Note this in the report.
 \end{itemize}
 
 \subsection{Complementary Filter}
 \begin{itemize}
-  \item[-] It is working! :D
-  \item[-] The complementary filter might not be able to take into account the low frequency accelerations added by movement of the frame, however because of the small magnitude of the disturbances in relation to gravity, it should not be a problem - look into this and document findings.
-  \item[-] Placement of the IMU can be changed such that disturbances to the accelerometer are reduced.
-  \item[-] Make difference equation for complementary filter.
-  \item[-] Include comparison in frequency domain of the two filter implementations (the comparison could also be done in the time domain with step tests).
-  \item[-] The complementary filter can be seen as some kind of rudimentary observer - an other option is to make a more general observer (next semester scope).
-\end{itemize}
-
-\subsection{Further Remarks}
-\begin{itemize}
-  \item[-] Make sure that it is easy to change between controller implementations.
-  \item[-] Comment clearly in the code.
+  \item[-] Be more precise on definition of x and y - they are the components of the linear acceleration measured by the accelerometer.
+  \item[-] You should not have a figure with no explanation - figure caption should describe the figure fully, it does not matter if previous explanations are repeated.
+  \item[-] Explain the offset of the accelerometer angle to frame angle (\si{\theta-\frac{\pi}{4}}).
+  \item[-] "Equilibrium position is slightly different from the vertical one" - write a more precise statement: The center of mass is not the same as the geometrical center.
+  \item[-] It is not absolutely clear how we are getting the data, this should be specified in the report main matter not only in the appendix (figure 9.2).
+  \item[-] Put up an expression for the reading of the IMU as a function of the gravity and of the acceleration.
+% \item[-] Control in frequency domain is required for the semester
+  \item[-] Further frequency domain analysis: We can try to describe the transfer functions from input to each of the outputs. Can be done from state space description via matlab.
+  \item[-] Describe the variables that appear in equations.
+  \item[-] The gyro angle is the initial angle + the integration.
+  \item[-] Estimation of drift could maybe be done through use of the accelerometer - include discussion on this.
+  \item[-] Rewrite just above equation 9.6, and include the sample time.
+  \item[-] Do not use the if and only if arrows! (double arrow)
+  \item[-] Just after equation 9.8, explain that we are going from z-domain to discrete time domain.
+  \item[-] Explain why we use the same cutoff frequencies for the two filters.
 \end{itemize}
 
 \subsection{Next Supervisor Meeting}
-Friday, 13th of May (possibly at 10.00)\\
-Time of meeting will be updated/confirmed by mail.
+Monday, 23rd of May at 14.00
 
 \end{document}
