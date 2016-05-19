@@ -11,6 +11,7 @@ echo 2 > /sys/class/gpio/export
 echo 113 > /sys/class/gpio/export
 echo 114 > /sys/class/gpio/export
 echo 60 > /sys/class/gpio/export
+echo 61 > /sys/class/gpio/export
 echo 15 > /sys/class/gpio/export
 
 echo cape-bone-iio > /sys/devices/bone_capemgr.*/slots

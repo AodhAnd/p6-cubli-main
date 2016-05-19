@@ -52,7 +52,7 @@ LSF_COutput_struct_T AAU3_DiscLinFeedback2(const real_T x_hat[3])
   }
 
   /** Print output */
-  AAU3_DiscLinFeedback2_print();
+  //AAU3_DiscLinFeedback2_print();
 
   LSF_Sig_Out.I_m = LSF_Controller.tau_m * TORQUE_2_CURRENT;
   

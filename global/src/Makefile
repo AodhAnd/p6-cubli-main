@@ -75,7 +75,7 @@ DEPS += AauPwmLib.hpp
 OBJ += AauPwmLib.o
 
 %.o: %.cpp $(DEPS)
-	$(CXX) $(CFLAGS) -c -o $@ $<
+	$(CXX) $(CXXFLAGS) -c -o $@ $<
 
 main: $(OBJ)
 	$(CXX) $(CXXFLAGS) -o $@ $^ $(LDLIBS)

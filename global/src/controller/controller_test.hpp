@@ -26,12 +26,12 @@ public:
 	~ControllerTest(){}
 
 	static const char* getControllerNameStatic();
-	static unsigned int getPeriodicityMsStatic();
+	static unsigned int getPeriodicityMusStatic();
 	static ControllerBase* createController(string& name);
 
 
 public: //Implementing ControllerCbIf
-	unsigned int getPeriodicityMs();
+	unsigned int getPeriodicityMus();
 	const char* getControllerName();
 	void writeDebug();
 	void runController(ControllerArgs* args);

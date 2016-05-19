@@ -44,22 +44,22 @@
 class Imu
 {
 public:
-	Imu(U8 i2cAddr,I2C* i2cObj);
+	Imu(U8 i2cAddr, I2C* i2cObj);
 	~Imu();
 
-	typedef struct{
+	typedef struct {
 		signed int X;
 		signed int Y;
 		signed int Z;
 	} accAll_t;
 
-	typedef struct{
+	typedef struct {
 		signed int X;
 		signed int Y;
 		signed int Z;
 	} gyroAll_t;
 
-	typedef struct{
+	typedef struct {
 		gyroAll_t gyro;
 		accAll_t acc;
 	} allSens_t;
@@ -78,13 +78,22 @@ public:
 	gyroAll_t getGyroAll(void);
 
 	allSens_t getAllSens(void);
+	/**
+	 * Returns the angular position of the frame using a complementary filter.
+	 * @param  accAngleNow  		Current angle of the acceleration relative to the vertical imaginary line
+	 * @param  gyroVelocityNow 	Current angular velocity of the gyroscope
+	 * @param	 Ts 							Sampling time
+	 * @param  imuNb						Number of the imu (changes the calculations)
+	 * @return           Angle of the frame relative to the vertical imaginary line.
+	 */
+	double getPosition(double accAngleNow, double gyroAngleNow, double Ts, int imuNb);
 
 	signed short getTemp(void);
 
 	//set'ers
 	void setSleep(bool mode);
 	U8 getSleepMode();
-	static signed int convertFromTwosComplement(U8 msb,U8 lsb);
+	static signed int convertFromTwosComplement(U8 msb, U8 lsb);
 
 private:
 	I2C* mpI2C;
