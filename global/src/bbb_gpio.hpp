@@ -26,7 +26,8 @@ public:
 		BBB_GPIO_114 = 114,
 		BBB_GPIO_113 = 113,
 		BBB_GPIO_2 = 2,
-		BBB_GPIO_60 = 60
+		BBB_GPIO_60 = 60,
+		BBB_GPIO_61 = 61
 	}gpio_port_t;
 
 	typedef enum
