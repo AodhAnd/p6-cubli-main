@@ -113,7 +113,7 @@ void ControllerTest::runController(ControllerArgs* args)
 
 	//Convert potentiometer reading to radians
 	double potRad;
-	static double potOffset1 	= 0; //-0.025,
+	static double potOffset1 	= 0, //-0.025,
 	tachOffset1 = 0;
 	potRad = (potAdc - 655) * 0.001068569; //655 was the original value
 

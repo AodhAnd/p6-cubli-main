@@ -71,18 +71,18 @@ void Imu::readData(U8* buffer, unsigned int readLength, U8 fromReg)
 
 signed short Imu::getAccX(void)
 {
-	return readShort(MPU6050_ACCEL_X_H);
+	return -readShort(MPU6050_ACCEL_X_H);
 }
 
 signed short Imu::getAccY(void)
 {
-	return readShort(MPU6050_ACCEL_Y_H);
+	return -readShort(MPU6050_ACCEL_Y_H);
 }
 
 
 signed short Imu::getAccZ(void)
 {
-	return readShort(MPU6050_ACCEL_Z_H);
+	return -readShort(MPU6050_ACCEL_Z_H);
 }
 
 
@@ -164,4 +164,6 @@ double Imu::getPosition(double accAngleNow, double gyroVelocityNow, double Ts, i
 		comp_angle_2[0] = K1 * comp_angle_2[1] + K2 * (acc_angle_2[0] + acc_angle_2[1] + tau * gyro_angle_2[0] + tau * gyro_angle_2[1]);
 		return comp_angle_2[0];
 	}
+	else
+		return 0.0;
 }
