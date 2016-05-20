@@ -64,23 +64,34 @@ void ControllerBase::receiveShellCommand(string* argv, unsigned int& argc)
 			mpThread = NULL;
 		}
 
+		// Restoring initial default parameters
+		mDebugEnable = false;
+		* (mControllerArgs.mDebugEnable) = mDebugEnable;
+		mLog2FileEnable = false;
+		* (mControllerArgs.mLog2FileEnable) = mLog2FileEnable;
+		mCompFilterEnable = true;
+		* (mControllerArgs.mCompFilterEnable) = mCompFilterEnable;
+
 	}
 	else if (argv[1].compare("run") == 0)
 	{
 		// Checking for supplementary arguments
 		helpWanted = checkForRunOptions(argv, argc);
 
-		if(helpWanted) {
+		if (helpWanted) {
 			cout << endl;
 			cout << "SYNOPSIS" << endl;
 			cout << argv[0] << " run [-nc/-c] [-t [controller type]] [-d] [-l2f [filename]]" << endl << endl;
 			cout << "ARGUMENTS" << endl;
-			cout << "-c\t" <<  "Enables the complementary filter. Has priority over -nc." << endl; 
-			cout << "-nc\t" << "Disables the complementary filter and uses the potentiometer instead. Is cancelled by -c." << endl; 
-			cout << "--no-comp\t" << "Equivalent to -nc." << endl; 
-			cout << "-t\t" << "Allows to choose the desired type of controller. [controller type] should be either one of {lsf, lsf2, prop, sisot}." << endl; 
-			cout << "-d\t" << "Enables the debug option. Prints sensor readings and current applied to the motor." << endl; 
-			cout << "-l2f\t" << "Enables logging into a file which should be specified right after (default is log.csv). All log files are situated in the logs/ folder." << endl; 
+			cout << "-c\t" <<  "Enables the complementary filter. Has priority over -nc." << endl;
+			cout << "-nc\t" << "Disables the complementary filter and uses the potentiometer instead. Is cancelled by -c." << endl;
+			cout << "--no-comp\t" << "Equivalent to -nc." << endl;
+			cout << "-t\t" << "Allows to choose the desired type of controller. [controller type] should be either one of {lsf, lsf2, prop, sisot}." << endl;
+			cout << "-d\t" << "Enables the debug option. Prints sensor readings and current applied to the motor." << endl;
+			cout << "-l2f\t" << "Enables logging into a file which should be specified right after (default is log.csv). All log files are situated in the logs/ folder." << endl;
+			cout << "EXAMPLE" << endl << endl;
+			cout << "c run -c -t sm -d -l2f test.csv" << endl;
+			cout << "This will run the Sliding Mode controller with the complementary filter. It will log data from the sensors and the desired current both on the screen and in a csv file named test.csv located in the logs/ folder." << endl;
 		}
 		else if (mpThread == NULL)
 		{
@@ -135,6 +146,7 @@ bool ControllerBase::checkForRunOptions(string* argv, unsigned int& argc)
 {
 	string optionBuffer;
 	stringstream temp;
+
 	if (argc < 2) {
 		return false;
 	}
@@ -187,7 +199,7 @@ bool ControllerBase::checkForRunOptions(string* argv, unsigned int& argc)
 	}
 	else if (cmdOptionExists(&argv[1], &argv[sizeof(argv)], "-l2f")) {
 		mLog2FileEnable = true;
-		*(mControllerArgs.mLog2FileEnable) = true;
+		*(mControllerArgs.mLog2FileEnable) = mLog2FileEnable;
 		optionBuffer = getCmdOption(&argv[1], &argv[sizeof(argv)], "-l2f");
 		optionBuffer = getFileName(optionBuffer);
 		if (optionBuffer.compare("") == 0) {
@@ -199,7 +211,7 @@ bool ControllerBase::checkForRunOptions(string* argv, unsigned int& argc)
 		mLogFilename = temp.str();
 		*(mControllerArgs.mLogFilename) = mLogFilename;
 	}
-	else if(cmdOptionExists(&argv[1], &argv[sizeof(argv)], "--help")) {
+	else if (cmdOptionExists(&argv[1], &argv[sizeof(argv)], "--help")) {
 		return true;
 	}
 	else {
@@ -230,7 +242,7 @@ const char* ControllerBase::getClientName()
 
 /****************************
  * Command-line utilities
-* ***************************/
+ ***************************/
 
 string ControllerBase::getCmdOption(string* begin, string* end, const std::string& option)
 {
