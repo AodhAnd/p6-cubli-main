@@ -49,11 +49,11 @@ simIn = [ t u ];        %<--variables for simulation input
 % - Type get(gcf, 'position') in the terminal
 % - Insert new positions below
 if documentation == 1
-    fig1 = figure('Position', [412, 313, 660, 485]);
+    fig1 = figure;%('Position', [412, 313, 660, 485]);
 else
    %fig1 = figure('Position', [277, 84, 1049, 700])
    %fig1 = figure('Position', [2,   32,  798, 784])
-   fig1 = figure('Position', [-1022, -348, 576, 437]);
+   fig1 = figure;%('Position', [-1022, -348, 576, 437]);
 end
 
 scatter(t,Y, 'r', '.')
@@ -140,7 +140,7 @@ Pval  = evalCostFunction(Y, t, J_f, B_f, J_f, B_f);
 
 %----- Jump back to previous point if the performance is worse ------------
 if exist('PvalOld', 'var')
-    if Pval > PvalOld
+    if Pval >= PvalOld
         J_f = J_f_old;
         B_f = B_f_old;
         break;
@@ -159,7 +159,7 @@ if i == 1
 
     map = csvread('mapHotRodRed.csv');
 
-    fig2 = figure('position', [-1022, 175, 576, 641]); %2    32   798   784
+    fig2 = figure;%('position', [-1022, 175, 576, 641]); %2    32   798   784
     mesh(Jf, Bf, Pval1, 'FaceColor', 'none');
     hold on
     alpha(0.8)
@@ -471,12 +471,6 @@ B_f_old = B_f;
         v2 = [a b c];
         v = [v1; v2];
         plot3(v(:,1),v(:,2),v(:,3),'b', 'LineWidth', 1.4)
-    elseif c > initPval && isDone == 0
-        plot3(a, b, c, 'or', 'MarkerFaceColor', 'r', 'MarkerSize', 2)
-        v1 = [initJf initBf initPval];
-        v2 = [a b c];
-        v = [v1; v2];
-        plot3(v(:,1),v(:,2),v(:,3),'r', 'LineWidth', 1.4)
     end
     fprintf('\n\n---------------------------------------------------\n\n')
     J_f = a
