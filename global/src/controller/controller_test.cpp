@@ -150,33 +150,62 @@ void ControllerTest::runController(ControllerArgs* args)
 	if (!init) {
 		init = true;
 		// Init controller and Observer
+		AAU3_DiscLinObserver_initialize();
 		AAU3_DiscLinFeedback_initialize();
-		AAU3_PController_initialize(THETA_REF);
-		AAU3_DiscSISOTool_initialize(THETA_REF);
+		AAU3_DiscSlidingModeController_initialize();
+		AAU3_InOutLinearization_initialize();
+		AAU3_DiscSlidingModeController_new_initialize();
+		DiscreteLurenbergerEstimator_take2_initialize();
+		// Added in 2016 (gr630)
+		AAU3_PController_initialize(THETA_REF); // unstable
+		AAU3_DiscSISOTool_initialize(THETA_REF); // unstable
 		AAU3_DiscLinFeedback2_initialize();
 	}
 
 	/* ################################
 	 * ## 3. Run observer
 	 * ################################ */
-	x_hat_last[0] = x_hat[0]; x_hat_last[1] = x_hat[1]; x_hat_last[2] = x_hat[2]; x_hat_last[3] = x_hat[3];
+	x_hat_last[0] = x_hat[0];
+	x_hat_last[1] = x_hat[1];
+	x_hat_last[2] = x_hat[2];
+	x_hat_last[3] = x_hat[3];
 
 
 	double y[2] = {potRad, tachRads};
 	double y_[4] = {potRad, gyroRads1, gyroRads2, tachRads - tachOffset1};
+	
+	if(0){ // Observer
+		//x_hat_last[3] = 0;
+		double O_Take2_OffsetRegion = 0.2;
+		if(x_hat[3] > O_Take2_OffsetRegion)
+			x_hat[3] = O_Take2_OffsetRegion;
+		else if(-O_Take2_OffsetRegion > x_hat[0]){
+			x_hat[3] = -O_Take2_OffsetRegion;
+		}
+		//x_hat[3] = 0;
+		O_Obv2_struct_T ObTake_u_last;
+		ObTake_u_last.O_Obv2_U_m = i_m;
+		ObTake_u_last.O_Obv2_Brake = 0;
+		DiscreteLurenbergerEstimator_take2(Ts, x_hat_last, &ObTake_u_last, y_, x_hat);
 
+		if(potRad<-O_Take2_OffsetRegion || potRad>O_Take2_OffsetRegion){
+			x_hat[3] = x_hat_last[3];
+		}
+	} else {
 
-	x_hat[0] = potRad - potOffset1;
-	//x_hat[1] = (potRad-x_hat_last[0])/Ts;
-	x_hat[1] = (gyroRads1 + gyroRads2) / 2;
-	x_hat[2] = tachRads - tachOffset1;
-
-	// Enables the complementary filter
-	if (compFilterEnable) {
-		// The x_hat value is updated accordingly with the complementary filter output
-		cout << "Using complementary filter..." << endl;
-		x_hat[0] = (double) args->mImu1->getPosition((double) atan(accY1 / accX1), gyroRads1, Ts, 1);
+		x_hat[0] = potRad - potOffset1;
+		//x_hat[1] = (potRad-x_hat_last[0])/Ts;
+		x_hat[1] = (gyroRads1 + gyroRads2) / 2;
+		x_hat[2] = tachRads - tachOffset1;
+	
+		// Enables the complementary filter
+		if (compFilterEnable) {
+			// The x_hat[0] angle value is overrided with the complementary filter output
+			cout << "Using complementary filter..." << endl;
+			x_hat[0] = (double) args->mImu1->getPosition((double) atan(accY1 / accX1), gyroRads1, Ts, 1);
+		}
 	}
+	
 
 	/* ################################
 	 * ## 4. Run controller
@@ -197,6 +226,15 @@ void ControllerTest::runController(ControllerArgs* args)
 	else if (contType == LSF2) { // 16Gr630 LSF controller
 		LSF_COutput_struct_T u_next_lsf = AAU3_DiscLinFeedback2(x_hat);
 		i_m_next = u_next_lsf.I_m;
+	} 
+	else if(contType == FLIN){ // The feedback linearization
+		C_InOut_struct_T u_next_inout = AAU3_InOutLinearization(Ts,x_hat);
+		i_m_next = u_next_inout.C_InOut_U_m;
+	}
+	else if(contType == SM){ // The sliding mode controller
+		C_SMC_new_struct_T u_next_SMC_new = AAU3_DiscSlidingModeController_new(Ts,x_hat);
+		cout << "Sliding mode" << endl;
+		i_m_next = u_next_SMC_new.C_SMC_new_U_m;
 	}
 
 	// Controller tester
@@ -277,8 +315,8 @@ void ControllerTest::runController(ControllerArgs* args)
 
 
 	if (debugEnable) {
-		std::cout << "\tPotentiometer: " << potRad << "\tComplementary filter angle:" << x_hat[0] << endl;//"\ti_m: " << i_m_next << "\ti_m_next: " << i_m_next << "\tTach: " << tachRads << "\tx_hat: " << endl;
-		//accX1 << ", " << accY1 << ", " << accX2 << ", " << accY2 << ", " << potAdc << endl;
+		std::cout << potOffset1 << ", " << goingPos << ", " << ct_count << "\ti_m: " << i_m_next << "\ti_m_c: " << i_m_next << "\tPot: " << potRad << "\tTach: " << tachRads << "\tx_hat: " << x_hat[0] << ",\t" << x_hat[1] << ",\t" << x_hat[2] <<
+					accX1 << ", " << accY1 << ", " << accX2 << ", " << accY2 << ", " << potAdc << endl;
 	}
 	if (log2FileEnable) {
 		if (logfile.is_open())

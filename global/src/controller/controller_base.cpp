@@ -164,6 +164,12 @@ bool ControllerBase::checkForRunOptions(string* argv, unsigned int& argc)
 			else if (optionBuffer.compare("sisotool") == 0) {
 				mControlType = SISOT;
 			}
+			else if (optionBuffer.compare("flin") == 0) {
+				mControlType = FLIN;
+			}
+			else if (optionBuffer.compare("sm") == 0) {
+				mControlType = SM;
+			}
 			else {
 				cerr << "Wrong options! -t only works with:" << endl;
 				cout << "lsf" << endl;

@@ -13,6 +13,7 @@
 #include <iterator>
 #include <string>
 #include <sstream>
+#include <stdexcept>
 #include <cstddef>
 
 #include "../shell_if/shell_client.hpp"
@@ -30,7 +31,9 @@ enum ControllerType
 	LSF,
 	LSF2,
 	PROP,
-	SISOT
+	SISOT,
+	FLIN,
+	SM
 };
 
 class ControllerCbIf;
