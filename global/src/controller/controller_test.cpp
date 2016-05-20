@@ -63,7 +63,7 @@ void ControllerTest::runController(ControllerArgs* args)
 {
 	// Setting GPIO_61 up
 	args->mRaisePin->setValue(true);
-	
+
 	// Has to be updated each time in case the controller is stopped and re-started
 	static bool compFilterEnable;
 	compFilterEnable = *(args->mCompFilterEnable);
@@ -113,8 +113,8 @@ void ControllerTest::runController(ControllerArgs* args)
 
 	//Convert potentiometer reading to radians
 	double potRad;
-	static double potOffset1 	= -0.025,
-	              tachOffset1 = 0;
+	static double potOffset1 	= 0; //-0.025,
+	tachOffset1 = 0;
 	potRad = (potAdc - 655) * 0.001068569; //655 was the original value
 
 	// static double adcRes = 0.00043945,		// ADC resolution
@@ -173,13 +173,13 @@ void ControllerTest::runController(ControllerArgs* args)
 
 	double y[2] = {potRad, tachRads};
 	double y_[4] = {potRad, gyroRads1, gyroRads2, tachRads - tachOffset1};
-	
-	if(0){ // Observer
+
+	if (0) { // Observer
 		//x_hat_last[3] = 0;
 		double O_Take2_OffsetRegion = 0.2;
-		if(x_hat[3] > O_Take2_OffsetRegion)
+		if (x_hat[3] > O_Take2_OffsetRegion)
 			x_hat[3] = O_Take2_OffsetRegion;
-		else if(-O_Take2_OffsetRegion > x_hat[0]){
+		else if (-O_Take2_OffsetRegion > x_hat[0]) {
 			x_hat[3] = -O_Take2_OffsetRegion;
 		}
 		//x_hat[3] = 0;
@@ -188,7 +188,7 @@ void ControllerTest::runController(ControllerArgs* args)
 		ObTake_u_last.O_Obv2_Brake = 0;
 		DiscreteLurenbergerEstimator_take2(Ts, x_hat_last, &ObTake_u_last, y_, x_hat);
 
-		if(potRad<-O_Take2_OffsetRegion || potRad>O_Take2_OffsetRegion){
+		if (potRad < -O_Take2_OffsetRegion || potRad > O_Take2_OffsetRegion) {
 			x_hat[3] = x_hat_last[3];
 		}
 	} else {
@@ -197,15 +197,22 @@ void ControllerTest::runController(ControllerArgs* args)
 		//x_hat[1] = (potRad-x_hat_last[0])/Ts;
 		x_hat[1] = (gyroRads1 + gyroRads2) / 2;
 		x_hat[2] = tachRads - tachOffset1;
-	
+
 		// Enables the complementary filter
 		if (compFilterEnable) {
-			// The x_hat[0] angle value is overrided with the complementary filter output
-			cout << "Using complementary filter..." << endl;
-			x_hat[0] = (double) args->mImu1->getPosition((double) atan(accY1 / accX1), gyroRads1, Ts, 1);
+			// The x_hat[0] angle value is overwritten with the complementary filter output
+			if (accY1 > 0 && accX1 < 0)
+				x_hat[0] = (double) args->mImu1->getPosition((double) (PI - atan(accY1 / accX1)), gyroRads1, Ts, 1);
+			else
+			{
+				if (accX1 < 0 && accY1 <= 0)
+					x_hat[0] = (double) args->mImu1->getPosition((double) (atan(accY1 / accX1) - PI) , gyroRads1, Ts, 1);
+				else
+					x_hat[0] = (double) args->mImu1->getPosition((double) atan(accY1 / accX1) , gyroRads1, Ts, 1);
+			}
 		}
 	}
-	
+
 
 	/* ################################
 	 * ## 4. Run controller
@@ -226,13 +233,13 @@ void ControllerTest::runController(ControllerArgs* args)
 	else if (contType == LSF2) { // 16Gr630 LSF controller
 		LSF_COutput_struct_T u_next_lsf = AAU3_DiscLinFeedback2(x_hat);
 		i_m_next = u_next_lsf.I_m;
-	} 
-	else if(contType == FLIN){ // The feedback linearization
-		C_InOut_struct_T u_next_inout = AAU3_InOutLinearization(Ts,x_hat);
+	}
+	else if (contType == FLIN) { // The feedback linearization
+		C_InOut_struct_T u_next_inout = AAU3_InOutLinearization(Ts, x_hat);
 		i_m_next = u_next_inout.C_InOut_U_m;
 	}
-	else if(contType == SM){ // The sliding mode controller
-		C_SMC_new_struct_T u_next_SMC_new = AAU3_DiscSlidingModeController_new(Ts,x_hat);
+	else if (contType == SM) { // The sliding mode controller
+		C_SMC_new_struct_T u_next_SMC_new = AAU3_DiscSlidingModeController_new(Ts, x_hat);
 		cout << "Sliding mode" << endl;
 		i_m_next = u_next_SMC_new.C_SMC_new_U_m;
 	}
@@ -316,15 +323,15 @@ void ControllerTest::runController(ControllerArgs* args)
 
 	if (debugEnable) {
 		std::cout << potOffset1 << ", " << goingPos << ", " << ct_count << "\ti_m: " << i_m_next << "\ti_m_c: " << i_m_next << "\tPot: " << potRad << "\tTach: " << tachRads << "\tx_hat: " << x_hat[0] << ",\t" << x_hat[1] << ",\t" << x_hat[2] <<
-					accX1 << ", " << accY1 << ", " << accX2 << ", " << accY2 << ", " << potAdc << endl;
+		          accX1 << ", " << accY1 << ", " << accX2 << ", " << accY2 << ", " << potAdc << endl;
 	}
 	if (log2FileEnable) {
 		if (logfile.is_open())
 		{
 			static long count = 0;
 			count++;
-					logfile <<  count << ", " << potRad << ", " << tachRads << ", " << i_m_next << ", " << x_hat[0] << ", " << x_hat[1] << ", " << x_hat[2] << ", " << gyroRads1 << ", " << gyroRads2 << ", "
-							<< accX1 << ", " << accY1 << ", " << accX2 << ", " << accY2 << ", " << i_m_add <<  endl;
+			logfile <<  count << ", " << potRad << ", " << tachRads << ", " << i_m_next << ", " << x_hat[0] << ", " << x_hat[1] << ", " << x_hat[2] << ", " << gyroRads1 << ", " << gyroRads2 << ", "
+			        << accX1 << ", " << accY1 << ", " << accX2 << ", " << accY2 << ", " << i_m_add <<  endl;
 		}
 	}
 	args->mRaisePin->setValue(false);
