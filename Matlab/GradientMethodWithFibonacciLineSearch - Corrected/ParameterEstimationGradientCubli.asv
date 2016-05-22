@@ -302,7 +302,7 @@ end
     
 Cost = evalCostFunction(Y, t, J_f, B_f, J_f, B_f );
 
-if (0) 
+if (1) 
   figure(fig2)
   fPupper = evalCostFunction(Y, t, JFupper, BFupper, J_f, B_f);
   plot3(JFupper, BFupper, fPupper, 'ok', ...
@@ -323,13 +323,13 @@ end
 c = evalCostFunction(Y, t, a, b, J_f, B_f);
 figure(fig2)
 if c <= initCost && isDone == 0
-    plot3(a, b, c, 'o', 'MarkerFaceColor', '[ 1 1 1  ]', 'Color', '[ 1 1 1  ]', 'MarkerSize', 1)
+    plot3(a, b, c, 'o', 'MarkerFaceColor', '[ 1 1 1  ]', 'Color', '[ 1 1 1  ]', 'MarkerSize', 2)
     v1 = [initJf initBf initCost];
     v2 = [a b c];
     v = [v1; v2];
-    plot3(v(:,1),v(:,2),v(:,3),'b', 'LineWidth', 1.2, 'Color', '[ 1 1 1 ]')
+    plot3(v(:,1),v(:,2),v(:,3),'b', 'LineWidth', 1.4, 'Color', '[ 1 1 1 ]')
     figure(fig3)
-    plot([initJf a], [initBf b], 'o', 'MarkerFaceColor', '[ 1 1 1 ]', 'Color', '[ 1 1 1 ]', 'MarkerSize', 1, 'LineWidth', 1.2, 'LineStyle', '-')
+    plot([initJf a], [initBf b], 'o', 'MarkerFaceColor', '[ 1 1 1 ]', 'Color', '[ 1 1 1 ]', 'MarkerSize', 2, 'LineWidth', 1.4, 'LineStyle', '-')
 end
 
 J_f = a;
