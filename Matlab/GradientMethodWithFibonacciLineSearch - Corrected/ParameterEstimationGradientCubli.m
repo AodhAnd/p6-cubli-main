@@ -13,7 +13,7 @@ clc;
 
 % Set documentation to 1 for best report-graph
 % Set documentation to 0 for best run-time experience :)
-documentation = 0;
+documentation = 1;
 
 %----- IMPORTING TEST-DATA ------------------------------------------------
 testData = csvread('PRINT_03.CSV');% <-- simTime=3.75
@@ -55,7 +55,7 @@ initBf = B_f;
 if documentation == 1
     fig1 = figure;%('Position', [412, 313, 660, 485]);
 else
-   fig1 = figure;%('Position', [-1022, -348, 576, 437]);
+   fig1 = figure('Position', [1114 306 486 510]);%[-1022, -348, 576, 437]);
 end
 
 scatter(t,Y, 'r', '.')
@@ -75,7 +75,7 @@ Cost1 = csvread('C.csv');
 
 map = csvread('mapHotRodRed.csv');
 
-fig2 = figure;%('position', [-1022, 175, 576, 641]);
+fig2 = figure('position', [2   304   560   512]);%[79   219   560   512]);
 %mesh(Jf, Bf, Cost1, 'FaceColor', 'none');
 mesh(Jf, Bf, Cost1, 'EdgeColor', 'none', 'FaceColor','interp');
 hold on
@@ -83,7 +83,7 @@ alpha(1)
 colormap(map);
 axis([ 0 0.012 0 0.04 0 6e-3 ])
 
-fig3 = figure;
+fig3 = figure('position', [558   305   559   511]);%[646   218   559   511]);
 contourf(Jf, Bf, Cost1, 60, 'LineColor', '[ .6 0 0]', 'LineWidth', .001)
 hold on
 colormap(map);
@@ -323,13 +323,23 @@ end
 c = evalCostFunction(Y, t, a, b, J_f, B_f);
 figure(fig2)
 if c <= initCost && isDone == 0
-    plot3(a, b, c, 'o', 'MarkerFaceColor', '[ 1 1 1  ]', 'Color', '[ 1 1 1  ]', 'MarkerSize', 1)
+    plot3(a, b, c, 'o',                   ...
+          'MarkerFaceColor', '[ 1 1 1  ]',...
+          'Color', '[ 1 1 1  ]',          ...
+          'MarkerSize', 1)
     v1 = [initJf initBf initCost];
     v2 = [a b c];
     v = [v1; v2];
-    plot3(v(:,1),v(:,2),v(:,3),'b', 'LineWidth', 1.2, 'Color', '[ 1 1 1 ]')
+    plot3(v(:,1),v(:,2),v(:,3),...
+        'LineWidth', 1.2,      ...
+        'Color', '[ 1 1 1 ]')
     figure(fig3)
-    plot([initJf a], [initBf b], 'o', 'MarkerFaceColor', '[ 1 1 1 ]', 'Color', '[ 1 1 1 ]', 'MarkerSize', 1, 'LineWidth', 1.2, 'LineStyle', '-')
+    plot([initJf a], [initBf b], 'o',   ...
+         'MarkerFaceColor', '[ 1 1 1 ]',...
+         'Color', '[ 1 1 1 ]',          ...
+         'MarkerSize', 1,               ...
+         'LineWidth', 1.2,              ...
+         'LineStyle', '-')
 end
 
 J_f = a;
