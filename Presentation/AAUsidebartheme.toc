@@ -1,0 +1,9 @@
+\beamer@endinputifotherversion {3.36pt}
+\select@language {english}
+\beamer@sectionintoc {1}{Stability Analysis}{3}{0}{1}
+\beamer@subsectionintoc {1}{1}{Root Locus}{3}{0}{1}
+\beamer@subsectionintoc {1}{2}{Nyquist Plot}{4}{0}{1}
+\beamer@sectionintoc {2}{Classical Controller Design}{5}{0}{2}
+\beamer@subsectionintoc {2}{1}{Root Locus}{5}{0}{2}
+\beamer@subsectionintoc {2}{2}{Root Locus}{6}{0}{2}
+\beamer@subsectionintoc {2}{3}{Final Controller}{7}{0}{2}
