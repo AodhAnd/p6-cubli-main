@@ -1,5 +1,3 @@
-
-
 \documentclass[10pt]{beamer}
 \usetheme[
 %%% options passed to the outer theme
@@ -8,12 +6,12 @@
 %    hideinstitute,       % hide the (short) institute in the bottom of the sidebar
 %    shownavsym,          % show the navigation symbols
 %    width=2cm,           % width of the sidebar (default is 2 cm)
-    hideothersubsections,% hide all subsections but the subsections in the current section
+hideothersubsections,% hide all subsections but the subsections in the current section
 %    hideallsubsections,  % hide all subsections
-    left               % right of left position of sidebar (default is right)
+left               % right of left position of sidebar (default is right)
 %%% options passed to the color theme
 %    lightheaderbg,       % use a light header background
-  ]{AAUsidebar}
+]{AAUsidebar}
 
 % If you want to change the colors of the various elements in the theme, edit and uncomment the following lines
 % Change the bar and sidebar colors:
@@ -27,18 +25,23 @@
 %\setbeamercolor{normal text}{bg=gray!10}
 % ... and you can of course change a lot more - see the beamer user manual.
 
+\usepackage{siunitx}
+\renewcommand{\vec}[1]{\boldsymbol{\mathbf{#1}}}
+\usepackage{amsmath}
+\usepackage{relsize}
+% Adds new math symbols
+\usepackage{amssymb}
+% Use theorems in your document
+% The ntheorem package is also used for the example environment
+% When using thmmarks, amsmath must be an option as well. Otherwise \eqref doesn't work anymore.
+\usepackage{cancel}
+\usepackage{fourier}
+\usefonttheme{professionalfonts}
 
-\usepackage[utf8]{inputenc}
-\usepackage[english]{babel}
-\usepackage[T1]{fontenc}
-% Or whatever. Note that the encoding and the font should match. If T1
-% does not look nice, try deleting the line with the fontenc.
-\usepackage{helvet}
-
-% Figures - TIKZ
 \usepackage{tikz}
 \usetikzlibrary{shapes,arrows}
 \usepackage[americanresistors,americaninductors,americancurrents, americanvoltages]{circuitikz}
+
 \usetikzlibrary{arrows.meta}
 \tikzset{
 	block/.style    = {draw, thick, rectangle,
@@ -47,9 +50,16 @@
 	sum/.style      = {draw, circle, inner sep=1.5pt},
 }
 
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[T1]{fontenc}
+% Or whatever. Note that the encoding and the font should match. If T1
+% does not look nice, try deleting the line with the fontenc.
+\usepackage{helvet}
+
 % colored hyperlinks
 \newcommand{\chref}[2]{%
-  \href{#1}{{\usebeamercolor[bg]{AAUsidebar}#2}}%
+	\href{#1}{{\usebeamercolor[bg]{AAUsidebar}#2}}%
 }
 
 \title[Cubli: Dynamic Control of a Reaction Wheel Inverted Pendulum]% optional, use only with long paper titles
@@ -61,11 +71,11 @@
 
 \author[] % optional, use only with lots of authors
 {
-Bjørn Kitz\\
-Julien Br\'ehin\\
-Noelia Villarmarzo Arruñada\\
-Niels Skov Vestergaard\\
-Mikael Sander
+	Bjørn Kitz\\
+	Julien Br\'ehin\\
+	Noelia Villarmarzo Arruñada\\
+	Niels Skov Vestergaard\\
+	Mikael Sander
 }
 % - Give the names in the same order as they appear in the paper.
 % - Use the \inst{?} command only if the authors have different
@@ -73,16 +83,16 @@ Mikael Sander
 
 \institute[
 %  {\includegraphics[scale=0.2]{aau_segl}}\\ %insert a company, department or university logo
-  SICT\\
-  Aalborg University\\
-  Denmark
+SICT\\
+Aalborg University\\
+Denmark
 ] % optional - is placed in the bottom of the sidebar on every slide
 {% is placed on the title page
-  SICT\\
-  Aalborg University\\
-  Denmark
-  
-  %there must be an empty line above this line - otherwise some unwanted space is added between the university and the country (I do not know why;( )
+	SICT\\
+	Aalborg University\\
+	Denmark
+	
+	%there must be an empty line above this line - otherwise some unwanted space is added between the university and the country (I do not know why;( )
 }
 
 
@@ -91,32 +101,33 @@ Mikael Sander
 \pgfdeclareimage[height=1.5cm]{titlepagelogo}{AAUgraphics/aau_logo_new} % placed on the title page
 %\pgfdeclareimage[height=1.5cm]{titlepagelogo2}{graphics/aau_logo_new} % placed on the title page
 \titlegraphic{% is placed on the bottom of the title page
-  \pgfuseimage{titlepagelogo}
-%  \hspace{1cm}\pgfuseimage{titlepagelogo2}
+	\pgfuseimage{titlepagelogo}
+	%  \hspace{1cm}\pgfuseimage{titlepagelogo2}
 }
 
 
 \begin{document}
 % the titlepage
 {\aauwavesbg%
-\begin{frame}[plain,noframenumbering] % the plain option removes the sidebar and header from the title page
-  \titlepage
-\end{frame}}
-%%%%%%%%%%%%%%%%
+	\begin{frame}[plain,noframenumbering] % the plain option removes the sidebar and header from the title page
+		\titlepage
+	\end{frame}}
+	%%%%%%%%%%%%%%%%
+		
+	% TOC
+	\begin{frame}{Agenda}{}
+		\setcounter{tocdepth}{1}
+		\tableofcontents
+	\end{frame}
+	%%%%%%%%%%%%%%%%
+		
+		
+	%\input{Bjorn.tex}
+	%\input{Julien.tex}
+	\input{Noelia.tex}
+	%\input{Niels.tex}
+	%\input{Mikael.tex}
+		
+		
+	\end{document}
 
-% TOC
-\begin{frame}{Agenda}{}
-\setcounter{tocdepth}{1}
-\tableofcontents
-\end{frame}
-%%%%%%%%%%%%%%%%
-
-
-%\input{Bjorn.tex}
-%\input{Julien.tex}
-\input{Noelia.tex}
-%\input{Niels.tex}
-%\input{Mikael.tex}
-
-
-\end{document}
