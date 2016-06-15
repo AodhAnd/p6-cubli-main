@@ -25,6 +25,8 @@
 *.nlo
 *.out
 *.pdfsync
+Presentation.pdf
+
 *.ps
 *.snm
 *.synctex.gz
