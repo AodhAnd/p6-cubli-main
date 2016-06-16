@@ -85,7 +85,7 @@
       node at (veloFeedbackNode)  [shift={( 0.007, -0.05 )}] {\large \textbullet}
       node at (accFeedbackNode)   [shift={( 0.007, -0.05 )}] {\large \textbullet}
       node at (feedForward)       [shift={( 0.007, -0.05 )}] {\large \textbullet}
-      node at (frictionWheel)     [shift={( 1.025, -0.04 )}] {\large \textbullet}
+      node at (frictionWheel)     [shift={( 0.70, -0.04 )}] {\large \textbullet}
     ;
 
     %-- Summation signs --%

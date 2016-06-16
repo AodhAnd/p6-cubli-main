@@ -44,14 +44,16 @@
 
 \begin{frame}{Requirements}{Overview}
 \begin{itemize}
- \item {Keep balancing from unstable equilibrium position}
+ \item {Keep balancing at 0 rad when starting from equilibrium position}
   \begin{itemize}
-	\item {Starting out from equilibrium position at null velocity}
+	%\item {Starting out from equilibrium position at null velocity}
+	\item {Starting with the wheel at \si{0\ rad/s}}
 	\linebreak
 \end{itemize}
-\item {The prototype should be able to balance around 0 rad}
+\item {Still balance with changing angles of the baseplate}
 	\begin{itemize}
-	\item {Changing angle of baseplate within reasonable range}
+	\item {Baseplate moves within reasonable range}
+	\item {Use IMU to measure the angle of the frame}
 	\end{itemize}
 \end{itemize}
 
@@ -93,9 +95,9 @@
 \end{frame}
 
 \begin{frame}{Model}{Construction}
-		\begin{displaymath}
+		\begin{flalign}
 		\si{\vec{l_w} \times \vec{F}}
-		\end{displaymath}
+		\end{flalign}
 		
 		\begin{flalign}
 		\si{\vec{l_w} \times \vec{F}} &=
@@ -134,17 +136,17 @@ Acceleration of the wheel
 \end{frame}
 
 \begin{frame}{Model}{Linearization}
-	\begin{figure}[H]
-		\centering
-		%\includegraphics[scale=0.65]{Pictures/SO3.pdf}
-	\end{figure}
+	
+	
 \end{frame}
 
 \begin{frame}{Model}{Linearization}
-	\begin{figure}[H]
-		%\centering
-		%\includegraphics[scale=0.65]{Pictures/SO3.pdf}
-	\end{figure}
+	\begin{itemize}
+		\item {Operating point \si{\theta_{F_0}}}
+		\begin{itemize}
+			\item {variation around operating point is \si{\Delta \theta_F}}
+		\end{itemize}
+	\end{itemize}
 		\begin{flalign}
 		&\si{(J_F+m_w \cdot {l_w}^{2}) \Delta \ddot{\theta}_F =}& \nonumber \\
 		&\si{-B_F \Delta \dot{\theta}_F +  ( m_F \cdot l_F + m_w \cdot l_w ) \cdot g \cdot \Delta \theta_F - \Delta \tau_m + B_w \Delta \dot{\theta}_w }& \nonumber
