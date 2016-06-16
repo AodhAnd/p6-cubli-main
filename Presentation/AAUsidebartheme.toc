@@ -1,9 +1,9 @@
 \beamer@endinputifotherversion {3.36pt}
 \select@language {english}
-\beamer@sectionintoc {1}{Stability Analysis}{3}{0}{1}
-\beamer@subsectionintoc {1}{1}{Root Locus}{3}{0}{1}
-\beamer@subsectionintoc {1}{2}{Nyquist Plot}{4}{0}{1}
-\beamer@sectionintoc {2}{Classical Controller Design}{5}{0}{2}
-\beamer@subsectionintoc {2}{1}{SISO Block Diagram}{5}{0}{2}
-\beamer@subsectionintoc {2}{3}{Final Controller}{7}{0}{2}
-\beamer@subsectionintoc {2}{4}{Discretization}{9}{0}{2}
+\beamer@sectionintoc {1}{Classical Controller Design}{3}{0}{1}
+\beamer@subsectionintoc {1}{1}{SISO Block Diagram}{3}{0}{1}
+\beamer@subsectionintoc {1}{2}{Stability Analysis}{4}{0}{1}
+\beamer@subsectionintoc {1}{3}{Root Locus Design}{6}{0}{1}
+\beamer@subsectionintoc {1}{4}{Discretization}{10}{0}{1}
+\beamer@subsectionintoc {1}{5}{Simulation of the Controller}{12}{0}{1}
+\beamer@subsectionintoc {1}{6}{Implementation}{13}{0}{1}

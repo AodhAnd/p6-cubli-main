@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2016.2.8)  15 JUN 2016 15:46
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2016.2.8)  16 JUN 2016 14:02
 entering extended mode
 **./AAUsidebartheme.tex
 (AAUsidebartheme.tex
@@ -2079,6 +2079,24 @@ Overfull \hbox (1.05998pt too wide) has occurred while \output is active
 [][][] [][]
  []
 
+File: AAUgraphics/aau_logo_new_circle.pdf Graphic file (type pdf)
+<use AAUgraphics/aau_logo_new_circle.pdf>
+Package pdftex.def Info: AAUgraphics/aau_logo_new_circle.pdf used on input line
+ 122.
+(pdftex.def)             Requested size: 40.49973pt x 41.0137pt.
+ [2
+
+ <./AAUgraphics/aau_logo_new_circle.pdf>] (Noelia.tex (Pictures/blockDiagramCon
+troller.tikz
+LaTeX Font Info:    Try loading font information for TS1+phv on input line 39.
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\psnfss\ts1phv.fd"
+File: ts1phv.fd 2001/06/04 scalable font definitions for TS1/phv.
+))
+LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
+(Font)              scaled to size 6.25598pt on input line 15.
+LaTeX Font Info:    Font shape `U/futm/m/n' will be
+(Font)              scaled to size 6.25598pt on input line 15.
 
 Overfull \hbox (1.05998pt too wide) has occurred while \output is active
 [][][] [][]
@@ -2087,35 +2105,54 @@ Overfull \hbox (1.05998pt too wide) has occurred while \output is active
 File: AAUgraphics/aau_logo_new_circle.pdf Graphic file (type pdf)
 <use AAUgraphics/aau_logo_new_circle.pdf>
 Package pdftex.def Info: AAUgraphics/aau_logo_new_circle.pdf used on input line
- 122.
+ 15.
 (pdftex.def)             Requested size: 40.49973pt x 41.0137pt.
- [2
+ [3
 
- <./AAUgraphics/aau_logo_new_circle.pdf>] (Noelia.tex
-<Pictures/rlocusCubli.pdf, id=40, 366.36874pt x 304.13625pt>
+]
+<Pictures/nyquistCubli.pdf, id=60, 289.08pt x 264.99pt>
+File: Pictures/nyquistCubli.pdf Graphic file (type pdf)
+
+<use Pictures/nyquistCubli.pdf>
+Package pdftex.def Info: Pictures/nyquistCubli.pdf used on input line 30.
+(pdftex.def)             Requested size: 144.53964pt x 132.49467pt.
+
+Overfull \hbox (1.05998pt too wide) has occurred while \output is active
+[][][] [][]
+ []
+
+File: AAUgraphics/aau_logo_new_circle.pdf Graphic file (type pdf)
+<use AAUgraphics/aau_logo_new_circle.pdf>
+Package pdftex.def Info: AAUgraphics/aau_logo_new_circle.pdf used on input line
+ 30.
+(pdftex.def)             Requested size: 40.49973pt x 41.0137pt.
+ [4
+
+ <./Pictures/nyquistCubli.pdf>]
+<Pictures/rlocusCubli.pdf, id=78, 366.36874pt x 304.13625pt>
 File: Pictures/rlocusCubli.pdf Graphic file (type pdf)
 
 <use Pictures/rlocusCubli.pdf>
-Package pdftex.def Info: Pictures/rlocusCubli.pdf used on input line 23.
+Package pdftex.def Info: Pictures/rlocusCubli.pdf used on input line 52.
 (pdftex.def)             Requested size: 153.87381pt x 127.73634pt.
 
-Overfull \hbox (28.39796pt too wide) in paragraph at lines 23--23
+Overfull \hbox (28.39796pt too wide) in paragraph at lines 52--52
  [] 
  []
 
-<Pictures/rlocusCubliZoom.pdf, id=41, 372.39125pt x 305.14pt>
+<Pictures/rlocusCubliZoom.pdf, id=79, 372.39125pt x 305.14pt>
 File: Pictures/rlocusCubliZoom.pdf Graphic file (type pdf)
 
 <use Pictures/rlocusCubliZoom.pdf>
-Package pdftex.def Info: Pictures/rlocusCubliZoom.pdf used on input line 23.
+Package pdftex.def Info: Pictures/rlocusCubliZoom.pdf used on input line 52.
 (pdftex.def)             Requested size: 130.33888pt x 106.80058pt.
 
-Overfull \hbox (4.86304pt too wide) in paragraph at lines 23--23
+Overfull \hbox (4.86304pt too wide) in paragraph at lines 52--52
  [] 
  []
 
 
-Overfull \hbox (4.23993pt too wide) in paragraph at lines 23--23
+Overfull \hbox (4.23993pt too wide) in paragraph at lines 52--52
 []$[]$   $[]$ 
  []
 
@@ -2124,71 +2161,20 @@ Overfull \hbox (1.05998pt too wide) has occurred while \output is active
 [][][] [][]
  []
 
-
-Overfull \hbox (1.05998pt too wide) has occurred while \output is active
-[][][] [][]
- []
-
 File: AAUgraphics/aau_logo_new_circle.pdf Graphic file (type pdf)
 <use AAUgraphics/aau_logo_new_circle.pdf>
 Package pdftex.def Info: AAUgraphics/aau_logo_new_circle.pdf used on input line
- 23.
-(pdftex.def)             Requested size: 40.49973pt x 41.0137pt.
- [3
-
- <./Pictures/rlocusCubli.pdf> <./Pictures/rlocusCubliZoom.pdf>]
-<Pictures/nyquistCubli.pdf, id=166, 289.08pt x 264.99pt>
-File: Pictures/nyquistCubli.pdf Graphic file (type pdf)
-
-<use Pictures/nyquistCubli.pdf>
-Package pdftex.def Info: Pictures/nyquistCubli.pdf used on input line 32.
-(pdftex.def)             Requested size: 144.53964pt x 132.49467pt.
-
-Overfull \hbox (1.05998pt too wide) has occurred while \output is active
-[][][] [][]
- []
-
-
-Overfull \hbox (1.05998pt too wide) has occurred while \output is active
-[][][] [][]
- []
-
-File: AAUgraphics/aau_logo_new_circle.pdf Graphic file (type pdf)
-<use AAUgraphics/aau_logo_new_circle.pdf>
-Package pdftex.def Info: AAUgraphics/aau_logo_new_circle.pdf used on input line
- 32.
-(pdftex.def)             Requested size: 40.49973pt x 41.0137pt.
- [4
-
- <./Pictures/nyquistCubli.pdf>]
-(Pictures/blockDiagramController.tikz
-LaTeX Font Info:    Try loading font information for TS1+phv on input line 39.
-
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\psnfss\ts1phv.fd"
-File: ts1phv.fd 2001/06/04 scalable font definitions for TS1/phv.
-))
-Overfull \hbox (1.05998pt too wide) has occurred while \output is active
-[][][] [][]
- []
-
-
-Overfull \hbox (1.05998pt too wide) has occurred while \output is active
-[][][] [][]
- []
-
-File: AAUgraphics/aau_logo_new_circle.pdf Graphic file (type pdf)
-<use AAUgraphics/aau_logo_new_circle.pdf>
-Package pdftex.def Info: AAUgraphics/aau_logo_new_circle.pdf used on input line
- 50.
+ 52.
 (pdftex.def)             Requested size: 40.49973pt x 41.0137pt.
  [5
 
-]
-(Pictures/blockDiagramController.tikz)
-Overfull \hbox (1.05998pt too wide) has occurred while \output is active
-[][][] [][]
- []
+ <./Pictures/rlocusCubli.pdf> <./Pictures/rlocusCubliZoom.pdf>]
+<Pictures/RLController1.pdf, id=205, 363.3575pt x 304.13625pt>
+File: Pictures/RLController1.pdf Graphic file (type pdf)
 
+<use Pictures/RLController1.pdf>
+Package pdftex.def Info: Pictures/RLController1.pdf used on input line 61.
+(pdftex.def)             Requested size: 199.84723pt x 167.27545pt.
 
 Overfull \hbox (1.05998pt too wide) has occurred while \output is active
 [][][] [][]
@@ -2197,22 +2183,17 @@ Overfull \hbox (1.05998pt too wide) has occurred while \output is active
 File: AAUgraphics/aau_logo_new_circle.pdf Graphic file (type pdf)
 <use AAUgraphics/aau_logo_new_circle.pdf>
 Package pdftex.def Info: AAUgraphics/aau_logo_new_circle.pdf used on input line
- 57.
+ 61.
 (pdftex.def)             Requested size: 40.49973pt x 41.0137pt.
  [6
 
-]
-<Pictures/RLController.pdf, id=211, 452.69125pt x 375.4025pt>
-File: Pictures/RLController.pdf Graphic file (type pdf)
+ <./Pictures/RLController1.pdf>]
+<Pictures/RLController2.pdf, id=269, 363.3575pt x 304.13625pt>
+File: Pictures/RLController2.pdf Graphic file (type pdf)
 
-<use Pictures/RLController.pdf>
-Package pdftex.def Info: Pictures/RLController.pdf used on input line 71.
-(pdftex.def)             Requested size: 196.9191pt x 163.29877pt.
-
-Overfull \hbox (1.05998pt too wide) has occurred while \output is active
-[][][] [][]
- []
-
+<use Pictures/RLController2.pdf>
+Package pdftex.def Info: Pictures/RLController2.pdf used on input line 68.
+(pdftex.def)             Requested size: 199.84723pt x 167.27545pt.
 
 Overfull \hbox (1.05998pt too wide) has occurred while \output is active
 [][][] [][]
@@ -2221,45 +2202,35 @@ Overfull \hbox (1.05998pt too wide) has occurred while \output is active
 File: AAUgraphics/aau_logo_new_circle.pdf Graphic file (type pdf)
 <use AAUgraphics/aau_logo_new_circle.pdf>
 Package pdftex.def Info: AAUgraphics/aau_logo_new_circle.pdf used on input line
- 71.
+ 68.
 (pdftex.def)             Requested size: 40.49973pt x 41.0137pt.
  [7
+
+ <./Pictures/RLController2.pdf>]
+<Pictures/RLController.pdf, id=334, 363.3575pt x 304.13625pt>
+File: Pictures/RLController.pdf Graphic file (type pdf)
+
+<use Pictures/RLController.pdf>
+Package pdftex.def Info: Pictures/RLController.pdf used on input line 81.
+(pdftex.def)             Requested size: 199.84723pt x 167.27545pt.
+
+Overfull \hbox (1.05998pt too wide) has occurred while \output is active
+[][][] [][]
+ []
+
+File: AAUgraphics/aau_logo_new_circle.pdf Graphic file (type pdf)
+<use AAUgraphics/aau_logo_new_circle.pdf>
+Package pdftex.def Info: AAUgraphics/aau_logo_new_circle.pdf used on input line
+ 81.
+(pdftex.def)             Requested size: 40.49973pt x 41.0137pt.
+ [8
 
  <./Pictures/RLController.pdf>]
 File: Pictures/RLController.pdf Graphic file (type pdf)
 
 <use Pictures/RLController.pdf>
-Package pdftex.def Info: Pictures/RLController.pdf used on input line 71.
-(pdftex.def)             Requested size: 196.9191pt x 163.29877pt.
-
-Overfull \hbox (1.05998pt too wide) has occurred while \output is active
-[][][] [][]
- []
-
-
-Overfull \hbox (1.05998pt too wide) has occurred while \output is active
-[][][] [][]
- []
-
-File: AAUgraphics/aau_logo_new_circle.pdf Graphic file (type pdf)
-<use AAUgraphics/aau_logo_new_circle.pdf>
-Package pdftex.def Info: AAUgraphics/aau_logo_new_circle.pdf used on input line
- 71.
-(pdftex.def)             Requested size: 40.49973pt x 41.0137pt.
- [8
-
-]
-<Pictures/bodeOL.pdf, id=314, 424.58624pt x 296.10625pt>
-File: Pictures/bodeOL.pdf Graphic file (type pdf)
-
-<use Pictures/bodeOL.pdf>
-Package pdftex.def Info: Pictures/bodeOL.pdf used on input line 83.
-(pdftex.def)             Requested size: 184.69353pt x 128.80518pt.
-
-Overfull \hbox (1.05998pt too wide) has occurred while \output is active
-[][][] [][]
- []
-
+Package pdftex.def Info: Pictures/RLController.pdf used on input line 81.
+(pdftex.def)             Requested size: 199.84723pt x 167.27545pt.
 
 Overfull \hbox (1.05998pt too wide) has occurred while \output is active
 [][][] [][]
@@ -2268,14 +2239,68 @@ Overfull \hbox (1.05998pt too wide) has occurred while \output is active
 File: AAUgraphics/aau_logo_new_circle.pdf Graphic file (type pdf)
 <use AAUgraphics/aau_logo_new_circle.pdf>
 Package pdftex.def Info: AAUgraphics/aau_logo_new_circle.pdf used on input line
- 83.
+ 81.
 (pdftex.def)             Requested size: 40.49973pt x 41.0137pt.
  [9
 
- <./Pictures/bodeOL.pdf>]
-(Pictures/blockDiagramController.tikz)
+]
+<Pictures/bodeOL.pdf, id=411, 400.49625pt x 307.1475pt>
+File: Pictures/bodeOL.pdf Graphic file (type pdf)
+
+<use Pictures/bodeOL.pdf>
+Package pdftex.def Info: Pictures/bodeOL.pdf used on input line 93.
+(pdftex.def)             Requested size: 217.46863pt x 166.78046pt.
+
 Overfull \hbox (1.05998pt too wide) has occurred while \output is active
 [][][] [][]
+ []
+
+File: AAUgraphics/aau_logo_new_circle.pdf Graphic file (type pdf)
+<use AAUgraphics/aau_logo_new_circle.pdf>
+Package pdftex.def Info: AAUgraphics/aau_logo_new_circle.pdf used on input line
+ 93.
+(pdftex.def)             Requested size: 40.49973pt x 41.0137pt.
+ [10
+
+ <./Pictures/bodeOL.pdf>]
+File: Pictures/bodeOL.pdf Graphic file (type pdf)
+
+<use Pictures/bodeOL.pdf>
+Package pdftex.def Info: Pictures/bodeOL.pdf used on input line 93.
+(pdftex.def)             Requested size: 217.46863pt x 166.78046pt.
+
+Overfull \hbox (1.05998pt too wide) has occurred while \output is active
+[][][] [][]
+ []
+
+File: AAUgraphics/aau_logo_new_circle.pdf Graphic file (type pdf)
+<use AAUgraphics/aau_logo_new_circle.pdf>
+Package pdftex.def Info: AAUgraphics/aau_logo_new_circle.pdf used on input line
+ 93.
+(pdftex.def)             Requested size: 40.49973pt x 41.0137pt.
+ [11
+
+]
+<Pictures/positionRL.pdf, id=580, 384.43625pt x 305.14pt>
+File: Pictures/positionRL.pdf Graphic file (type pdf)
+
+<use Pictures/positionRL.pdf>
+Package pdftex.def Info: Pictures/positionRL.pdf used on input line 116.
+(pdftex.def)             Requested size: 142.23918pt x 112.90002pt.
+
+Overfull \hbox (16.76334pt too wide) in paragraph at lines 116--116
+ [] 
+ []
+
+<Pictures/torqueRL.pdf, id=581, 385.44pt x 305.14pt>
+File: Pictures/torqueRL.pdf Graphic file (type pdf)
+
+<use Pictures/torqueRL.pdf>
+Package pdftex.def Info: Pictures/torqueRL.pdf used on input line 116.
+(pdftex.def)             Requested size: 142.61057pt x 112.90002pt.
+
+Overfull \hbox (17.13472pt too wide) in paragraph at lines 116--116
+ [] 
  []
 
 
@@ -2286,11 +2311,58 @@ Overfull \hbox (1.05998pt too wide) has occurred while \output is active
 File: AAUgraphics/aau_logo_new_circle.pdf Graphic file (type pdf)
 <use AAUgraphics/aau_logo_new_circle.pdf>
 Package pdftex.def Info: AAUgraphics/aau_logo_new_circle.pdf used on input line
- 89.
+ 116.
 (pdftex.def)             Requested size: 40.49973pt x 41.0137pt.
- [10
+ [12
 
-])
+ <./Pictures/positionRL.pdf> <./Pictures/torqueRL.pdf>]
+Overfull \hbox (1.05998pt too wide) has occurred while \output is active
+[][][] [][]
+ []
+
+File: AAUgraphics/aau_logo_new_circle.pdf Graphic file (type pdf)
+<use AAUgraphics/aau_logo_new_circle.pdf>
+Package pdftex.def Info: AAUgraphics/aau_logo_new_circle.pdf used on input line
+ 129.
+(pdftex.def)             Requested size: 40.49973pt x 41.0137pt.
+ [13
+
+]
+<Pictures/positionRLTest.pdf, id=723, 374.39874pt x 305.14pt>
+File: Pictures/positionRLTest.pdf Graphic file (type pdf)
+
+<use Pictures/positionRLTest.pdf>
+Package pdftex.def Info: Pictures/positionRLTest.pdf used on input line 150.
+(pdftex.def)             Requested size: 131.04152pt x 106.80058pt.
+
+Overfull \hbox (19.50838pt too wide) in paragraph at lines 150--150
+ [] 
+ []
+
+<Pictures/wheelRLTest.pdf, id=724, 375.4025pt x 305.14pt>
+File: Pictures/wheelRLTest.pdf Graphic file (type pdf)
+
+<use Pictures/wheelRLTest.pdf>
+Package pdftex.def Info: Pictures/wheelRLTest.pdf used on input line 150.
+(pdftex.def)             Requested size: 131.39284pt x 106.80058pt.
+
+Overfull \hbox (5.91699pt too wide) in paragraph at lines 150--150
+ [] 
+ []
+
+
+Overfull \hbox (1.05998pt too wide) has occurred while \output is active
+[][][] [][]
+ []
+
+File: AAUgraphics/aau_logo_new_circle.pdf Graphic file (type pdf)
+<use AAUgraphics/aau_logo_new_circle.pdf>
+Package pdftex.def Info: AAUgraphics/aau_logo_new_circle.pdf used on input line
+ 150.
+(pdftex.def)             Requested size: 40.49973pt x 41.0137pt.
+ [14
+
+ <./Pictures/positionRLTest.pdf> <./Pictures/wheelRLTest.pdf>])
 \tf@nav=\write6
 \openout6 = `AAUsidebartheme.nav'.
 
@@ -2307,27 +2379,34 @@ Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 133.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 133.
 Package rerunfilecheck Info: File `AAUsidebartheme.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
+
+
+LaTeX Font Warning: Size substitutions with differences
+(Font)              up to 2.26395pt have occurred.
+
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 133.
  ) 
 Here is how much of TeX's memory you used:
- 38830 strings out of 493634
- 872425 string characters out of 3134424
- 998528 words of memory out of 3000000
- 41461 multiletter control sequences out of 15000+200000
- 66986 words of font info for 95 fonts, out of 3000000 for 9000
+ 38991 strings out of 493634
+ 875810 string characters out of 3134424
+ 999850 words of memory out of 3000000
+ 41609 multiletter control sequences out of 15000+200000
+ 121325 words of font info for 153 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
- 60i,20n,71p,10416b,1077s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Users/
-USUARIO/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/fourier/fourier-me
-x.pfb><C:/Users/USUARIO/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/fo
-urier/fourier-mlit.pfb><C:/Users/USUARIO/AppData/Local/Programs/MiKTeX 2.9/font
-s/type1/public/fourier/fourier-ms.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/
-type1/adobe/utopia/putr8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/ad
-obe/utopia/putri8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/helve
-tic/uhvr8a.pfb>
-Output written on AAUsidebartheme.pdf (10 pages, 221598 bytes).
+ 60i,21n,71p,10416b,1077s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Progra
+m Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmss10.pfb><C:/Program 
+Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmss8.pfb><C:/Users/USUAR
+IO/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/fourier/fourier-mex.pfb
+><C:/Users/USUARIO/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/fourier
+/fourier-mlit.pfb><C:/Users/USUARIO/AppData/Local/Programs/MiKTeX 2.9/fonts/typ
+e1/public/fourier/fourier-ms.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1
+/adobe/utopia/putr8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/adobe/u
+topia/putri8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/helvetic/u
+hvr8a.pfb>
+Output written on AAUsidebartheme.pdf (14 pages, 350952 bytes).
 PDF statistics:
- 509 PDF objects out of 1000 (max. 8388607)
- 29 named destinations out of 1000 (max. 500000)
- 83 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 869 PDF objects out of 1000 (max. 8388607)
+ 36 named destinations out of 1000 (max. 500000)
+ 113 words of extra memory for PDF output out of 10000 (max. 10000000)
 
