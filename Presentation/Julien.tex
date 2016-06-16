@@ -1,8 +1,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%% Julien %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%% Parameters of the System %%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%
 \section{Parameters}
 
+%- 1 -%
 \begin{frame}{Model Parameters}{List of Parameters}
   \begin{table}[H]\centering
   \begin{tabular}{|c|S[table-figures-exponent=1]@{\,}|s[table-unit-alignment = left]|}
@@ -29,91 +28,202 @@
   \end{table}
 \end{frame}
 
-\subsection{Directional Model}
-%--Next--%
-%\begin{frame}{Steering Control of the Vehicle}{Directional Model Enhancement}
-%    \begin{block}{Delay}
-%      $ U(s) \cdot e^{-\lambda \cdot s} $
-%    \end{block}
-%    \pause
-%    \begin{block}{Padé Approximant}
-%        $ e^{-\lambda \cdot s} \simeq \frac{1 - \frac{\lambda}{2} \ \cdot s}{1 + \frac{\lambda}{2} \cdot s} $
-%    \end{block}
-%    \pause
-%    \begin{block}{For small values of lambda (here 30 ms)}
-%     $ e^{-\lambda \cdot s} \simeq \frac{1}{1 + \lambda \cdot s} $
-%    \end{block}
-%\end{frame}
-%--Next--%
-\begin{frame}{Steering Model and Control}{Directional Model Enhancement}
-
+%- 2 -%
+\subsection{Model Parameters}
+\begin{frame}{Model Parameters}{Obtaining New Parameters}
+  \begin{itemize}
+    \item Mass of the frame
+  \end{itemize}
+  \only<2>{
+    \begin{figure}[H]
+      \centering
+      \includegraphics[scale=0.2]{Pictures/scale.jpg}
+    \end{figure}
+  }
+  %%
+  \begin{itemize}
+    \item Center of mass
+  \end{itemize}
+  \only<3>{
+  \begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.35]{Pictures/centerOfMassDiagram.pdf}
+  \end{figure}
+  }
+  %%
+  \begin{itemize}
+    \item Friction and moment of inertia of the frame
+  \end{itemize}
+  \only<4>{
     \begin{figure}[H]
     \centering
-    % \includegraphics[scale=0.25]{Pictures/basicSteeringModelWithDelay.pdf}
+    \includegraphics[scale=0.35]{Pictures/InitialModelParameterCompare.pdf}
   \end{figure}
-\end{frame}
-%--Next--%
-\begin{frame}{Steering Model and Control}{Directional Model Verification}
-
-    \begin{figure}[H]
-    \centering
-    % \includegraphics[scale=0.5]{Pictures/plotVerificationSteeringPlant.png}
-  \end{figure}
-\end{frame}
-%--Next--%
-\begin{frame}{Steering Model and Control}{Directional Model Verification}
-
-    \begin{figure}[H]
-    \centering
-    % \includegraphics[scale=0.5]{Pictures/plotVerificationSteeringPlantZoom.png}
-  \end{figure}
+  }
 \end{frame}
 
-%%%%%%%%%%%%%%%%
+%--------------------------------------------------------
+\subsection{Parameter Estimation}
 
-%%%%%%%%%%%%%%%%
-\subsection{Directional Control}
+%- 3 -%
+\begin{frame}{Parameter Estimation}{Optimization Problem}
+  \begin{itemize}
+    \item Optimization problem
+  \end{itemize}  
+  \begin{figure}[H]
+      \centering
+      \includegraphics[scale=0.25]{Pictures/senstoolsModelOptimizationHM}
+  \end{figure}\vspace{-12pt}
+  \pause
+  \begin{itemize}
+    \item Cost function
+  \end{itemize}
+  \begin{displaymath}
+    \si{C(\theta) = \frac{1}{2N}\sum_{k = 1}^{N} \left(y_{k} - y_{m_k}(\vec{\theta})\right)^2 }
+  \end{displaymath}
+\end{frame}
+
+%- 4 -%
+\begin{frame}{Parameter Estimation}{Steepest Descent}
+  \begin{itemize}
+    \item Taylor series expansion (2\si{^{nd}} order)
+  \end{itemize}
+  \begin{displaymath}
+    \si{f(\vec{x}+\vec{\delta}) \approx f(\vec{x}) + \vec{g}^T \vec{\delta} + \frac{1}{2} \vec{\delta}^T \vec{H}\vec{\delta}}
+  \end{displaymath}
+  \begin{displaymath}
+    \vdots
+  \end{displaymath}
+  \begin{displaymath}
+    \si{\nabla\ f(\vec{x}+\vec{\delta}) \approx \vec{g}}
+  \end{displaymath}
+  \vspace{-12pt}
+  %%
+  \pause
+  \begin{itemize}
+    \item Reducing the problem
+  \end{itemize}
+    \begin{minipage}{\linewidth}
+    \begin{minipage}{0.35\linewidth}
+      \begin{figure}[H]
+        \centering
+        Arbitrary 2D cost function with the gradient direction at one starting point
+        % \includegraphics[scale=0.25]{Pictures/vehicleLineDeviation.pdf}
+      \end{figure}
+    \end{minipage}
+    \hspace{0.03\linewidth}
+    \begin{minipage}{0.45\linewidth}
+      \begin{figure}[H]
+        \centering
+        Plot of the 1D cost function along the gradient direction
+        % \includegraphics[scale=0.25]{Pictures/steeringDeviation.pdf}
+      \end{figure}
+    \end{minipage}
+  \end{minipage}
+\end{frame}
+
+%- 5 -%
+\begin{frame}{Parameter Estimation}{Fibonacci Line Search}
+  \begin{minipage}{\linewidth}
+    \begin{minipage}{0.35\linewidth}
+      \only<1>{
+      \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.35]{Pictures/fibonacciIntervalSystem0}
+      \end{figure}
+      }
+      \only<2>{
+      \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.35]{Pictures/fibonacciIntervalSystem1}
+      \end{figure}
+      }
+      \only<3>{
+      \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.35]{Pictures/fibonacciIntervalSystem2}
+      \end{figure}
+      }
+      \only<4->{
+      \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.35]{Pictures/fibonacciIntervalSystem3}
+      \end{figure}
+      }
+    \end{minipage}
+    \hspace{0.03\linewidth}
+    \begin{minipage}{0.45\linewidth}
+      \only<5->{
+        \begin{itemize}
+          \item Initial relations
+        \end{itemize}
+        \begin{displaymath}
+          \si{I_k = I_{k+1} + I_{k+2}, for\ all\ k=1,2,\dots,n-1}
+        \end{displaymath}
+        \begin{displaymath}
+          \si{I_n = I_{n+1},\ assuming\ I_{n+2}=0}
+        \end{displaymath}
+      }\vspace{-12pt}
+      %%
+      \only<6>{  
+        \begin{itemize}
+          \item Successive relations
+        \end{itemize}
+        \begin{displaymath}
+          \si{I_{n+1}}      =  \phantom{\si{\ I_{n+1}  + I_{n+2}         =}}\si{ 1 I_n  = F_0 I_n}
+        \end{displaymath}
+        \begin{displaymath}
+          \si{I_{n}}\phantom{_{+1}}      =  \si{ I_{n+1}  + I_{n+2} }                    =  \si{ 1 I_n  = F_1 I_n }
+        \end{displaymath}
+        \begin{displaymath}
+          \si{I_{n-1}}      =  \si{ I_{n} }\phantom{_{+1}} + \si{ I_{n+1} } =  \si{ 2 I_n  = F_2 I_n }
+        \end{displaymath}
+        \begin{displaymath}
+          \vdots
+          \phantom{I_{n-4}+I_{n-5}+I{4242}}
+        \end{displaymath}
+        \begin{displaymath}
+          \si{I_{k}}\phantom{_{4}}   =  \si{ I_{k+1} + I_{k+2} = F_{n-k+1} I_n }
+        \end{displaymath}
+        \begin{displaymath}
+          \vdots                         
+          \phantom{I_{n-4}+I_{n-5}+I{4242}}
+        \end{displaymath}
+        \begin{displaymath}
+          \si{I_{1}}\phantom{_{4}}      =  \si{ I_{2}  + I_{3} }\si{= F_n I_n }\phantom{_{k-1k+2k+3}} 
+        \end{displaymath}
+      }
+    \end{minipage}
+  \end{minipage}
+\end{frame}
+
 
 %--Directional Controller--%
-\begin{frame}{Steering Model and Control}{Directional Controller (P-Controller)}
+\begin{frame}{Parameter Estimation}{Forward-Backward Method}
     \begin{figure}[H]
     \centering
     % \includegraphics[scale=0.13]{Pictures/basicSteeringModelWithDelayWithFeedback.pdf}
   \end{figure}
 \end{frame}
 
-%--Closed-loop TF--%
-%\begin{frame}{Steering Control of the Vehicle}{Directional Controller (P-Controller)}
-%  \begin{block}{Resulting transfer function}
-%    \vspace{4pt}
-%    $\frac{\theta_{actual}}{\theta_{wanted}} = \frac{\frac{K_p \cdot K_{steering}}{\left(\lambda \cdot s + 1 \right) \cdot s}}{\frac{K_p \cdot K_{steering}}{\left(\lambda \cdot s + 1 \right) \cdot s} + 1} $
-%    \\ \vspace{4pt}
-%    \pause
-%    …\\\vspace{4pt}
-%    $\frac{\theta_{actual}}{\theta_{wanted}} = \frac{K_p \cdot \frac{K_{steering}}{\lambda}}{s^2 + \frac{1}{\lambda} \cdot s + \frac{K_p \cdot K_{steering}}{\lambda}} $ (standard form)
-%  \end{block}includegraphics
-%\end{frame}
-
-\begin{frame}{Steering Model and Control}{Directional Controller (P-Controller)}
+\begin{frame}{Parameter Estimation}{Implementation (1)}
   \begin{figure}[H]
       \centering
       % \includegraphics[scale=0.35]{Pictures/KvKpSteeringtest.png}
   \end{figure}
 \end{frame}
 
-\begin{frame}{Steering Model and Control}{Directional Controller Verification}
+\begin{frame}{Steering Model and Control}{Implementation (2)}
   \begin{figure}[H]
     \centering
     % \includegraphics[scale=0.6]{Pictures/SteeringAngularTest.png}
   \end{figure}
 \end{frame}
 
-%%%%%%%%%%%%%%%%
+%------------------------------------------------------------
+\subsection{Model Parameters (rev'd)}
 
-%%%%%%%%%%%%%%%%
-\subsection{Distance Model}
-
-\begin{frame}{Steering Model and Control}{Line Following}
+\begin{frame}{Model Parameters}{Final Parameters}
   \begin{minipage}{\linewidth}
     \begin{minipage}{0.35\linewidth}
       \begin{figure}[H]
@@ -130,25 +240,9 @@
     \end{minipage}
   \end{minipage}
 \end{frame}
-
-%--Deviation equation --%
-%\begin{frame}{Steering Control of the Vehicle}{Distance model}
-%  \begin{block}{Deviation equation}
-%    \vspace{4pt}
-%    $d(t) = v \cdot \int^{t} \sin\left(\Delta\theta (t)\right) \mathrm{d}t $
-%    \vspace{4pt}
-%    \pause
-%  \end{block}
-%  \begin{block}{The idea: linearization}
-%    $ \Delta\theta \simeq 0 \Rightarrow \sin\left(\Delta\theta\right) \simeq \Delta\theta $ \\
-%    \pause
-%    $ \vdots $ \\
-%    $ D(s)= \frac{\pi}{180} \cdot v \cdot \frac{1}{s} \cdot \left(\theta_{v}(s) - \theta_{ref}(s)\right) $
-%  \end{block}
-%\end{frame}
-
-%--Complete steering model (for simulation)--%
-\begin{frame}{Steering Model and Control}{Distance model}
+%-----------------------------------------------------------------
+\subsection{Model Testing}
+\begin{frame}{Model Testing}{Linearization of the Model}
 
   $ D(s)= \frac{\pi}{180} \cdot v \cdot \frac{1}{s} \cdot \left(\theta_{v}(s) - \theta_{ref}(s)\right) $
 
@@ -158,104 +252,6 @@
   \end{figure}
 \end{frame}
 
-%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%
-\subsection{Distance Control}
-
-%--Cascade controller--%
-\begin{frame}{Steering Model and Control}{Complete Control}
-  \begin{figure}[H]
-    \centering
-    % \includegraphics[scale=0.22]{Pictures/steeringBlockCascadeControl.pdf}
-  \end{figure}
-\end{frame}
-
-%--Step-response P controller (Kp = 1)--%
-\begin{frame}{Steering Model and Control}{Distance Control}
-  \begin{figure}[H]
-    \centering
-    % \includegraphics[scale=0.3]{Pictures/distanceStep1.png}
-  \end{figure}
-\end{frame}
-
-%--Open Loop Bode plot--% 
-%\begin{frame}{Steering Control of the Vehicle}{Distance Control}
-%  \begin{figure}[H]
-%    \centering
-%    \includegraphics[scale=0.3]{Pictures/distanceBode1.png}
-%  \end{figure}
-%\end{frame}
-
-%--Step-response P controller (Kp = found value)--%
-\begin{frame}{Steering Model and Control}{Distance Control}
-  \begin{figure}[H]
-    \centering
-    % \includegraphics[scale=0.3]{Pictures/distanceStep2.png}
-  \end{figure}
-\end{frame}
-
-%%--Lead Compensator Design --%
-%\begin{frame}{Steering Control of the Vehicle}{Distance Control (Lead Compensator)}
-%  \begin{block}{Lead compensator's transfer function}
-%    $ D(s) = \frac{1 + a \cdot s}{1 + b \cdot s} = \frac{b}{a} \cdot \frac{\frac{1}{a} + s}{\frac{1}{b} + s}$
-%  \end{block}
-%  \pause
-%  \begin{block}{Design of the lead compensator}
-%    \begin{itemize}
-%      \item Pole chosen with Nyquist-Shannon sampling theorem
-%      $\Rightarrow b = 0,3 > 0,2 $ [s]
-%      \item Zero chosen with a compromise (DC gain vs. lead pole) \\
-%      $\Rightarrow a = 1 $ [s]
-%    \end{itemize}
-%  \end{block}
-%  \pause
-%  \begin{block}{Resulting transfer function}
-% $ D(s) = \frac{1 + s}{1 + 0,3 \cdot s} $
-%  \end{block}
-%\end{frame}
-
-%--Block Diagram with Lead Compensator--%
-\begin{frame}{Steering Model and Control}{Distance Control (Lead Compensator)}
-  \begin{figure}[H]
-    \centering
-    % \includegraphics[scale=0.25]{Pictures/finalDistanceController.pdf}
-  \end{figure}
-\end{frame}
-
-%--Open Loop Bode plot Lead Compensator--% 
-%\begin{frame}{Steering Control of the Vehicle}{Distance Control (Lead Compensator)}
-%  \begin{figure}[H]
-%    \centering
-%    \includegraphics[scale=0.3]{Pictures/distanceBode2.png}
-%  \end{figure}
-%\end{frame}
-
-%--Step-response with controller (Lead)--%
-\begin{frame}{Steering Model and Control}{Distance Control (Lead Compensator)}
-  \begin{figure}[H]
-    \centering
-    % \includegraphics[scale=0.3]{Pictures/distanceStep3.png}
-  \end{figure}
-\end{frame}
-
-%--Back to reality ! Oh ! there goes gravity !--%
-\begin{frame}{Steering Model and Control}{Distance Model in Reality}
-    \begin{minipage}{\linewidth}
-    \begin{minipage}{0.45\linewidth}
-      \begin{figure}[H]
-        % \includegraphics[scale=0.35]{Pictures/stepsGoT.pdf}
-        \centering
-        %\vspace{-.4cm}
-      \end{figure}
-    \end{minipage}
-    \hspace{0.03\linewidth}
-    \begin{minipage}{0.45\linewidth}
-      \begin{figure}[H]
-        % \includegraphics[scale=0.35]{Pictures/DistanceOutLoop.pdf}
-        \centering
-        %\vspace{-.4cm}
-      \end{figure}
-    \end{minipage}
-  \end{minipage}
+\begin{frame}{Model Testing}{Comparison with Real System}
+  blablah
 \end{frame}
