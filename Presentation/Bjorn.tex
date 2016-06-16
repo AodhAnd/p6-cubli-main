@@ -2,40 +2,126 @@
 %%%%%%%%%%%%%%%%%
 \section{Introduction}
 
-\begin{frame}{Introduction}{overview}
+\begin{frame}{Introduction}{Overview}
   \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.65]{Pictures/SO3.pdf}
+	%\includegraphics[scale=0.65]{Pictures/Cubli12.png}
   \end{figure}
 \end{frame}
 
-
+% ---------------------------------------------------
 \section{System Description}
 
-\begin{frame}{Introduction}{overview}
+\begin{frame}{System Description}{Overview}
+
+  \begin{minipage}{\linewidth}
+  	\begin{minipage}{0.45\linewidth}
+  		\begin{figure}[H]
+  			\includegraphics[scale=0.5]{Pictures/Cubli-3.png}
+  			\centering
+  		\end{figure}
+  	\end{minipage}
+  	\hspace{0.03\linewidth}
+  	\begin{minipage}{0.45\linewidth}
+  		\begin{figure}[H]
+  			\includegraphics[scale=0.5]{Pictures/Cubli-1.png}
+  			\centering
+  		\end{figure}
+  	\end{minipage}
+  \end{minipage}
+
+\end{frame}
+
+\begin{frame}{System Description}{Overview}
 	\begin{figure}[H]
 		\centering
-		\includegraphics[scale=0.65]{Pictures/SO3.pdf}
+		\includegraphics[scale=0.16]{Pictures/Cubli12.png}
 	\end{figure}
 \end{frame}
 
-
+% -------------------------------------------------------
 \section{Requirements}
 
-\begin{frame}{Introduction}{overview}
+\begin{frame}{Requirements}{Overview}
+\begin{itemize}
+ \item {Keep balancing from unstable equilibrium position}
+  \begin{itemize}
+	\item {Starting out from equilibrium position at null velocity}
+	\linebreak
+\end{itemize}
+\item {The prototype should be able to balance around 0 rad}
+	\begin{itemize}
+	\item {Changing angle of baseplate within reasonable range}
+	\end{itemize}
+\end{itemize}
+
+
+\end{frame}
+
+% -----------------------------------------------------------------
+\section{Model}
+
+\begin{frame}{Model}{Overview}
 	\begin{figure}[H]
 		\centering
-		\includegraphics[scale=0.65]{Pictures/SO3.pdf}
+		\includegraphics[scale=0.5]{Pictures/mechanicalSystem.pdf}
 	\end{figure}
 \end{frame}
 
-
-\section{Model}
-
-\begin{frame}{Introduction}{overview}
+\begin{frame}{Model}{freebody diagram of the wheel}
 	\begin{figure}[H]
 		\centering
-		\includegraphics[scale=0.65]{Pictures/SO3.pdf}
+		\includegraphics[scale=0.40]{Pictures/freeBodyWheel.pdf}
+	\end{figure}
+	\begin{displaymath}	
+	  \si{ J_w (\vec{\ddot{\theta}_F} + \vec{\ddot{\theta}_w}) =} 
+	  \si{ \vec{\tau_m} - B_w \vec{\dot{\theta}_w }}
+	\end{displaymath}
+\end{frame}
+
+\begin{frame}{Model}{freebody diagram of the frame}
+	\begin{figure}[H]
+		%\centering
+		\includegraphics[scale=0.40]{Pictures/freeBodyFrame.pdf}
+	\end{figure}
+	\begin{displaymath}
+	\si{J_F \vec{\ddot{\theta}_F} =}
+	\si{-B_F \vec{\dot{\theta}_F} + \vec{l_F} \times (m_F\cdot \vec{g}) + \vec{l_w} \times \vec{F} - \vec{\tau_m} + B_w \vec{\dot{\theta}_w}}
+	\end{displaymath}
+	
+	
+\end{frame}
+
+\begin{frame}{Model}{Construction}
+	\begin{figure}[H]
+		\centering
+		%\includegraphics[scale=0.65]{Pictures/SO3.pdf}
+	\end{figure}
+\end{frame}
+
+\begin{frame}{Model}{Linearization}
+	\begin{figure}[H]
+		\centering
+		%\includegraphics[scale=0.65]{Pictures/SO3.pdf}
+	\end{figure}
+\end{frame}
+
+\begin{frame}{Model}{Linearization}
+	\begin{figure}[H]
+		%\centering
+		%\includegraphics[scale=0.65]{Pictures/SO3.pdf}
+	\end{figure}
+		\begin{flalign}
+		&\si{(J_F+m_w \cdot {l_w}^{2}) \Delta \ddot{\theta}_F =}& \nonumber \\
+		&\si{-B_F \Delta \dot{\theta}_F +  ( m_F \cdot l_F + m_w \cdot l_w ) \cdot g \cdot \Delta \theta_F - \Delta \tau_m + B_w \Delta \dot{\theta}_w }& \nonumber
+		\end{flalign}
+		
+\end{frame}
+
+\begin{frame}{Model}{Blockdiagram}
+	\begin{figure}[H]
+		\centering
+		\input{Pictures/blockDiagram.tikz}
 	\end{figure}
 \end{frame}
 %\section{Hardware and Software}
