@@ -44,14 +44,16 @@
 
 \begin{frame}{Requirements}{Overview}
 \begin{itemize}
- \item {Keep balancing from unstable equilibrium position}
+ \item {Keep balancing at 0 rad when starting from equilibrium position}
   \begin{itemize}
-	\item {Starting out from equilibrium position at null velocity}
+	%\item {Starting out from equilibrium position at null velocity}
+	\item {Starting with the wheel at \si{0\ rad/s}}
 	\linebreak
 \end{itemize}
-\item {The prototype should be able to balance around 0 rad}
+\item {Still balance with changing angles of the baseplate}
 	\begin{itemize}
-	\item {Changing angle of baseplate within reasonable range}
+	\item {Baseplate moves within reasonable range}
+	\item {Use IMU to measure the angle of the frame}
 	\end{itemize}
 \end{itemize}
 
@@ -93,29 +95,79 @@
 \end{frame}
 
 \begin{frame}{Model}{Construction}
-	\begin{figure}[H]
-		\centering
-		%\includegraphics[scale=0.65]{Pictures/SO3.pdf}
-	\end{figure}
-\end{frame}
-
-\begin{frame}{Model}{Linearization}
-	\begin{figure}[H]
-		\centering
-		%\includegraphics[scale=0.65]{Pictures/SO3.pdf}
-	\end{figure}
-\end{frame}
-
-\begin{frame}{Model}{Linearization}
-	\begin{figure}[H]
-		%\centering
-		%\includegraphics[scale=0.65]{Pictures/SO3.pdf}
-	\end{figure}
 		\begin{flalign}
-		&\si{(J_F+m_w \cdot {l_w}^{2}) \Delta \ddot{\theta}_F =}& \nonumber \\
-		&\si{-B_F \Delta \dot{\theta}_F +  ( m_F \cdot l_F + m_w \cdot l_w ) \cdot g \cdot \Delta \theta_F - \Delta \tau_m + B_w \Delta \dot{\theta}_w }& \nonumber
+		\si{\vec{l_w} \times \vec{F}}	\nonumber
 		\end{flalign}
 		
+		\begin{flalign}
+		\si{\vec{l_w} \times \vec{F}} &=
+		\begin{vmatrix}
+		\ \si{\vec{\hat{i}}} \nonumber               & \si{\vec{\hat{j}}} \nonumber              & \si{\vec{\hat{k}}}\nonumber \ \ \ \\ 
+		\ \si{ l_w \cdot cos( \theta_F ) }\nonumber  & \si{ l_w \cdot sin( \theta_F ) }\nonumber & 0 \nonumber                 \ \ \ \\ 
+		\ \si{ F_x }      \nonumber                  & \si{ F_y }      \nonumber                & 0      \nonumber            \ \ \  
+		\end{vmatrix}\nonumber
+		\end{flalign}
+		
+		\begin{flalign}
+		\si{ \vec{l_w} \times \vec{F} = (-{l_w}^2 \cdot m_w \ddot{\theta}_F + l_w\ sin(\theta_F)\ m_w \cdot g ) \cdot \hat{k}} \nonumber
+		\end{flalign}
+		
+\end{frame}
+
+\begin{frame}{Model}{Construction}
+Acceleration of the frame
+\small
+	\begin{flalign}
+	 \si{\ddot{\theta}_F =} &\si{ -\frac{B_F}{J_F + m_w \cdot {l_w}^2} \cdot \dot{\theta}_F + \frac{(m_F \cdot l_F + m_w \cdot l_w) \cdot g}{J_F + m_w \cdot {l_w}^2} \cdot sin(\theta_F) }& \nonumber \\ 
+		&\si{- \frac{1}{J_F + m_w \cdot {l_w}^2} \cdot \tau_m + \frac{B_w}{J_F + m_w \cdot {l_w}^2} \cdot \dot{\theta}_w} & \nonumber
+	\end{flalign}
+	\vspace{0.5cm}
+\normalsize	
+%
+
+Acceleration of the wheel
+\small
+	\begin{flalign}
+	\si{\ddot{\theta}_w =} &\si{\frac{J_w+J_F+m_w \cdot {l_w}^{2}}{J_w \cdot (J_F+m_w \cdot {l_w}^{2})} \cdot \tau_m - \frac{(J_w+J_F+{l_w}^{2} \cdot m_w) \cdot B_w}{J_w \cdot (J_F+m_w \cdot  {l_w}^2)} \cdot \dot{\theta}_w}& \nonumber \\
+	&\si{ - \frac{(m_F \cdot l_F + m_w \cdot l_w) \cdot g}{J_F+m_w \cdot {l_w}^{2}} \cdot sin(\theta_F) + \frac{B_F}{J_F+m_w \cdot {l_w}^{2}} \cdot \dot{\theta}_F} & \nonumber
+	\end{flalign}
+\normalsize
+	
+\end{frame}
+
+\begin{frame}{Model}{Linearization}
+	\begin{itemize}
+		\item {Operating point \si{\theta_{F_0}}}
+		\begin{itemize}
+			\item {variation around operating point is \si{\Delta \theta_F}}
+		\end{itemize}
+	\end{itemize}
+	
+	\begin{flalign}
+	\si{(J_F+m_w \cdot {l_w}^{2}) (\ddot{\theta}_{F_0} + \Delta \ddot{\theta}_F )} &= \si{- B_F \cdot (\dot{\theta}_{F_0} + \Delta \dot{\theta}_F) }   \nonumber\\
+	&\ \ \ \ \si{+ (m_F \cdot l_F + m_w \cdot l_w) \cdot g \cdot sin(\theta_{F_0} + \Delta \theta_F)} \nonumber\\
+	&\ \ \ \ \si{- (\tau_{m_0} + \Delta \tau_m) + B_w \cdot (\dot{\theta}_{w_0} +\Delta \dot{\theta}_w)} \nonumber
+%	\si{(J_F+m_w \cdot {l_w}^{2}) (\ddot{\theta}_{F_0} + \Delta \ddot{\theta}_F )= f( (\dot{\theta}_{F_0} + \Delta \dot{\theta}_F), \ (\theta_{F_0} + \Delta \theta_F), \ (\tau_{m_0} + \Delta \tau_m),\  (\dot{\theta}_{w_0} + \Delta \dot{\theta}_w) ) } \nonumber
+	\end{flalign}
+	
+\end{frame}
+
+\begin{frame}{Model}{Linearization}
+	\small
+		\begin{flalign}
+%		&\si{(J_F+m_w \cdot {l_w}^{2}) \Delta \ddot{\theta}_F =} \nonumber \\
+%		&\si{-B_F \Delta \dot{\theta}_F +  ( m_F \cdot l_F + m_w \cdot l_w ) \cdot g \cdot \Delta \theta_F - \Delta \tau_m + B_w \Delta \dot{\theta}_w } \nonumber
+		\si{(J_F+m_w \cdot {l_w}^{2}) \Delta \ddot{\theta}_F = -B_F \Delta \dot{\theta}_F +  ( m_F \cdot l_F + m_w \cdot l_w ) \cdot g \cdot \Delta \theta_F - \Delta \tau_m + B_w \Delta \dot{\theta}_w } \nonumber
+		\end{flalign}
+		\normalsize
+		\begin{itemize}
+			\item {Laplace Transformation}
+		\end{itemize}
+		\small
+		\begin{flalign}
+		\si{(J_F+m_w \cdot {l_w}^{2}) \cdot \theta_F \cdot s^2}{-B_F \theta_F\cdot s +  ( m_F \cdot l_F + m_w \cdot l_w ) g \cdot \theta_F - \tau_m + B_w \theta_w\cdot s } \nonumber
+		\end{flalign}
+		\normalsize
 \end{frame}
 
 \begin{frame}{Model}{Blockdiagram}
