@@ -96,7 +96,7 @@
 
 \begin{frame}{Model}{Construction}
 		\begin{flalign}
-		\si{\vec{l_w} \times \vec{F}}
+		\si{\vec{l_w} \times \vec{F}}	\nonumber
 		\end{flalign}
 		
 		\begin{flalign}
@@ -136,22 +136,38 @@ Acceleration of the wheel
 \end{frame}
 
 \begin{frame}{Model}{Linearization}
-	
-	
-\end{frame}
-
-\begin{frame}{Model}{Linearization}
 	\begin{itemize}
 		\item {Operating point \si{\theta_{F_0}}}
 		\begin{itemize}
 			\item {variation around operating point is \si{\Delta \theta_F}}
 		\end{itemize}
 	\end{itemize}
+	
+	\begin{flalign}
+	\si{(J_F+m_w \cdot {l_w}^{2}) (\ddot{\theta}_{F_0} + \Delta \ddot{\theta}_F )} &= \si{- B_F \cdot (\dot{\theta}_{F_0} + \Delta \dot{\theta}_F) }   \nonumber\\
+	&\ \ \ \ \si{+ (m_F \cdot l_F + m_w \cdot l_w) \cdot g \cdot sin(\theta_{F_0} + \Delta \theta_F)} \nonumber\\
+	&\ \ \ \ \si{- (\tau_{m_0} + \Delta \tau_m) + B_w \cdot (\dot{\theta}_{w_0} +\Delta \dot{\theta}_w)} \nonumber
+%	\si{(J_F+m_w \cdot {l_w}^{2}) (\ddot{\theta}_{F_0} + \Delta \ddot{\theta}_F )= f( (\dot{\theta}_{F_0} + \Delta \dot{\theta}_F), \ (\theta_{F_0} + \Delta \theta_F), \ (\tau_{m_0} + \Delta \tau_m),\  (\dot{\theta}_{w_0} + \Delta \dot{\theta}_w) ) } \nonumber
+	\end{flalign}
+	
+\end{frame}
+
+\begin{frame}{Model}{Linearization}
+	\small
 		\begin{flalign}
-		&\si{(J_F+m_w \cdot {l_w}^{2}) \Delta \ddot{\theta}_F =}& \nonumber \\
-		&\si{-B_F \Delta \dot{\theta}_F +  ( m_F \cdot l_F + m_w \cdot l_w ) \cdot g \cdot \Delta \theta_F - \Delta \tau_m + B_w \Delta \dot{\theta}_w }& \nonumber
+%		&\si{(J_F+m_w \cdot {l_w}^{2}) \Delta \ddot{\theta}_F =} \nonumber \\
+%		&\si{-B_F \Delta \dot{\theta}_F +  ( m_F \cdot l_F + m_w \cdot l_w ) \cdot g \cdot \Delta \theta_F - \Delta \tau_m + B_w \Delta \dot{\theta}_w } \nonumber
+		\si{(J_F+m_w \cdot {l_w}^{2}) \Delta \ddot{\theta}_F = -B_F \Delta \dot{\theta}_F +  ( m_F \cdot l_F + m_w \cdot l_w ) \cdot g \cdot \Delta \theta_F - \Delta \tau_m + B_w \Delta \dot{\theta}_w } \nonumber
 		\end{flalign}
-		
+		\normalsize
+		\begin{itemize}
+			\item {Laplace Transformation}
+		\end{itemize}
+		\small
+		\begin{flalign}
+		\si{(J_F+m_w \cdot {l_w}^{2}) \cdot \theta_F \cdot s^2}{-B_F \theta_F\cdot s +  ( m_F \cdot l_F + m_w \cdot l_w ) g \cdot \theta_F - \tau_m + B_w \theta_w\cdot s } \nonumber
+		\end{flalign}
+		\normalsize
 \end{frame}
 
 \begin{frame}{Model}{Blockdiagram}

@@ -80,7 +80,7 @@
 
     %-- Nodes --%
     \draw%--------------------------------------------------------------
-      node at (input1)            [shift={(-0.04, -0.05 )}] {\large \textbullet}
+      %node at (input1)            [shift={(-0.04, -0.05 )}] {\large \textbullet}
       node at (output)            [shift={( 0.007, -0.05 )}] {\large \textbullet}
       node at (veloFeedbackNode)  [shift={( 0.007, -0.05 )}] {\large \textbullet}
       node at (accFeedbackNode)   [shift={( 0.007, -0.05 )}] {\large \textbullet}
