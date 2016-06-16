@@ -1,0 +1,39 @@
+\beamer@endinputifotherversion {3.36pt}
+\headcommand {\slideentry {0}{0}{1}{1/1}{}{0}}
+\headcommand {\beamer@framepages {1}{1}}
+\headcommand {\slideentry {0}{0}{2}{2/2}{}{0}}
+\headcommand {\beamer@framepages {2}{2}}
+\headcommand {\sectionentry {1}{Classical Controller Design}{3}{Classical Controller Design}{0}}
+\headcommand {\beamer@sectionpages {1}{2}}
+\headcommand {\beamer@subsectionpages {1}{2}}
+\headcommand {\beamer@subsectionentry {0}{1}{1}{3}{SISO Block Diagram}}\headcommand {\beamer@subsectionpages {3}{2}}
+\headcommand {\slideentry {1}{1}{1}{3/3}{SISO Block Diagram}{0}}
+\headcommand {\beamer@framepages {3}{3}}
+\headcommand {\beamer@subsectionentry {0}{1}{2}{4}{Stability Analysis}}\headcommand {\beamer@subsectionpages {3}{3}}
+\headcommand {\slideentry {1}{2}{1}{4/4}{Stability Analysis}{0}}
+\headcommand {\beamer@framepages {4}{4}}
+\headcommand {\slideentry {1}{2}{2}{5/5}{Stability Analysis}{0}}
+\headcommand {\beamer@framepages {5}{5}}
+\headcommand {\beamer@subsectionentry {0}{1}{3}{6}{Root Locus Design}}\headcommand {\beamer@subsectionpages {4}{5}}
+\headcommand {\slideentry {1}{3}{1}{6/6}{Root Locus Design}{0}}
+\headcommand {\beamer@framepages {6}{6}}
+\headcommand {\slideentry {1}{3}{2}{7/7}{Root Locus Design}{0}}
+\headcommand {\beamer@framepages {7}{7}}
+\headcommand {\slideentry {1}{3}{3}{8/9}{Root Locus Design}{0}}
+\headcommand {\beamer@framepages {8}{9}}
+\headcommand {\beamer@subsectionentry {0}{1}{4}{10}{Discretization}}\headcommand {\beamer@subsectionpages {6}{9}}
+\headcommand {\slideentry {1}{4}{1}{10/11}{Discretization}{0}}
+\headcommand {\beamer@framepages {10}{11}}
+\headcommand {\beamer@subsectionentry {0}{1}{5}{12}{Simulation of the Controller}}\headcommand {\beamer@subsectionpages {10}{11}}
+\headcommand {\slideentry {1}{5}{1}{12/12}{Simulation of the Controller}{0}}
+\headcommand {\beamer@framepages {12}{12}}
+\headcommand {\beamer@subsectionentry {0}{1}{6}{13}{Implementation}}\headcommand {\beamer@subsectionpages {12}{12}}
+\headcommand {\slideentry {1}{6}{1}{13/13}{Implementation}{0}}
+\headcommand {\beamer@framepages {13}{13}}
+\headcommand {\slideentry {1}{6}{2}{14/14}{Implementation}{0}}
+\headcommand {\beamer@framepages {14}{14}}
+\headcommand {\beamer@partpages {1}{14}}
+\headcommand {\beamer@subsectionpages {13}{14}}
+\headcommand {\beamer@sectionpages {3}{14}}
+\headcommand {\beamer@documentpages {14}}
+\headcommand {\def \inserttotalframenumber {11}}
