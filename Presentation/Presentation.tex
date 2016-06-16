@@ -26,7 +26,11 @@ left               % right of left position of sidebar (default is right)
 % ... and you can of course change a lot more - see the beamer user manual.
 
 \usepackage{siunitx}
-\renewcommand{\vec}[1]{\boldsymbol{\mathbf{#1}}}
+\sisetup{decimalsymbol=comma}
+\sisetup{detect-weight}
+\sisetup{abbreviations = false}
+\sisetup{exponent-product = \cdot}
+\sisetup{inter-unit-product = \ensuremath{{}\cdot{}}}
 \usepackage{amsmath}
 \usepackage{relsize}
 % Adds new math symbols
@@ -37,6 +41,7 @@ left               % right of left position of sidebar (default is right)
 \usepackage{cancel}
 \usepackage{fourier}
 \usefonttheme{professionalfonts}
+\renewcommand{\vec}[1]{\boldsymbol{\mathbf{#1}}}
 
 \usepackage{tikz}
 \usetikzlibrary{shapes,arrows}
@@ -122,9 +127,9 @@ Denmark
 	%%%%%%%%%%%%%%%%
 		
 		
-	\input{Bjorn.tex}
-	%\input{Julien.tex}
-	\input{Noelia.tex}
+	% \input{Bjorn.tex}
+	\input{Julien.tex}
+	% \input{Noelia.tex}
 	%\input{Niels.tex}
 	%\input{Mikael.tex}
 		
