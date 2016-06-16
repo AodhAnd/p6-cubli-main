@@ -125,35 +125,36 @@
 %- 5 -%
 \begin{frame}{Parameter Estimation}{Fibonacci Line Search}
   \begin{minipage}{\linewidth}
-    \begin{minipage}{0.35\linewidth}
+    \begin{minipage}{0.40\linewidth}
       \only<1>{
       \begin{figure}[H]
         \centering
-        \includegraphics[scale=0.35]{Pictures/fibonacciIntervalSystem0}
+        \includegraphics[scale=0.40]{Pictures/fibonacciIntervalSystem0}
       \end{figure}
       }
       \only<2>{
       \begin{figure}[H]
         \centering
-        \includegraphics[scale=0.35]{Pictures/fibonacciIntervalSystem1}
+        \includegraphics[scale=0.40]{Pictures/fibonacciIntervalSystem1}
       \end{figure}
       }
       \only<3>{
       \begin{figure}[H]
         \centering
-        \includegraphics[scale=0.35]{Pictures/fibonacciIntervalSystem2}
+        \includegraphics[scale=0.40]{Pictures/fibonacciIntervalSystem2}
       \end{figure}
       }
       \only<4->{
       \begin{figure}[H]
         \centering
-        \includegraphics[scale=0.35]{Pictures/fibonacciIntervalSystem3}
+        \includegraphics[scale=0.40]{Pictures/fibonacciIntervalSystem3}
       \end{figure}
       }
     \end{minipage}
-    \hspace{0.03\linewidth}
+    % \hspace{0.05\linewidth}
     \begin{minipage}{0.45\linewidth}
-      \only<5->{
+      \pause[5]
+      % \only<5->{
         \begin{itemize}
           \item Initial relations
         \end{itemize}
@@ -163,9 +164,11 @@
         \begin{displaymath}
           \si{I_n = I_{n+1},\ assuming\ I_{n+2}=0}
         \end{displaymath}
-      }\vspace{-12pt}
+      % }
+      \vspace{-12pt}
       %%
-      \only<6>{  
+      \pause[6]
+      % \only<6>{  
         \begin{itemize}
           \item Successive relations
         \end{itemize}
@@ -192,42 +195,19 @@
         \begin{displaymath}
           \si{I_{1}}\phantom{_{4}}      =  \si{ I_{2}  + I_{3} }\si{= F_n I_n }\phantom{_{k-1k+2k+3}} 
         \end{displaymath}
-      }
+      % }
     \end{minipage}
   \end{minipage}
 \end{frame}
 
 
-%--Directional Controller--%
+%----------------------------------------------------------------
 \begin{frame}{Parameter Estimation}{Forward-Backward Method}
-    \begin{figure}[H]
-    \centering
-    % \includegraphics[scale=0.13]{Pictures/basicSteeringModelWithDelayWithFeedback.pdf}
-  \end{figure}
-\end{frame}
-
-\begin{frame}{Parameter Estimation}{Implementation (1)}
-  \begin{figure}[H]
-      \centering
-      % \includegraphics[scale=0.35]{Pictures/KvKpSteeringtest.png}
-  \end{figure}
-\end{frame}
-
-\begin{frame}{Steering Model and Control}{Implementation (2)}
-  \begin{figure}[H]
-    \centering
-    % \includegraphics[scale=0.6]{Pictures/SteeringAngularTest.png}
-  \end{figure}
-\end{frame}
-
-%------------------------------------------------------------
-\subsection{Model Parameters (rev'd)}
-
-\begin{frame}{Model Parameters}{Final Parameters}
   \begin{minipage}{\linewidth}
     \begin{minipage}{0.35\linewidth}
       \begin{figure}[H]
         \centering
+        Figures showing a convex function with numbered high-low-high points
         % \includegraphics[scale=0.25]{Pictures/vehicleLineDeviation.pdf}
       \end{figure}
     \end{minipage}
@@ -235,23 +215,167 @@
     \begin{minipage}{0.45\linewidth}
       \begin{figure}[H]
         \centering
+        Figures showing a convex function with numbered high-low-high points (2nd configuration)
         % \includegraphics[scale=0.25]{Pictures/steeringDeviation.pdf}
       \end{figure}
     \end{minipage}
   \end{minipage}
 \end{frame}
+
+\begin{frame}{Parameter Estimation}{Implementation (1)}
+  \begin{minipage}{\linewidth}\centering
+    \begin{minipage}{0.35\linewidth}
+      \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.35]{Pictures/costFunctionMinimized.pdf}
+      \end{figure}
+    \end{minipage}
+    \hspace{0.15\linewidth}
+    \begin{minipage}{0.45\linewidth}
+      \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.35]{Pictures/costFunctionMinimizedContour.pdf}
+      \end{figure}
+    \end{minipage}
+  \end{minipage}
+  Animated pictures would be better...
+\end{frame}
+
+\begin{frame}{Steering Model and Control}{Implementation (2)}
+  \begin{minipage}{\linewidth}\centering
+    \begin{minipage}{0.45\linewidth}
+      \only<1->{
+      \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.35]{Pictures/resultOfGradientWithFibonacciAndForwardBackward}
+      \end{figure}
+        \begin{table}[H]\centering
+          \begin{tabular}{
+          |c
+          |S[table-figures-exponent=1,table-number-alignment=left, table-figures-integer=1]%@{\,}
+          |s[table-unit-alignment = left,table-column-width=52pt]|}
+            % \hline
+              % \textbf{Parameter}  & \multicolumn{1}{c|}{\textbf{Value}} & \multicolumn{1}{c|}{\textbf{Unit}}\\
+            \hline%------------------------------------------------------------------
+              \si{J_F}            & 4.8e-3 & \kilo\gram\meter\squared         \\%& -\\
+            % \hline%------------------------------------------------------------------
+              \si{B_F}            & 7.8e-3 & \newton\metre\second\per\radian            \\%& -\\
+            \hline%------------------------------------------------------------------
+          \end{tabular}
+        \end{table}
+      }
+    \end{minipage}
+    \hspace{0.05\linewidth}
+    \begin{minipage}{0.45\linewidth}
+      % \only<2->{
+      \pause[2]
+        \begin{figure}[H]
+          \centering
+          \includegraphics[scale=0.35]{Pictures/SenseToolParameterEstimation}
+        \end{figure}
+        \begin{table}[H]\centering
+          \begin{tabular}{
+          |c
+          |S[table-figures-exponent=1,table-number-alignment=left, table-figures-integer=1]%@{\,}
+          |s[table-unit-alignment = left,table-column-width=52pt]|}
+            % \hline
+              % \textbf{Parameter}  & \multicolumn{1}{c|}{\textbf{Value}} & \multicolumn{1}{c|}{\textbf{Unit}}\\
+            \hline%------------------------------------------------------------------
+              \si{J_F}            & 4.8e-3 & \kilo\gram\meter\squared             \\%& -\\
+            % \hline%------------------------------------------------------------------
+              \si{B_F}            & 7.7e-3 & \newton\metre\second\per\radian            \\%& -\\
+            \hline%------------------------------------------------------------------
+          \end{tabular}
+        \end{table}
+      % }
+    \end{minipage}
+  \end{minipage}
+\end{frame}
+
+%------------------------------------------------------------
+\subsection{Model Parameters (rev'd)}
+
+\begin{frame}{Model Parameters}{Final Parameters}
+  \begin{table}[H]\centering
+  \begin{tabular}{
+  |c
+  |S[
+    table-figures-exponent=2,
+    % table-column-width=60pt
+    % table-figures-integer=2,
+    % table-number-alignment=right
+    ]
+  |s[table-unit-alignment = left]|
+  }
+    \hline
+      \textbf{Parameter}  & \multicolumn{1}{c|}{\textbf{Value}} & \multicolumn{1}{c|}{\textbf{Unit}}\\
+    \hline%------------------------------------------------------------------
+      \si{m_W}            & 0.222                               & \kilo\gram\\
+    % \hline%------------------------------------------------------------------
+      \si{l_W}            & 0.093                               & \metre\\
+    % \hline%------------------------------------------------------------------
+      \si{J_W}            & 0.601e-3                            & \kilo\gram\meter\squared\\
+    % \hline%------------------------------------------------------------------
+      \si{B_W}            & 17.03e-6                            & \newton\metre\second\per\radian\\
+    % \hline%------------------------------------------------------------------
+      \si{m_F}            & 0.548                               & \kilo\gram\\
+    % \hline%------------------------------------------------------------------
+      \si{l_F}            & 0.08498                             & \metre\\
+    % \hline%------------------------------------------------------------------
+      \si{J_F}            & 4.8e-3                              & \kilo\gram\meter\squared \\
+    % \hline%------------------------------------------------------------------
+      \si{B_F}            & 7.7e-3                              & \newton\metre\second\per\radian\\
+    \hline%------------------------------------------------------------------
+  \end{tabular}
+  \end{table}
+\end{frame}
 %-----------------------------------------------------------------
 \subsection{Model Testing}
 \begin{frame}{Model Testing}{Linearization of the Model}
-
-  $ D(s)= \frac{\pi}{180} \cdot v \cdot \frac{1}{s} \cdot \left(\theta_{v}(s) - \theta_{ref}(s)\right) $
-
-  \begin{figure}[H]
-    \centering
-    % \includegraphics[scale=0.27]{Pictures/steeringModelWithLineFollowing.pdf}
-  \end{figure}
+  \begin{itemize}
+    \item Plant transfer function
+  \end{itemize}
+  \begin{displaymath}
+    \si{G(s) = \frac{-148,8 \cdot s}{s^3 + 1,177 \cdot s^2 - 98,19 \cdot s - 2,783}}
+  \end{displaymath}
+  \pause
+  \begin{itemize}
+    \item Linear approximation
+  \end{itemize}
+  \begin{minipage}{\linewidth}\centering
+    \begin{minipage}{0.45\linewidth}
+      \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.33]{Pictures/LinearizedVSNonlinear}
+      \end{figure}
+    \end{minipage}
+    % \hspace{0.05\linewidth}
+    \begin{minipage}{0.45\linewidth}
+      \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.33]{Pictures/LinearizedVSNonlinear_0}
+      \end{figure}
+    \end{minipage}
+  \end{minipage}
 \end{frame}
 
 \begin{frame}{Model Testing}{Comparison with Real System}
-  blablah
+  \begin{itemize}
+    \item Fall tests
+  \end{itemize}
+  \begin{minipage}{\linewidth}\centering
+    \begin{minipage}{0.45\linewidth}
+      \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.33]{Pictures/FallTestComparison}
+      \end{figure}
+    \end{minipage}
+    % \hspace{0.05\linewidth}
+    \begin{minipage}{0.45\linewidth}
+      \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.33]{Pictures/FallTestComparison10deg}
+      \end{figure}
+    \end{minipage}
+  \end{minipage}
 \end{frame}
