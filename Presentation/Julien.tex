@@ -1,35 +1,34 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%% Julien %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%% Steering Control of the Vehicle %%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%% Parameters of the System %%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%
-\section{Steering Model and Control}
+\section{Parameters}
 
-%%%%%%%%%%%%%%%%
-\subsection{Steering Plant}
-%--Next--%
-\begin{frame}{Steering Control of the Vehicle}{Steering Plant}
-
-    \begin{figure}[H]
-    \centering
-    \includegraphics[scale=0.5]{Pictures/steeringMechanical.pdf}
-  \end{figure}  
-  %\begin{itemize}
-   % \item<1-> Example
-   % \item<2-> of
-   % \item<3-> progressive
-   % \item<4-> bullet points
-  %\end{itemize}
+\begin{frame}{Model Parameters}{List of Parameters}
+  \begin{table}[H]\centering
+  \begin{tabular}{|c|S[table-figures-exponent=1]@{\,}|s[table-unit-alignment = left]|}
+    \hline
+      \textbf{Parameter}  & \multicolumn{1}{c|}{\textbf{Value}} & \multicolumn{1}{c|}{\textbf{Unit}}\\
+    \hline%------------------------------------------------------------------
+      \si{m_W}            & 0.222                               & \kilo\gram\\
+    % \hline%------------------------------------------------------------------
+      \si{l_W}            & 0.093                               & \metre\\
+    % \hline%------------------------------------------------------------------
+      \si{J_W}            & 0.601e-3                            & \kilo\gram\meter\squared\\
+    % \hline%------------------------------------------------------------------
+      \si{B_W}            & 17.03e-6                            & \newton\metre\second\per\radian\\
+    % \hline%------------------------------------------------------------------
+      \si{m_F}            & \multicolumn{1}{c|}{?}              & -\\
+    % \hline%------------------------------------------------------------------
+      \si{l_F}            & \multicolumn{1}{c|}{?}              & -\\
+    % \hline%------------------------------------------------------------------
+      \si{J_F}            & \multicolumn{1}{c|}{?}              & -\\
+    % \hline%------------------------------------------------------------------
+      \si{B_F}            & \multicolumn{1}{c|}{?}              & -\\
+    \hline%------------------------------------------------------------------
+  \end{tabular}
+  \end{table}
 \end{frame}
-%--Next--%
-\begin{frame}{Steering Model and Control}{Steering Plant}
 
-    \begin{figure}[H]
-    \centering
-    \includegraphics[scale=0.4]{Pictures/brakeDescription.pdf}
-  \end{figure}  
-\end{frame} 
-%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%
 \subsection{Directional Model}
 %--Next--%
 %\begin{frame}{Steering Control of the Vehicle}{Directional Model Enhancement}
@@ -50,7 +49,7 @@
 
     \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.25]{Pictures/basicSteeringModelWithDelay.pdf}
+    % \includegraphics[scale=0.25]{Pictures/basicSteeringModelWithDelay.pdf}
   \end{figure}
 \end{frame}
 %--Next--%
@@ -58,7 +57,7 @@
 
     \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.5]{Pictures/plotVerificationSteeringPlant.png}
+    % \includegraphics[scale=0.5]{Pictures/plotVerificationSteeringPlant.png}
   \end{figure}
 \end{frame}
 %--Next--%
@@ -66,7 +65,7 @@
 
     \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.5]{Pictures/plotVerificationSteeringPlantZoom.png}
+    % \includegraphics[scale=0.5]{Pictures/plotVerificationSteeringPlantZoom.png}
   \end{figure}
 \end{frame}
 
@@ -79,7 +78,7 @@
 \begin{frame}{Steering Model and Control}{Directional Controller (P-Controller)}
     \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.13]{Pictures/basicSteeringModelWithDelayWithFeedback.pdf}
+    % \includegraphics[scale=0.13]{Pictures/basicSteeringModelWithDelayWithFeedback.pdf}
   \end{figure}
 \end{frame}
 
@@ -92,20 +91,20 @@
 %    \pause
 %    …\\\vspace{4pt}
 %    $\frac{\theta_{actual}}{\theta_{wanted}} = \frac{K_p \cdot \frac{K_{steering}}{\lambda}}{s^2 + \frac{1}{\lambda} \cdot s + \frac{K_p \cdot K_{steering}}{\lambda}} $ (standard form)
-%  \end{block}
+%  \end{block}includegraphics
 %\end{frame}
 
 \begin{frame}{Steering Model and Control}{Directional Controller (P-Controller)}
   \begin{figure}[H]
       \centering
-      \includegraphics[scale=0.35]{Pictures/KvKpSteeringtest.png}
+      % \includegraphics[scale=0.35]{Pictures/KvKpSteeringtest.png}
   \end{figure}
 \end{frame}
 
 \begin{frame}{Steering Model and Control}{Directional Controller Verification}
   \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.6]{Pictures/SteeringAngularTest.png}
+    % \includegraphics[scale=0.6]{Pictures/SteeringAngularTest.png}
   \end{figure}
 \end{frame}
 
@@ -119,14 +118,14 @@
     \begin{minipage}{0.35\linewidth}
       \begin{figure}[H]
         \centering
-        \includegraphics[scale=0.25]{Pictures/vehicleLineDeviation.pdf}
+        % \includegraphics[scale=0.25]{Pictures/vehicleLineDeviation.pdf}
       \end{figure}
     \end{minipage}
     \hspace{0.03\linewidth}
     \begin{minipage}{0.45\linewidth}
       \begin{figure}[H]
         \centering
-        \includegraphics[scale=0.25]{Pictures/steeringDeviation.pdf}
+        % \includegraphics[scale=0.25]{Pictures/steeringDeviation.pdf}
       \end{figure}
     \end{minipage}
   \end{minipage}
@@ -155,7 +154,7 @@
 
   \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.27]{Pictures/steeringModelWithLineFollowing.pdf}
+    % \includegraphics[scale=0.27]{Pictures/steeringModelWithLineFollowing.pdf}
   \end{figure}
 \end{frame}
 
@@ -168,7 +167,7 @@
 \begin{frame}{Steering Model and Control}{Complete Control}
   \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.22]{Pictures/steeringBlockCascadeControl.pdf}
+    % \includegraphics[scale=0.22]{Pictures/steeringBlockCascadeControl.pdf}
   \end{figure}
 \end{frame}
 
@@ -176,7 +175,7 @@
 \begin{frame}{Steering Model and Control}{Distance Control}
   \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.3]{Pictures/distanceStep1.png}
+    % \includegraphics[scale=0.3]{Pictures/distanceStep1.png}
   \end{figure}
 \end{frame}
 
@@ -192,7 +191,7 @@
 \begin{frame}{Steering Model and Control}{Distance Control}
   \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.3]{Pictures/distanceStep2.png}
+    % \includegraphics[scale=0.3]{Pictures/distanceStep2.png}
   \end{figure}
 \end{frame}
 
@@ -220,7 +219,7 @@
 \begin{frame}{Steering Model and Control}{Distance Control (Lead Compensator)}
   \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.25]{Pictures/finalDistanceController.pdf}
+    % \includegraphics[scale=0.25]{Pictures/finalDistanceController.pdf}
   \end{figure}
 \end{frame}
 
@@ -236,7 +235,7 @@
 \begin{frame}{Steering Model and Control}{Distance Control (Lead Compensator)}
   \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.3]{Pictures/distanceStep3.png}
+    % \includegraphics[scale=0.3]{Pictures/distanceStep3.png}
   \end{figure}
 \end{frame}
 
@@ -245,7 +244,7 @@
     \begin{minipage}{\linewidth}
     \begin{minipage}{0.45\linewidth}
       \begin{figure}[H]
-        \includegraphics[scale=0.35]{Pictures/stepsGoT.pdf}
+        % \includegraphics[scale=0.35]{Pictures/stepsGoT.pdf}
         \centering
         %\vspace{-.4cm}
       \end{figure}
@@ -253,7 +252,7 @@
     \hspace{0.03\linewidth}
     \begin{minipage}{0.45\linewidth}
       \begin{figure}[H]
-        \includegraphics[scale=0.35]{Pictures/DistanceOutLoop.pdf}
+        % \includegraphics[scale=0.35]{Pictures/DistanceOutLoop.pdf}
         \centering
         %\vspace{-.4cm}
       \end{figure}
