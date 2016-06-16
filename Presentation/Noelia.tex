@@ -25,7 +25,7 @@
 \subsection{Nyquist Plot}
 \begin{frame}{Stability Analysis}{Nyquist Plot}
 \begin{figure}
-		\includegraphics[scale=.56]{Pictures/nyquistCubli}
+		\includegraphics[scale=.5]{Pictures/nyquistCubli}
 		\centering
 \end{figure}
 	
@@ -35,16 +35,22 @@
 %%%%%%%%%%%%%%%%%
 \section{Classical Controller Design}
 
-\subsection{Root Locus}
-\begin{frame}{Classical Controller Design}{}	
+\subsection{SISO Block Diagram}
+\begin{frame}{Classical Controller Design}{SISO Block Diagram}	
 \begin{figure}
 	\input{Pictures/blockDiagramController.tikz}
 \end{figure}
+\vspace{.2cm}
+
+\centering
+U(s) refers to the desired angular position of the frame \linebreak
+\linebreak
+Y(s) refers to the actual angular position of the frame
+
 \end{frame}
 
-\subsection{Root Locus}
-\begin{frame}{Classical Controller Design}{}
-	
+\subsection{}
+\begin{frame}{Classical Controller Design}{}	
 	\begin{figure}
 		\input{Pictures/blockDiagramController.tikz}
 	\end{figure}
@@ -53,24 +59,32 @@
 \subsection{Final Controller}
 \begin{frame}{Root Locus Designed Controller}{Final Root Locus}
 \begin{figure}
-	\includegraphics[scale=.56]{Pictures/RLController}
+	\includegraphics[scale=.435]{Pictures/RLController}
 	\centering
-\end{figure}		
+\end{figure}	
+%
+\pause
+%
+\begin{displaymath}
+	D(s)\ =\ -4582,2 \cdot \frac{(s + 9,488)\cdot (s + 1,599)}{(s - 5,54) \cdot (s + 100) \cdot (s + 200)} \nonumber
+\end{displaymath}
 \end{frame}
 
-\begin{frame}{Root Locus Designed Controller}{}
+\subsection{Discretization}
+\begin{frame}{Root Locus Designed Controller}{Discretization}
 	
-	\begin{figure}
-		\input{Pictures/blockDiagramController.tikz}
-	\end{figure}
+\begin{figure}
+	\includegraphics[scale=.435]{Pictures/bodeOL}
+\end{figure}
 	
+\begin{displaymath}
+	D(z)\ =\ \frac{\tau_{m,w}(z)}{e_{\theta}(z)}\  = \frac{-8,314 + 7,422 \cdot z^{-1} + 8,302 \cdot z^{-2} - 7,434 \cdot z^{-3}}{1 - 1,382 \cdot z^{-1} + 0,3415 \cdot z^{-2} + 0,001638 \cdot z^{-3}}  \nonumber 
+\end{displaymath}
 \end{frame}
 
-\begin{frame}{Root Locus Designed Controller}{}
-	
-	\begin{figure}
-		\input{Pictures/blockDiagramController.tikz}
-	\end{figure}
-	
+\begin{frame}{Root Locus Designed Controller}{}	
+\begin{figure}
+	\input{Pictures/blockDiagramController.tikz}
+\end{figure}
 \end{frame}
 %%%%%%%%%%%%%%%%%

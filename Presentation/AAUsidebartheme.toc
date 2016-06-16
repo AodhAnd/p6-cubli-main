@@ -4,6 +4,6 @@
 \beamer@subsectionintoc {1}{1}{Root Locus}{3}{0}{1}
 \beamer@subsectionintoc {1}{2}{Nyquist Plot}{4}{0}{1}
 \beamer@sectionintoc {2}{Classical Controller Design}{5}{0}{2}
-\beamer@subsectionintoc {2}{1}{Root Locus}{5}{0}{2}
-\beamer@subsectionintoc {2}{2}{Root Locus}{6}{0}{2}
+\beamer@subsectionintoc {2}{1}{SISO Block Diagram}{5}{0}{2}
 \beamer@subsectionintoc {2}{3}{Final Controller}{7}{0}{2}
+\beamer@subsectionintoc {2}{4}{Discretization}{9}{0}{2}

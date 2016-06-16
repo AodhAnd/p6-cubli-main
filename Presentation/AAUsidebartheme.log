@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2016.2.8)  15 JUN 2016 14:59
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2016.2.8)  15 JUN 2016 15:46
 entering extended mode
 **./AAUsidebartheme.tex
 (AAUsidebartheme.tex
@@ -1842,72 +1842,72 @@ Package: helvet 2005/04/12 PSNFSS-v9.2a (WaS)
 )
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\\' on input line 79.
+(hyperref)                removing `\\' on input line 80.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\\' on input line 79.
+(hyperref)                removing `\\' on input line 80.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\\' on input line 79.
+(hyperref)                removing `\\' on input line 80.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\\' on input line 79.
+(hyperref)                removing `\\' on input line 80.
 
 (AAUsidebartheme.aux)
 \openout1 = `AAUsidebartheme.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 109.
-LaTeX Font Info:    ... okay on input line 109.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 109.
-LaTeX Font Info:    ... okay on input line 109.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 109.
-LaTeX Font Info:    ... okay on input line 109.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 109.
-LaTeX Font Info:    ... okay on input line 109.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 109.
-LaTeX Font Info:    ... okay on input line 109.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 109.
-LaTeX Font Info:    ... okay on input line 109.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 109.
-LaTeX Font Info:    ... okay on input line 109.
-LaTeX Font Info:    Checking defaults for FML/futm/m/it on input line 109.
-LaTeX Font Info:    Try loading font information for FML+futm on input line 109
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 110.
+LaTeX Font Info:    ... okay on input line 110.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 110.
+LaTeX Font Info:    ... okay on input line 110.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 110.
+LaTeX Font Info:    ... okay on input line 110.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 110.
+LaTeX Font Info:    ... okay on input line 110.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 110.
+LaTeX Font Info:    ... okay on input line 110.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 110.
+LaTeX Font Info:    ... okay on input line 110.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 110.
+LaTeX Font Info:    ... okay on input line 110.
+LaTeX Font Info:    Checking defaults for FML/futm/m/it on input line 110.
+LaTeX Font Info:    Try loading font information for FML+futm on input line 110
 .
 
 ("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex\latex\fourier\fmlfutm.
 fd"
 File: fmlfutm.fd 2004/10/30 Fontinst v1.926 font definitions for FML/futm.
 )
-LaTeX Font Info:    ... okay on input line 109.
-LaTeX Font Info:    Checking defaults for FMS/futm/m/n on input line 109.
-LaTeX Font Info:    Try loading font information for FMS+futm on input line 109
+LaTeX Font Info:    ... okay on input line 110.
+LaTeX Font Info:    Checking defaults for FMS/futm/m/n on input line 110.
+LaTeX Font Info:    Try loading font information for FMS+futm on input line 110
 .
 
 ("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex\latex\fourier\fmsfutm.
 fd"
 File: fmsfutm.fd 2004/10/30 Fontinst v1.926 font definitions for FMS/futm.
 )
-LaTeX Font Info:    ... okay on input line 109.
-LaTeX Font Info:    Checking defaults for FMX/futm/m/n on input line 109.
-LaTeX Font Info:    Try loading font information for FMX+futm on input line 109
+LaTeX Font Info:    ... okay on input line 110.
+LaTeX Font Info:    Checking defaults for FMX/futm/m/n on input line 110.
+LaTeX Font Info:    Try loading font information for FMX+futm on input line 110
 .
 
 ("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex\latex\fourier\fmxfutm.
 fd"
 File: fmxfutm.fd futm-extension
 )
-LaTeX Font Info:    ... okay on input line 109.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 109.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 109.
+LaTeX Font Info:    ... okay on input line 110.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 110.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 110.
 
  ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\ts1cmr.fd"
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 109.
-LaTeX Font Info:    Try loading font information for T1+phv on input line 109.
+LaTeX Font Info:    ... okay on input line 110.
+LaTeX Font Info:    Try loading font information for T1+phv on input line 110.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\psnfss\t1phv.fd"
 File: t1phv.fd 2001/06/04 scalable font definitions for T1/phv.
@@ -1961,7 +1961,7 @@ File: t1phv.fd 2001/06/04 scalable font definitions for T1/phv.
 \everyMPtoPDFconversion=\toks49
 ) ABD: EveryShipout initializing macros
 \AtBeginShipoutBox=\box101
-Package hyperref Info: Link coloring OFF on input line 109.
+Package hyperref Info: Link coloring OFF on input line 110.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyperref\nameref.sty"
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
@@ -1971,9 +1971,9 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count283
 )
-LaTeX Info: Redefining \ref on input line 109.
-LaTeX Info: Redefining \pageref on input line 109.
-LaTeX Info: Redefining \nameref on input line 109.
+LaTeX Info: Redefining \ref on input line 110.
+LaTeX Info: Redefining \pageref on input line 110.
+LaTeX Info: Redefining \nameref on input line 110.
 
 (AAUsidebartheme.out) (AAUsidebartheme.out)
 \@outlinefile=\write5
@@ -2004,7 +2004,7 @@ Dictionary: translator-numbers-dictionary, Language: English
 slator-theorem-dictionary\translator-theorem-dictionary-English.dict"
 Dictionary: translator-theorem-dictionary, Language: English 
 )
-LaTeX Info: Redefining \includegraphics on input line 109.
+LaTeX Info: Redefining \includegraphics on input line 110.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\siunitx\siunitx-abbreviations.cfg
 "
@@ -2015,51 +2015,51 @@ File: AAUgraphics/aau_logo_new_circle.pdf Graphic file (type pdf)
 
 <use AAUgraphics/aau_logo_new_circle.pdf>
 Package pdftex.def Info: AAUgraphics/aau_logo_new_circle.pdf used on input line
- 109.
+ 110.
 (pdftex.def)             Requested size: 40.49973pt x 41.0137pt.
 \c__siunitx_mathsf_int=\count284
-LaTeX Font Info:    Try loading font information for T1+futs on input line 109.
+LaTeX Font Info:    Try loading font information for T1+futs on input line 110.
 
 
 ("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex\latex\fourier\t1futs.f
 d"
 File: t1futs.fd 2004/03/02 Fontinst v1.926 font definitions for T1/futs.
 )
-LaTeX Font Info:    Try loading font information for FML+futmi on input line 10
-9.
+LaTeX Font Info:    Try loading font information for FML+futmi on input line 11
+0.
 
 ("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex\latex\fourier\fmlfutmi
 .fd"
 File: fmlfutmi.fd 2004/10/30 Fontinst v1.926 font definitions for FML/futmi.
 )
 LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
-(Font)              scaled to size 9.19998pt on input line 109.
+(Font)              scaled to size 9.19998pt on input line 110.
 LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
-(Font)              scaled to size 6.99199pt on input line 109.
+(Font)              scaled to size 6.99199pt on input line 110.
 LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
-(Font)              scaled to size 5.51999pt on input line 109.
-LaTeX Font Info:    Try loading font information for U+msa on input line 109.
+(Font)              scaled to size 5.51999pt on input line 110.
+LaTeX Font Info:    Try loading font information for U+msa on input line 110.
  ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 109.
+LaTeX Font Info:    Try loading font information for U+msb on input line 110.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Font shape `U/futm/m/n' will be
-(Font)              scaled to size 9.19998pt on input line 109.
+(Font)              scaled to size 9.19998pt on input line 110.
 LaTeX Font Info:    Font shape `U/futm/m/n' will be
-(Font)              scaled to size 6.99199pt on input line 109.
+(Font)              scaled to size 6.99199pt on input line 110.
 LaTeX Font Info:    Font shape `U/futm/m/n' will be
-(Font)              scaled to size 5.51999pt on input line 109.
+(Font)              scaled to size 5.51999pt on input line 110.
 \c__siunitx_mathtt_int=\count285
 
 <AAUgraphics/aau_waves.pdf, id=14, 845.1575pt x 598.235pt>
 File: AAUgraphics/aau_waves.pdf Graphic file (type pdf)
 
 <use AAUgraphics/aau_waves.pdf>
-Package pdftex.def Info: AAUgraphics/aau_waves.pdf used on input line 114.
+Package pdftex.def Info: AAUgraphics/aau_waves.pdf used on input line 115.
 (pdftex.def)             Requested size: 364.1973pt x 273.1467pt.
  [1
 
@@ -2067,13 +2067,13 @@ Package pdftex.def Info: AAUgraphics/aau_waves.pdf used on input line 114.
 hics/aau_waves.pdf, page is rotated 270 degrees> <./AAUgraphics/aau_logo_new.pd
 f>] (AAUsidebartheme.toc)
 LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
-(Font)              scaled to size 13.24796pt on input line 121.
+(Font)              scaled to size 13.24796pt on input line 122.
 LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
-(Font)              scaled to size 7.35999pt on input line 121.
+(Font)              scaled to size 7.35999pt on input line 122.
 LaTeX Font Info:    Font shape `U/futm/m/n' will be
-(Font)              scaled to size 13.24796pt on input line 121.
+(Font)              scaled to size 13.24796pt on input line 122.
 LaTeX Font Info:    Font shape `U/futm/m/n' will be
-(Font)              scaled to size 7.35999pt on input line 121.
+(Font)              scaled to size 7.35999pt on input line 122.
 
 Overfull \hbox (1.05998pt too wide) has occurred while \output is active
 [][][] [][]
@@ -2087,7 +2087,7 @@ Overfull \hbox (1.05998pt too wide) has occurred while \output is active
 File: AAUgraphics/aau_logo_new_circle.pdf Graphic file (type pdf)
 <use AAUgraphics/aau_logo_new_circle.pdf>
 Package pdftex.def Info: AAUgraphics/aau_logo_new_circle.pdf used on input line
- 121.
+ 122.
 (pdftex.def)             Requested size: 40.49973pt x 41.0137pt.
  [2
 
@@ -2142,7 +2142,7 @@ File: Pictures/nyquistCubli.pdf Graphic file (type pdf)
 
 <use Pictures/nyquistCubli.pdf>
 Package pdftex.def Info: Pictures/nyquistCubli.pdf used on input line 32.
-(pdftex.def)             Requested size: 161.88368pt x 148.39339pt.
+(pdftex.def)             Requested size: 144.53964pt x 132.49467pt.
 
 Overfull \hbox (1.05998pt too wide) has occurred while \output is active
 [][][] [][]
@@ -2179,7 +2179,7 @@ Overfull \hbox (1.05998pt too wide) has occurred while \output is active
 File: AAUgraphics/aau_logo_new_circle.pdf Graphic file (type pdf)
 <use AAUgraphics/aau_logo_new_circle.pdf>
 Package pdftex.def Info: AAUgraphics/aau_logo_new_circle.pdf used on input line
- 43.
+ 50.
 (pdftex.def)             Requested size: 40.49973pt x 41.0137pt.
  [5
 
@@ -2197,21 +2197,17 @@ Overfull \hbox (1.05998pt too wide) has occurred while \output is active
 File: AAUgraphics/aau_logo_new_circle.pdf Graphic file (type pdf)
 <use AAUgraphics/aau_logo_new_circle.pdf>
 Package pdftex.def Info: AAUgraphics/aau_logo_new_circle.pdf used on input line
- 51.
+ 57.
 (pdftex.def)             Requested size: 40.49973pt x 41.0137pt.
  [6
 
 ]
-<Pictures/RLController.pdf, id=208, 452.69125pt x 375.4025pt>
+<Pictures/RLController.pdf, id=211, 452.69125pt x 375.4025pt>
 File: Pictures/RLController.pdf Graphic file (type pdf)
 
 <use Pictures/RLController.pdf>
-Package pdftex.def Info: Pictures/RLController.pdf used on input line 59.
-(pdftex.def)             Requested size: 253.50537pt x 210.22397pt.
-
-Overfull \vbox (0.57735pt too high) detected at line 59
- []
-
+Package pdftex.def Info: Pictures/RLController.pdf used on input line 71.
+(pdftex.def)             Requested size: 196.9191pt x 163.29877pt.
 
 Overfull \hbox (1.05998pt too wide) has occurred while \output is active
 [][][] [][]
@@ -2225,12 +2221,17 @@ Overfull \hbox (1.05998pt too wide) has occurred while \output is active
 File: AAUgraphics/aau_logo_new_circle.pdf Graphic file (type pdf)
 <use AAUgraphics/aau_logo_new_circle.pdf>
 Package pdftex.def Info: AAUgraphics/aau_logo_new_circle.pdf used on input line
- 59.
+ 71.
 (pdftex.def)             Requested size: 40.49973pt x 41.0137pt.
  [7
 
  <./Pictures/RLController.pdf>]
-(Pictures/blockDiagramController.tikz)
+File: Pictures/RLController.pdf Graphic file (type pdf)
+
+<use Pictures/RLController.pdf>
+Package pdftex.def Info: Pictures/RLController.pdf used on input line 71.
+(pdftex.def)             Requested size: 196.9191pt x 163.29877pt.
+
 Overfull \hbox (1.05998pt too wide) has occurred while \output is active
 [][][] [][]
  []
@@ -2243,11 +2244,35 @@ Overfull \hbox (1.05998pt too wide) has occurred while \output is active
 File: AAUgraphics/aau_logo_new_circle.pdf Graphic file (type pdf)
 <use AAUgraphics/aau_logo_new_circle.pdf>
 Package pdftex.def Info: AAUgraphics/aau_logo_new_circle.pdf used on input line
- 67.
+ 71.
 (pdftex.def)             Requested size: 40.49973pt x 41.0137pt.
  [8
 
 ]
+<Pictures/bodeOL.pdf, id=314, 424.58624pt x 296.10625pt>
+File: Pictures/bodeOL.pdf Graphic file (type pdf)
+
+<use Pictures/bodeOL.pdf>
+Package pdftex.def Info: Pictures/bodeOL.pdf used on input line 83.
+(pdftex.def)             Requested size: 184.69353pt x 128.80518pt.
+
+Overfull \hbox (1.05998pt too wide) has occurred while \output is active
+[][][] [][]
+ []
+
+
+Overfull \hbox (1.05998pt too wide) has occurred while \output is active
+[][][] [][]
+ []
+
+File: AAUgraphics/aau_logo_new_circle.pdf Graphic file (type pdf)
+<use AAUgraphics/aau_logo_new_circle.pdf>
+Package pdftex.def Info: AAUgraphics/aau_logo_new_circle.pdf used on input line
+ 83.
+(pdftex.def)             Requested size: 40.49973pt x 41.0137pt.
+ [9
+
+ <./Pictures/bodeOL.pdf>]
 (Pictures/blockDiagramController.tikz)
 Overfull \hbox (1.05998pt too wide) has occurred while \output is active
 [][][] [][]
@@ -2261,9 +2286,9 @@ Overfull \hbox (1.05998pt too wide) has occurred while \output is active
 File: AAUgraphics/aau_logo_new_circle.pdf Graphic file (type pdf)
 <use AAUgraphics/aau_logo_new_circle.pdf>
 Package pdftex.def Info: AAUgraphics/aau_logo_new_circle.pdf used on input line
- 75.
+ 89.
 (pdftex.def)             Requested size: 40.49973pt x 41.0137pt.
- [9
+ [10
 
 ])
 \tf@nav=\write6
@@ -2275,32 +2300,34 @@ Package pdftex.def Info: AAUgraphics/aau_logo_new_circle.pdf used on input line
 \tf@snm=\write8
 \openout8 = `AAUsidebartheme.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 132.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 132.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 133.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 133.
  (AAUsidebartheme.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 132.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 132.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 133.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 133.
 Package rerunfilecheck Info: File `AAUsidebartheme.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 132.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 133.
  ) 
 Here is how much of TeX's memory you used:
- 38801 strings out of 493634
- 871980 string characters out of 3134424
- 997450 words of memory out of 3000000
- 41445 multiletter control sequences out of 15000+200000
- 64186 words of font info for 84 fonts, out of 3000000 for 9000
+ 38830 strings out of 493634
+ 872425 string characters out of 3134424
+ 998528 words of memory out of 3000000
+ 41461 multiletter control sequences out of 15000+200000
+ 66986 words of font info for 95 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
- 60i,20n,71p,10416b,1071s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 60i,20n,71p,10416b,1077s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Users/
 USUARIO/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/fourier/fourier-me
 x.pfb><C:/Users/USUARIO/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/fo
-urier/fourier-ms.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/adobe/utopi
-a/putr8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/adobe/utopia/putri8
-a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvr8a.pfb>
-Output written on AAUsidebartheme.pdf (9 pages, 182807 bytes).
+urier/fourier-mlit.pfb><C:/Users/USUARIO/AppData/Local/Programs/MiKTeX 2.9/font
+s/type1/public/fourier/fourier-ms.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/
+type1/adobe/utopia/putr8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/ad
+obe/utopia/putri8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/helve
+tic/uhvr8a.pfb>
+Output written on AAUsidebartheme.pdf (10 pages, 221598 bytes).
 PDF statistics:
- 345 PDF objects out of 1000 (max. 8388607)
- 26 named destinations out of 1000 (max. 500000)
- 78 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 509 PDF objects out of 1000 (max. 8388607)
+ 29 named destinations out of 1000 (max. 500000)
+ 83 words of extra memory for PDF output out of 10000 (max. 10000000)
 

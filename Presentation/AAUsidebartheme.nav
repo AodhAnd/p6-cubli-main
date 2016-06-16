@@ -15,21 +15,22 @@
 \headcommand {\sectionentry {2}{Classical Controller Design}{5}{Classical Controller Design}{0}}
 \headcommand {\beamer@sectionpages {3}{4}}
 \headcommand {\beamer@subsectionpages {4}{4}}
-\headcommand {\beamer@subsectionentry {0}{2}{1}{5}{Root Locus}}\headcommand {\beamer@subsectionpages {5}{4}}
-\headcommand {\slideentry {2}{1}{1}{5/5}{Root Locus}{0}}
+\headcommand {\beamer@subsectionentry {0}{2}{1}{5}{SISO Block Diagram}}\headcommand {\beamer@subsectionpages {5}{4}}
+\headcommand {\slideentry {2}{1}{1}{5/5}{SISO Block Diagram}{0}}
 \headcommand {\beamer@framepages {5}{5}}
-\headcommand {\beamer@subsectionentry {0}{2}{2}{6}{Root Locus}}\headcommand {\beamer@subsectionpages {5}{5}}
-\headcommand {\slideentry {2}{2}{1}{6/6}{Root Locus}{0}}
+\headcommand {\beamer@subsectionentry {0}{2}{2}{6}{}}\headcommand {\beamer@subsectionpages {5}{5}}
+\headcommand {\slideentry {2}{2}{1}{6/6}{}{0}}
 \headcommand {\beamer@framepages {6}{6}}
 \headcommand {\beamer@subsectionentry {0}{2}{3}{7}{Final Controller}}\headcommand {\beamer@subsectionpages {6}{6}}
-\headcommand {\slideentry {2}{3}{1}{7/7}{Final Controller}{0}}
-\headcommand {\beamer@framepages {7}{7}}
-\headcommand {\slideentry {2}{3}{2}{8/8}{Final Controller}{0}}
-\headcommand {\beamer@framepages {8}{8}}
-\headcommand {\slideentry {2}{3}{3}{9/9}{Final Controller}{0}}
+\headcommand {\slideentry {2}{3}{1}{7/8}{Final Controller}{0}}
+\headcommand {\beamer@framepages {7}{8}}
+\headcommand {\beamer@subsectionentry {0}{2}{4}{9}{Discretization}}\headcommand {\beamer@subsectionpages {7}{8}}
+\headcommand {\slideentry {2}{4}{1}{9/9}{Discretization}{0}}
 \headcommand {\beamer@framepages {9}{9}}
-\headcommand {\beamer@partpages {1}{9}}
-\headcommand {\beamer@subsectionpages {7}{9}}
-\headcommand {\beamer@sectionpages {5}{9}}
-\headcommand {\beamer@documentpages {9}}
+\headcommand {\slideentry {2}{4}{2}{10/10}{Discretization}{0}}
+\headcommand {\beamer@framepages {10}{10}}
+\headcommand {\beamer@partpages {1}{10}}
+\headcommand {\beamer@subsectionpages {9}{10}}
+\headcommand {\beamer@sectionpages {5}{10}}
+\headcommand {\beamer@documentpages {10}}
 \headcommand {\def \inserttotalframenumber {8}}
