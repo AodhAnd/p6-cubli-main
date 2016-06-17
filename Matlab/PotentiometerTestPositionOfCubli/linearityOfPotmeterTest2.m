@@ -27,7 +27,7 @@ h4 = scatter(angMesDeg(1:2,1), angPotVraw(1:2,1), 20, [ .6 0 .6 ], '*')
 l1 = legend([h1 h2 h4],{'Reliable measurements', 'Least square line of reliable data', 'Unreliable measurements'}, 'location', 'SouthEast');
 title('Linearity Test of Potentiometer')
 xlabel('Degrees (^\circ)')
-ylabel('Volt (V)')
+ylabel('Volt (mV)')
 
 grid on, grid minor;
 
