@@ -1,211 +1,179 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Niels %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%
-\section{Communication}
+\section{State Space}
 
-\begin{frame}{Communication}{}
-  \begin{figure}
-  	\includegraphics[scale = .45]{Pictures/xbeeSerialConnection.png}
-  \end{figure}
-\end{frame}
-%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%
-\subsection{Filtering}
-
-\begin{frame}{Communication}{Filtering}
+%---------------------------------------------------------------------------------
+\subsection{Motivation}%----------------------------------------------------------
+%---------------------------------------------------------------------------------
+\begin{frame}{State Space}{Motivation}
   \begin{itemize}
-    \item Spikes from GoT system
-    \item Removing unlikely data points prior transmission
+    \item Control of velocity for improved performance
+    \item Classical cascade control is not feasible
   \end{itemize}
-  
-  \begin{figure}
-  	\includegraphics[scale = .5]{Pictures/comFilter1.pdf}
-  \end{figure}
-  
-\end{frame}
-\begin{frame}{Communication}{Filtering}
-  \begin{itemize}
-    \item Spikes from GoT system
-    \item Removing unlikely data points prior transmission
-  \end{itemize}
-  
-  \begin{figure}
-  	\includegraphics[scale = .5]{Pictures/comFilter2.pdf}
-  \end{figure}
-  
-\end{frame}
-\begin{frame}{Communication}{Filtering}
-  \begin{itemize}
-    \item Spikes from GoT system
-    \item Removing unlikely data points prior transmission
-  \end{itemize}
-  
-  \begin{figure}
-  	\includegraphics[scale = .5]{Pictures/comFilter3.pdf}
-  \end{figure}
-  
-\end{frame}
-\begin{frame}{Communication}{Filtering}
-  \begin{itemize}
-    \item Spikes from GoT system
-    \item Removing unlikely data points prior transmission
-  \end{itemize}
-  
-  \begin{figure}
-  	\includegraphics[scale = .5]{Pictures/comFilter4.pdf}
-  \end{figure}
-  
-\end{frame}
-\begin{frame}{Communication}{Filtering}
-  \begin{itemize}
-    \item Spikes from GoT system
-    \item Removing unlikely data points prior transmission
-  \end{itemize}
-  
-  \begin{figure}
-  	\includegraphics[scale = .5]{Pictures/comFilter5.pdf}
-  \end{figure}
-\end{frame}
-%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%
-\subsection{Basis}
-\begin{frame}{Communication}{Basis}
-
-  \begin{itemize}
-    \item XBee modules
-  \end{itemize}
-  
-  \begin{figure}
-    	\includegraphics[scale = .1]{Pictures/Xbee.jpg}
-  \end{figure}
-  \vspace{-.2cm}
-  \begin{itemize}
-    \item Data path:\\GoT computer $\rightarrow$ XBee $\rightarrow$ XBee $\rightarrow$ microcontroller
-    \item No re-transmissions since data is used for feedback 
-    \item Connection less protocol
-    \item Focus on transport layer for reliable data reception
-  \end{itemize}
-  
-\end{frame}
-%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%
-\subsection{Package Transport}
-  \begin{frame}{Communication}{Package Transport}
-  
-  \begin{itemize}
-    \item The structure of a package
-  \end{itemize}
-  \begin{table}[H]\centering\vspace{-.2cm}
-	\begin{tabular}{|l|l|l|c|l|c|l|l|}
-	  \cline{1-3}\cline{5-5}\cline{7-8}%----------------------------------    ----------------------    -----------------------------------------------------
-		\footnotesize Start byte & \footnotesize ID & \footnotesize Length &    & \footnotesize Data &    & \footnotesize Checksum & \footnotesize End byte \\
-		\cline{1-3}\cline{5-5}\cline{7-8}%----------------------------------    ----------------------    -----------------------------------------------------
-	\end{tabular}
-  \end{table}
-  \vspace{-.25cm}
-  \hspace{1.8cm} Header \hspace{1.4cm} Body \hspace{1.8cm} Tail
-  \vspace{.25cm}
-  
-  \begin{itemize}
-      \item ID of receiver and length of package are constant in this case
-      \item Checksum can be larger/more effective with larger packets
-      \item Packages may be lost
-      \item Risk of fallacious packages being accepted is very slim
-  \end{itemize}
- 
-\end{frame}
-%%%%%%%%%%%%%%%%
-
-
-
-%%%%%%%%%%%%%%%%%
-\section{Digital Filter}
-
-\begin{frame}{Digital Filter}{}
-\vspace{-4cm}
-  \begin{figure}
-  \hspace{-.8cm}
-    	\includegraphics[scale = .5]{Pictures/StationaryMeasurements.pdf}
-  \end{figure}
-\end{frame}
-%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%
-\subsection{Magnitude of Frequencies}
-\begin{frame}{Digital Filter}{Magnitude of Frequencies}
-\vspace{-4cm}
-  \begin{figure}
-  \hspace{-.8cm}
-    	\includegraphics[scale = .5]{Pictures/FFTofStationaryMeasurements.pdf}
-  \end{figure}
-\end{frame}
-%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%
-\subsection{Filter Specifications}
-\begin{frame}{Digital Filter}{Filter Specifications}
-  \begin{itemize}
-      \item Inner loop of steering plant
-  \end{itemize}
-  \vspace{-.4cm}
-  \begin{flalign}
-      \text{H(s)} = \frac{\text{K}}{(0.03\text{s}+1)\text{s}} \nonumber
-  \end{flalign}
-  \begin{figure}
-    \vspace{-.8cm}\hspace{.4cm}
-    \includegraphics[scale = .4]{Pictures/steeringEqFilter.pdf}
-  \end{figure}
-  \vspace{-.5cm}\hspace{2cm}
-  Highest placed pole is at 33,33 rad$\cdot\text{s}^{-1}$\\
-  \hspace{2cm} One decade above: 333,33 rad$\cdot\text{s}^{-1}\ =$ 53 Hz
-  \vspace{.1cm}
-  \begin{itemize}
-    \item Sample rate by Nyquist
-  \end{itemize}
-  \vspace{-.3cm}
-  \begin{flalign}
-    \Omega_s \geq 2 \cdot 53 \text{ Hz} \Rightarrow  \Omega_s \geq 106 \text{ Hz} \nonumber
-  \end{flalign}
-  \vspace{-.6cm}
-  \begin{itemize}
-    \item Max magnetometer sample rate is 75 Hz
-    \item Filter specifications chosen iteratively
-    \item Choice of 66.66 Hz will affect phase
-    \item Chosen filter type: Low pass Butterworth
-  \end{itemize}
-  
-\end{frame}
-%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%
-\subsection{Discrete Time}
-\begin{frame}{Digital Filter}{Discrete Time}
-  \vspace{-4cm}
-    \begin{figure}
-    \hspace{-.8cm}
-      	\includegraphics[scale = .5]{Pictures/DiscreteFrequencyResponse.pdf}
-    \end{figure}
-\end{frame}
-%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%
-\subsection{Result and Conclusions}
-\begin{frame}{Digital Filter}{Result and Conclusions}
-\vspace{-4cm}
-  \begin{figure}
-  \hspace{-.8cm}
-    \includegraphics[scale = .5]{Pictures/ImplementedFilter.pdf}
+  %
+  \begin{figure}[H]
+    \centering
+    \input{Pictures/plantWithCascade.tikz}
   \end{figure}
 \end{frame}
 
-\begin{frame}{Digital Filter}{Result and Conclusions}
-\vspace{-4cm}
-  \begin{figure}
-  \hspace{-.8cm}
-    \includegraphics[scale = .5]{Pictures/FinalimplementationFilterDelay.pdf}
+%---------------------------------------------------------------------------------
+\subsection{Model}%---------------------------------------------------------------
+%---------------------------------------------------------------------------------
+
+\begin{frame}{State Space}{Model}
+
+%  \only<2>
+%  {  
+%  \tikz[overlay,xshift=12.75em,yshift=10ex]{\draw node [fontscale=\footnotesize]{
+%              \si{\ddot{\theta}_F = -\frac{B_F}{J_F + m_w \cdot {l_w}^2} \cdot \dot{\theta}_F + \frac{(m_F \cdot l_F + m_w \cdot l_w) \cdot g}{J_F + m_w \cdot {l_w}^2} \cdot sin(\theta_F)}
+%              };}
+%  \tikz[overlay,xshift=12em,yshift=6.3ex]{\draw node [fontscale=\footnotesize]{
+%               \si{- \frac{1}{J_F + m_w \cdot {l_w}^2} \cdot \tau_m + \frac{B_w}{J_F + m_w \cdot {l_w}^2} \cdot \dot{\theta}_w}
+%               };}
+%  \tikz[overlay,xshift=12.7em,yshift=0ex]{\draw node [fontscale=\footnotesize]{
+%                \si{\ddot{\theta}_w = \frac{J_w+J_F+m_w \cdot {l_w}^{2}}{J_w \cdot (J_F+m_w \cdot {l_w}^{2})} \cdot \tau_m - \frac{(J_w+J_F+{l_w}^{2} \cdot m_w) \cdot B_w}{J_w \cdot (J_F+m_w \cdot  {l_w}^2)} \cdot \dot{\theta}_w}
+%              };}
+%  \tikz[overlay,xshift=12.93em,yshift=-4ex]{\draw node [fontscale=\footnotesize]{
+%                \si{- \frac{(m_F \cdot l_F + m_w \cdot l_w) \cdot g}{J_F+m_w \cdot {l_w}^{2}} \cdot sin(\theta_F) + \frac{B_F}{J_F+m_w \cdot {l_w}^{2}} \cdot \dot{\theta}_F}
+%           };}
+%         
+%  }
+
+  \only<2>
+  {  
+  \tikz[overlay,xshift=12em,yshift=12ex]{\draw node [fontscale=\footnotesize]{
+              \si{\ddot{\theta}_F = -\frac{B_F}{J_F + m_w \cdot {l_w}^2} \cdot \dot{\theta}_F + \frac{(m_F \cdot l_F + m_w \cdot l_w) \cdot g}{J_F + m_w \cdot {l_w}^2} \cdot \theta_F}
+              };}
+  \tikz[overlay,xshift=12em,yshift=8.3ex]{\draw node [fontscale=\footnotesize]{
+               \si{- \frac{1}{J_F + m_w \cdot {l_w}^2} \cdot \tau_m + \frac{B_w}{J_F + m_w \cdot {l_w}^2} \cdot \dot{\theta}_w}
+               };}
+  \tikz[overlay,xshift=12.7em,yshift=3ex]{\draw node [fontscale=\footnotesize]{
+                \si{\ddot{\theta}_w = \frac{J_w+J_F+m_w \cdot {l_w}^{2}}{J_w \cdot (J_F+m_w \cdot {l_w}^{2})} \cdot \tau_m - \frac{(J_w+J_F+{l_w}^{2} \cdot m_w) \cdot B_w}{J_w \cdot (J_F+m_w \cdot  {l_w}^2)} \cdot \dot{\theta}_w}
+              };}
+  \tikz[overlay,xshift=12.2em,yshift=-1ex]{\draw node [fontscale=\footnotesize]{
+                \si{- \frac{(m_F \cdot l_F + m_w \cdot l_w) \cdot g}{J_F+m_w \cdot {l_w}^{2}} \cdot \theta_F + \frac{B_F}{J_F+m_w \cdot {l_w}^{2}} \cdot \dot{\theta}_F}
+           };}
+         
+  }
+
+  \only<1>
+        {
+        \tikz[overlay,xshift=8em,yshift=6ex]{\draw node {
+          \begin{minipage}{0.01\linewidth}
+          	  \begin{flalign}
+          	  	& \hspace{1 cm} \si{\vec{\dot{x}}(t) =\ } \si{ \vec{A} \cdot \vec{x}(t) + \vec{B} \cdot \vec{u}(t)} \nonumber \\
+          	  	& \hspace{1 cm} \si{\vec{y}(t) =\ } \si{ \vec{C} \cdot \vec{x}(t) + \vec{D} \cdot \vec{u}(t)} \nonumber
+          	  \end{flalign}
+          \end{minipage}
+          };}
+      }
+      
+\only<1-2>{
+  \tikz[overlay,xshift=13.5em,yshift=-8ex]{\draw node {
+      \input{Pictures/SSBlockDiagram.tikz}
+  };}
+  \tikz[overlay,xshift=11em,yshift=-17ex]{\draw node {
+      \begin{minipage}{0.01\linewidth}
+       	\begin{flalign}
+       		\vec{x} = 
+       		\begin{bmatrix}
+       			\theta_F \\
+       			\dot{\theta}_F \\ 
+       			\dot{\theta}_w \\
+       		\end{bmatrix}	\textbf{,}\ \nonumber
+       	\end{flalign}  
+      \end{minipage}
+      %\hspace{0.03\linewidth}
+      \begin{minipage}{0.01\linewidth}
+       	\begin{flalign}
+       		\vec{y} = 
+       		\begin{bmatrix}
+       			\theta_F \\
+       			\dot{\theta}_w \\
+       		\end{bmatrix}	\textbf{,}\ \nonumber
+       	\end{flalign}
+      \end{minipage}
+      %\hspace{0.03\linewidth}
+      \begin{minipage}{0.01\linewidth}
+       	\begin{flalign}
+       		\vec{u}= 
+       		\begin{bmatrix}
+       			\tau_m\\
+       		\end{bmatrix}	\nonumber
+       	\end{flalign}
+    \end{minipage}
+  };}
+}   
+\end{frame}
+
+%---------------------------------------------------------------------------------
+\subsection{Controller Design}%---------------------------------------------------
+%---------------------------------------------------------------------------------
+\begin{frame}{State Space}{Controller Design}
+  \begin{itemize}
+    \item Eigenvalues of \si{A - BK}
+    \item Pole placement
+  \end{itemize}
+
+  \begin{displaymath}
+  	\hspace{-5cm}\si{\vec{\dot{x}}(\vec{t}) = (\vec{A}-\vec{B}\vec{K}) \cdot \vec{x}(\vec{t})} \nonumber
+  \end{displaymath}
+  
+  \begin{figure}[H]
+      \centering
+      \input{Pictures/SSBlockDiagramFeedback.tikz}
   \end{figure}
 \end{frame}
 
-%%%%%%%%%%%%%%%%
+%---------------------------------------------------------------------------------
+\subsection{Controller Analysis}%-------------------------------------------------
+%---------------------------------------------------------------------------------
+\begin{frame}{State Space}{Controller Analysis}
+  \begin{itemize}
+    \item Controller reacting to disturbance
+    \item Different pole placements
+  \end{itemize}
+  \vspace{1cm}
+  \hspace{0.03\linewidth}
+  \begin{minipage}{\linewidth}
+   	\begin{minipage}{0.45\linewidth}
+   		\begin{figure}[H]
+   			\includegraphics[scale=.35]{Pictures/disturbanceStateSpace}
+   			\centering
+   		\end{figure}
+   	\end{minipage}
+   	\hspace{0.03\linewidth}
+   	\begin{minipage}{0.45\linewidth}
+   		\begin{figure}[H]
+   			\includegraphics[scale=.35]{Pictures/disturbanceStateSpaceWheel}
+   			\centering
+   		\end{figure}
+   	\end{minipage}
+  \end{minipage}
+\end{frame}
+
+\begin{frame}{State Space}{Controller Analysis}
+  \begin{itemize}
+    \item Catching responses
+    \item The yellow was chosen
+  \end{itemize}
+  %
+  \vspace{1cm}
+  \hspace{0.03\linewidth}
+  \begin{minipage}{\linewidth}
+  	\begin{minipage}{0.45\linewidth}
+  		\begin{figure}[H]
+  			\includegraphics[scale=.35]{Pictures/catchingStateSpace}
+  			\centering
+  		\end{figure}
+  	\end{minipage}
+  	\hspace{0.03\linewidth}
+  	\begin{minipage}{0.45\linewidth}
+  		\begin{figure}[H]
+  			\includegraphics[scale=.35]{Pictures/catchingStateSpaceWheel}
+  			\centering
+  		\end{figure}
+  	\end{minipage}
+  \end{minipage}
+\end{frame}
