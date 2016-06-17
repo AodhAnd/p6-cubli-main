@@ -55,6 +55,10 @@ left               % right of left position of sidebar (default is right)
 	sum/.style      = {draw, circle, inner sep=1.5pt},
 }
 
+\usepackage{relsize}
+\tikzset{fontscale/.style = {font=#1}
+    }
+
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
 \usepackage[T1]{fontenc}
@@ -125,16 +129,11 @@ Denmark
 		\tableofcontents
 	\end{frame}
 	%%%%%%%%%%%%%%%%
-		
-		
+				
 	\input{Bjorn.tex}
 	\input{Julien.tex}
-	% \input{Noelia.tex}
-	%\input{Julien.tex}
 	\input{Noelia.tex}
-	%\input{Niels.tex}
+	\input{Niels.tex}
 	\input{Mikael.tex}
-		
-		
-\end{document}
 
+\end{document}
