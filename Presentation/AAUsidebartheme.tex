@@ -26,11 +26,7 @@ left               % right of left position of sidebar (default is right)
 % ... and you can of course change a lot more - see the beamer user manual.
 
 \usepackage{siunitx}
-\sisetup{decimalsymbol=comma}
-\sisetup{detect-weight}
-\sisetup{abbreviations = false}
-\sisetup{exponent-product = \cdot}
-\sisetup{inter-unit-product = \ensuremath{{}\cdot{}}}
+\renewcommand{\vec}[1]{\boldsymbol{\mathbf{#1}}}
 \usepackage{amsmath}
 \usepackage{relsize}
 % Adds new math symbols
@@ -41,7 +37,7 @@ left               % right of left position of sidebar (default is right)
 \usepackage{cancel}
 \usepackage{fourier}
 \usefonttheme{professionalfonts}
-\renewcommand{\vec}[1]{\boldsymbol{\mathbf{#1}}}
+
 
 \usepackage{tikz}
 \usetikzlibrary{shapes,arrows}
@@ -54,10 +50,6 @@ left               % right of left position of sidebar (default is right)
 		minimum width = 1.7em},
 	sum/.style      = {draw, circle, inner sep=1.5pt},
 }
-
-\usepackage{relsize}
-\tikzset{fontscale/.style = {font=#1}
-    }
 
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
@@ -129,11 +121,14 @@ Denmark
 		\tableofcontents
 	\end{frame}
 	%%%%%%%%%%%%%%%%
-				
-	\input{Bjorn.tex}
-	\input{Julien.tex}
-	\input{Noelia.tex}
-	\input{Niels.tex}
+		
+		
+	%\input{Bjorn.tex}
+	%\input{Julien.tex}
+	%\input{Noelia.tex}
+	%\input{Niels.tex}
 	\input{Mikael.tex}
+		
+		
+	\end{document}
 
-\end{document}

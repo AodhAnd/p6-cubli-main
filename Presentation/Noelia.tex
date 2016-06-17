@@ -1,10 +1,39 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% NAME %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% NOELIA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Classical Controller Design}
 
 %%%%%%%%%%%%%%%%%
-\section{Stability Analysis}
+\subsection{SISO Block Diagram}
+\begin{frame}{Classical Controller Design}{SISO Block Diagram}	
+	\begin{figure}
+		\input{Pictures/blockDiagramController.tikz}
+	\end{figure}
+	\begin{itemize}
+		\item U(s) refers to the desired angular position of the frame
+		\item Y(s) is the actual angular position of the frame
+	\end{itemize}
+\end{frame}
 
-\subsection{Root Locus}
-\begin{frame}{Stability Analysis}{Root Locus}
+%%%%%%%%%%%%%%%%%
+\subsection{Stability Analysis}
+\begin{frame}{Classical Controller Design}{Stability Analysis}	 
+\begin{itemize}
+	\item Nyquist plot
+\end{itemize}
+\begin{figure}
+	\includegraphics[scale=.5]{Pictures/nyquistCubli}
+	\centering
+\end{figure}	
+\begin{displaymath}
+	\si{Z_{RHP}\ =\ N\ +\ P_{RHP}} \nonumber
+\end{displaymath}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%
+\begin{frame}{Classical Controller Design}{Stability Analysis}	
+\begin{itemize}
+	\item Root Locus
+\end{itemize}
 \begin{minipage}{\linewidth}
 	\begin{minipage}{0.45\linewidth}
 		\begin{figure}
@@ -22,55 +51,101 @@
 \end{minipage}
 \end{frame}
 
-\subsection{Nyquist Plot}
-\begin{frame}{Stability Analysis}{Nyquist Plot}
-\begin{figure}
-		\includegraphics[scale=.56]{Pictures/nyquistCubli}
-		\centering
-\end{figure}
-	
-\end{frame}
 %%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%
-\section{Classical Controller Design}
-
-\subsection{Root Locus}
-\begin{frame}{Classical Controller Design}{}	
-\begin{figure}
-	\input{Pictures/blockDiagramController.tikz}
-\end{figure}
-\end{frame}
-
-\subsection{Root Locus}
-\begin{frame}{Classical Controller Design}{}
-	
+\subsection{Root Locus Design}
+\begin{frame}{Classical Controller Design}{Root Locus Design}	
 	\begin{figure}
-		\input{Pictures/blockDiagramController.tikz}
-	\end{figure}
-\end{frame}
-
-\subsection{Final Controller}
-\begin{frame}{Root Locus Designed Controller}{Final Root Locus}
-\begin{figure}
-	\includegraphics[scale=.56]{Pictures/RLController}
+	\includegraphics[scale=.55]{Pictures/RLController1}
 	\centering
-\end{figure}		
+	\end{figure}
 \end{frame}
 
-\begin{frame}{Root Locus Designed Controller}{}
-	
+\begin{frame}{Classical Controller Design}{Root Locus Design}	
 	\begin{figure}
-		\input{Pictures/blockDiagramController.tikz}
+		\includegraphics[scale=.55]{Pictures/RLController2}
+		\centering
 	\end{figure}
-	
 \end{frame}
 
-\begin{frame}{Root Locus Designed Controller}{}
-	
-	\begin{figure}
-		\input{Pictures/blockDiagramController.tikz}
-	\end{figure}
-	
+\begin{frame}{Classical Controller Design}{Root Locus Design}
+\begin{figure}
+	\includegraphics[scale=.55]{Pictures/RLController}
+	\centering
+\end{figure}	
+%
+\pause
+%
+\begin{displaymath}
+	\si{D(s)\ =\ -4059,8 \cdot \frac{(s + 10,2)\cdot (s + 0,546)}{(s - 5,23) \cdot (s + 100) \cdot (s + 200)}} \nonumber
+\end{displaymath}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%
+\subsection{Discretization}
+\begin{frame}{Root Locus Designed Controller}{Discretization}	
+\begin{figure}
+	\includegraphics[scale=.543]{Pictures/bodeOL}
+\end{figure}
+\pause
+\begin{displaymath}
+	\si{D(z)\ =\ \frac{\tau_{m,w}(z)}{e_{\theta}(z)}\  = \frac{-7,338 + 6,58 \cdot z^{-1} + 7,335 \cdot z^{-2} - 6,584 \cdot z^{-3}}{1 - 1,3879 \cdot z^{-1} + 0,3409 \cdot z^{-2} + 0,001576 \cdot z^{-3}}}  \nonumber 
+\end{displaymath}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%
+\subsection{Simulation of the Controller}
+\begin{frame}{Root Locus Designed Controller}{Simulation of the Controller}
+\begin{itemize}
+	\item Behavior of the continuous and the discrete controllers in simulation 
+\end{itemize}
+\begin{minipage}{\linewidth}
+	\begin{minipage}{0.45\linewidth}
+		\begin{figure}
+			\includegraphics[scale=.37]{Pictures/positionRL}
+			\centering
+		\end{figure}
+	\end{minipage}
+	\hspace{0.05\linewidth}
+	\begin{minipage}{0.45\linewidth}
+		\begin{figure}[H]
+			\includegraphics[scale=.37]{Pictures/torqueRL}
+			\centering
+		\end{figure}
+	\end{minipage}
+\end{minipage}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%
+\subsection{Implementation}
+\begin{frame}{Root Locus Designed Controller}{Implementation}	
+\begin{itemize}
+	\item Difference equation
+\end{itemize}
+\begin{flalign}
+  \si{\tau_{m}[n] =} & \si{\num{-8,314} \cdot e_{\theta}[n]+ \num{7,422} \cdot e_{\theta}[n-1] + \num{8,3023} \cdot e_{\theta}[n-2] }& \nonumber \\ 
+   &\si{- \num{7,434} \cdot e_{\theta}[n-3] + \num{1,382} \cdot \tau_{m}[n-1] - \num{0,3415} \cdot \tau_{m}[n-2] } & \nonumber \\
+   & \si{ - \num{0,001638} \cdot \tau_{m}[n-3]}& \nonumber 
+\end{flalign}
+\end{frame}
+
+\begin{frame}{Root Locus Designed Controller}{Implementation}	
+\begin{itemize}
+	\item Angular position of the frame and angular velocity of the wheel in the real Cubli
+\end{itemize}
+\begin{minipage}{\linewidth}
+	\begin{minipage}{0.4\linewidth}
+		\begin{figure}
+			\includegraphics[scale=.35]{Pictures/positionRLTest}
+			\centering
+		\end{figure}
+	\end{minipage}
+	\hspace{0.1\linewidth}
+	\begin{minipage}{0.45\linewidth}
+		\begin{figure}[H]
+			\includegraphics[scale=.35]{Pictures/wheelRLTest}
+			\centering
+		\end{figure}
+	\end{minipage}
+\end{minipage}
 \end{frame}
 %%%%%%%%%%%%%%%%%
