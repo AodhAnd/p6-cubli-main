@@ -62,7 +62,7 @@
 % -------------------------------------------------------
 \section{Requirements}
 
-\begin{frame}{Requirements}{Overview}
+\begin{frame}{Requirements}{Design Considerations}
 	
 	\begin{figure}[H]
 		\includegraphics[scale=0.4]{Pictures/reqCubli0rad.png}
@@ -85,7 +85,7 @@
 
 % -----------------------------------------------------------------
 \section{Model}
-
+\subsection{Overview}
 \begin{frame}{Model}{Overview}
 	\begin{figure}[H]
 		\centering
@@ -93,6 +93,7 @@
 	\end{figure}
 \end{frame}
 
+\subsection{Freebody diagram}
 \begin{frame}{Model}{freebody diagram of the wheel}
 	\begin{textblock*}{15cm}(5cm,2cm)
 		%\centering
@@ -159,7 +160,8 @@
 %	
 %\end{frame}
 
-\begin{frame}{Model}{Construction}
+\subsection{Frame angle and wheel velocity}
+\begin{frame}{Model}{Frame angle and wheel velocity}
 	\begin{itemize}
 		\item Acceleration of the frame
 	\end{itemize}
@@ -185,6 +187,7 @@
 	
 \end{frame}
 
+\subsection{Linearization}
 \begin{frame}{Model}{Linearization}
 %	\begin{flalign}
 %	\si{\ddot{\theta}_F =} &\si{ -\frac{B_F}{J_F + m_w \cdot {l_w}^2} \cdot \dot{\theta}_F + \frac{(m_F \cdot l_F + m_w \cdot l_w) \cdot g}{J_F + m_w \cdot {l_w}^2} \cdot sin(\theta_F) }& \nonumber \\ 
@@ -239,6 +242,7 @@
 		\normalsize
 \end{frame}
 
+\subsection{Blockdiagram}
 \begin{frame}{Model}{Blockdiagram}
 	
 		\begin{itemize}
