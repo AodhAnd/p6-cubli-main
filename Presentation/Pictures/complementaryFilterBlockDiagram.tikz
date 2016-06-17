@@ -1,0 +1,38 @@
+\begin{tikzpicture}[ auto,
+thick,                         %<--setting line style
+node distance=2cm,             %<--setting default node distance
+scale=0.9,                     %<--|these two scale the whole thing
+every node/.style={scale=0.9}, %<  |(always change both)
+>=triangle 45 ]                %<--sets the arrowtype
+\draw%--------------------------------------------------------------------------------------------
+
+node[shape=coordinate][](acc) at (0,0){acc}			% start of acc signal path
+
+node[shape=coordinate][](acc1) at (2.5,0){acc1}
+
+node(lowpas) at (6,0) [block] {\Large $\ \frac{1}{\tau \cdot s + 1}$ }
+
+node[shape=coordinate][](gyro) at (0,-2){}		% start of gyro signal path
+
+node(integrate) at (3,-2) [block] {\Large $\frac{1}{s}$}
+
+node(highpas) at (6,-2) [block] {\Large $\ \frac{\tau \cdot s}{\tau \cdot s + 1}$ }
+
+node(sum) at (8,-1) [sum] {$\sum$}
+
+
+node[shape=coordinate][](angle) at (11,-1){}		% output of the complementary filter
+;
+
+\draw[-](acc) -- node {accel$\_\theta_{F}$} (acc1);
+\draw[->](acc) -- node {} (lowpas);
+\draw[->](gyro) -- node {gyro$\_\dot{\theta}_{F}$} (integrate);
+\draw[->](integrate) -- node {} (highpas);
+
+\draw[->](highpas) -| node {} (sum);
+\draw[->](lowpas) -| node {} (sum);
+
+
+\draw[->](sum) -- node {$\theta_{F}$} (angle);
+
+\end{tikzpicture}

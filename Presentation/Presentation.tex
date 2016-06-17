@@ -25,6 +25,13 @@ left               % right of left position of sidebar (default is right)
 %\setbeamercolor{normal text}{bg=gray!10}
 % ... and you can of course change a lot more - see the beamer user manual.
 
+%\usepackage{xmpmulti}
+%\usepackage{animate}
+
+\usepackage[absolute,overlay]{textpos}
+\usepackage{graphicx}
+
+
 \usepackage{siunitx}
 \sisetup{decimalsymbol=comma}
 \sisetup{detect-weight}
@@ -54,6 +61,10 @@ left               % right of left position of sidebar (default is right)
 		minimum width = 1.7em},
 	sum/.style      = {draw, circle, inner sep=1.5pt},
 }
+
+\usepackage{relsize}
+\tikzset{fontscale/.style = {font=#1}
+    }
 
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
@@ -125,16 +136,19 @@ Denmark
 		\tableofcontents
 	\end{frame}
 	%%%%%%%%%%%%%%%%
-		
-		
+				
 	\input{Bjorn.tex}
+<<<<<<< HEAD
 	\input{Julien.tex}
-	% \input{Noelia.tex}
-	%\input{Julien.tex}
 	\input{Noelia.tex}
-	%\input{Niels.tex}
-	%\input{Mikael.tex}
-		
-		
-\end{document}
+	\input{Niels.tex}
+	\input{Mikael.tex}
+=======
+%	\input{Julien.tex}
+%	\input{Noelia.tex}
+%	\input{Niels.tex}
+%	\input{Mikael.tex}
 
+>>>>>>> 838d5723834eb52a6673da9d12f1d2b3a4c94e32
+
+\end{document}

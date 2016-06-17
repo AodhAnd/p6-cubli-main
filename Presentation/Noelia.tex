@@ -16,12 +16,20 @@
 
 %%%%%%%%%%%%%%%%%
 \subsection{Stability Analysis}
+
 \begin{frame}{Classical Controller Design}{Stability Analysis}	 
+\begin{itemize}
+	\item Plant transfer function
+\end{itemize}
+\begin{displaymath}
+\si{G(s) = \frac{-148,8 \cdot s}{s^3 + 1,177 \cdot s^2 - 98,19 \cdot s - 2,783}}
+\end{displaymath}
+\pause	
 \begin{itemize}
 	\item Nyquist plot
 \end{itemize}
 \begin{figure}
-	\includegraphics[scale=.5]{Pictures/nyquistCubli}
+	\includegraphics[scale=.45]{Pictures/nyquistCubli}
 	\centering
 \end{figure}	
 \begin{displaymath}
@@ -67,7 +75,7 @@
 	\end{figure}
 \end{frame}
 
-\begin{frame}{Root Locus Designed Controller}{Root Locus Design}
+\begin{frame}{Classical Controller Design}{Root Locus Design}
 \begin{figure}
 	\includegraphics[scale=.55]{Pictures/RLController}
 	\centering
@@ -82,14 +90,30 @@
 
 %%%%%%%%%%%%%%%%%
 \subsection{Discretization}
-\begin{frame}{Root Locus Designed Controller}{Discretization}	
-\begin{figure}
-	\includegraphics[scale=.543]{Pictures/bodeOL}
-\end{figure}
+\begin{frame}{Root Locus Designed Controller}{Discretization}
+\begin{displaymath}
+	\si{D(s)\ =\ -4059,8 \cdot \frac{(s + 10,2)\cdot (s + 0,546)}{(s - 5,23) \cdot (s + 100) \cdot (s + 200)}} \nonumber
+\end{displaymath}
+\pause
+\begin{itemize}
+	\item Bilinear transformation
+\end{itemize}		
+\begin{displaymath} 
+	\si{s \approx \frac{T}{2} \cdot \frac{1 - z^{-1}}{1 + z^{-1}}}
+\end{displaymath}
 \pause
 \begin{displaymath}
 	\si{D(z)\ =\ \frac{\tau_{m,w}(z)}{e_{\theta}(z)}\  = \frac{-7,338 + 6,58 \cdot z^{-1} + 7,335 \cdot z^{-2} - 6,584 \cdot z^{-3}}{1 - 1,3879 \cdot z^{-1} + 0,3409 \cdot z^{-2} + 0,001576 \cdot z^{-3}}}  \nonumber 
 \end{displaymath}
+\pause
+\begin{itemize}
+	\item Difference equation
+\end{itemize}
+\begin{flalign}
+	\si{\tau_{m}[n] =} & \si{\num{-8,314} \cdot e_{\theta}[n]+ \num{7,422} \cdot e_{\theta}[n-1] + \num{8,3023} \cdot e_{\theta}[n-2] }& \nonumber \\ 
+	&\si{- \num{7,434} \cdot e_{\theta}[n-3] + \num{1,382} \cdot \tau_{m}[n-1] - \num{0,3415} \cdot \tau_{m}[n-2] } & \nonumber \\
+	& \si{ - \num{0,001638} \cdot \tau_{m}[n-3]}& \nonumber 
+\end{flalign}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%
@@ -116,19 +140,9 @@
 \end{frame}
 
 %%%%%%%%%%%%%%%%%
-\subsection{Implementation}
-\begin{frame}{Root Locus Designed Controller}{Implementation}	
-\begin{itemize}
-	\item Difference equation
-\end{itemize}
-\begin{flalign}
-  \si{\tau_{m}[n] =} & \si{\num{-8,314} \cdot e_{\theta}[n]+ \num{7,422} \cdot e_{\theta}[n-1] + \num{8,3023} \cdot e_{\theta}[n-2] }& \nonumber \\ 
-   &\si{- \num{7,434} \cdot e_{\theta}[n-3] + \num{1,382} \cdot \tau_{m}[n-1] - \num{0,3415} \cdot \tau_{m}[n-2] } & \nonumber \\
-   & \si{ - \num{0,001638} \cdot \tau_{m}[n-3]}& \nonumber 
-\end{flalign}
-\end{frame}
+\subsection{Implementation Results}
 
-\begin{frame}{Root Locus Designed Controller}{Implementation}	
+\begin{frame}{Root Locus Designed Controller}{Implementation Results}	
 \begin{itemize}
 	\item Angular position of the frame and angular velocity of the wheel in the real Cubli
 \end{itemize}
