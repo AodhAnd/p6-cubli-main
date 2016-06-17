@@ -1,0 +1,45 @@
+\begin{tikzpicture}[ auto,
+                       thick,                         %<--setting line style
+                       node distance=1.5cm,             %<--setting default node distance
+                       scale=.9,                     %<--|these two scale the whole thing
+                       every node/.style={scale=.9}, %<  |(always change both)
+                       >=triangle 45 ]                %<--sets the arrowtype
+    
+    \draw%-----------------------------------------------------------------------------------------
+    	%Drawing Input/Output:
+    	node[shape=coordinate][](input1) at (0,0){}
+    	node[shape=coordinate][](output1) at (8,0){}
+     	%Drawing the Equation Blocks:   	
+      	node(A) at (4.5,-1.5) [block] {A} 
+     	node(B) at (1.5,0) [block] {B}
+     	node(C) at (6.5,0) [block] {C}
+%      	node(D) at (4.5,1.5) [block] {D}  
+	    node(int) at (4.5,0) [block] {\si{\int}}  
+    	%Drawing the Sumation Blocks:	    	 	
+    	node(sum1) [sum, right of = B] {\si{\sum}}
+%    	node(sum2) [sum, right of = C] {\si{\sum}}
+    	%Drawing the Feedback/Feedforward Nodes:    	
+    	node[shape=coordinate][](FeedforwardNode) at (0.75,0){}
+    	node[shape=coordinate][](FeedbackNode) at (5.5,0){}  	
+    	     
+    ;%---------------------------------------------------------------------------------------------
+   
+    %Joining the Blocks
+  	\draw[->](input1) -- node {u}(B);
+  	\draw[->](B) -- node {}(sum1);
+  	\draw[->](sum1) -- node {\si{\dot x}}(int);  	
+  	\draw[->](int) -- node {x}(C);
+  	\draw[->](C) -- node {y}(output1);
+  	
+%  	\draw[->](FeedforwardNode) |- node{} (D);
+%  	\draw[->](D) -| node{} (sum2);
+
+  	\draw[-] (FeedbackNode) |- (A);
+  	\draw[->] (A)   -| (sum1);
+
+    %Drawing node(s) with \textbullet
+    \draw%--------------------------------------------------------------
+%      node at (input1)  [shift={(-0.04, -0.04 )}] {\large \textbullet}
+    	% node at (output1) [shift={( 0.008, -0.02 )}] {\textbullet}
+    ;%------------------------------------------------------------------
+  \end{tikzpicture}
