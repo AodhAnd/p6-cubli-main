@@ -1,12 +1,12 @@
-function [ X1new, X2new, isDone ] = fibonacciSearchCubli(t, Y, J_f, B_f, initX1, initX2, X1upper, X2upper )
+function [ X1new, X2new, isDone ] = fibonacciSearchCubli2(t, Y, J_f, B_f, initX1, initX2, X1upper, X2upper )
 
     isDone = 0;
 
     if ~exist('X1a', 'var')
         
         %initializing range
-        fXupper = evalCostFunction(Y, t, X1upper, X2upper, J_f, B_f);
-        fXinit = evalCostFunction(Y, t, initX1, initX2, J_f, B_f);
+        fXupper = evalCostFunction2(Y, t, X1upper, X2upper, J_f, B_f);
+        fXinit = evalCostFunction2(Y, t, initX1, initX2, J_f, B_f);
         
         if fXupper < fXinit
             X1max = initX1;
@@ -73,8 +73,8 @@ function [ X1new, X2new, isDone ] = fibonacciSearchCubli(t, Y, J_f, B_f, initX1,
         X1b = IratioU*(X1max-X1min)+X1min;
         X2b = IratioU*(X2max-X2min)+X2min;
         
-        fXa = evalCostFunction(Y, t, X1a, X2a, J_f, B_f);
-        fXb = evalCostFunction(Y, t, X1b, X2b, J_f, B_f);
+        fXa = evalCostFunction2(Y, t, X1a, X2a, J_f, B_f);
+        fXb = evalCostFunction2(Y, t, X1b, X2b, J_f, B_f);
     elseif setX == -1                         %<-- (-1) means Xa was set last
         X1a = X1b;
         X2a = X2b;
@@ -84,7 +84,7 @@ function [ X1new, X2new, isDone ] = fibonacciSearchCubli(t, Y, J_f, B_f, initX1,
         X1b = IratioU*(X1max-X1min)+X1min;
         X2b = IratioU*(X2max-X2min)+X2min;
         
-        fXb = evalCostFunction(Y, t, X1b, X2b, J_f, B_f);
+        fXb = evalCostFunction2(Y, t, X1b, X2b, J_f, B_f);
     elseif setX == 1                          %<-- (+1) means Xb was set last
         X1b = X1a;
         X2b = X2a;
@@ -94,7 +94,7 @@ function [ X1new, X2new, isDone ] = fibonacciSearchCubli(t, Y, J_f, B_f, initX1,
         X1a = IratioL*(X1max-X1min)+X1min;
         X2a = IratioL*(X2max-X2min)+X2min;
         
-        fXa = evalCostFunction(Y, t, X1a, X2a, J_f, B_f);
+        fXa = evalCostFunction2(Y, t, X1a, X2a, J_f, B_f);
     end
 
         if fXb > fXa

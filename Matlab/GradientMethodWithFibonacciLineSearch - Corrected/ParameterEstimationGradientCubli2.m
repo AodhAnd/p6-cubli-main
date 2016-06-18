@@ -64,7 +64,7 @@ title('Parameter Estimation of Cubli')
 xlabel('Time (s)')
 ylabel('Angular Position (rad)')
 hold on
-
+copyobj(gcf,0);
 %---- PLOTTING PERFORMANCE/COST FUNCTION ----------------------------------
 
 Jf    = csvread('J.csv');
@@ -103,7 +103,7 @@ mini = plot3( Jf(minRow,minColon),         ...
               'MarkerSize', 6 );
 
 % Minimum found with Senstools
-% sensToolP = evalCostFunction(Y, t, 0.0048, 0.0077, J_f, B_f );
+% sensToolP = evalCostFunction2(Y, t, 0.0048, 0.0077, J_f, B_f );
     
 % sens = plot3( 0.0048, 0.0077, sensToolP,   ...
 %               'o',                          ...
@@ -155,14 +155,14 @@ nrOfIterations = 100;         %|<--iterating only for the part needed
 for i = 1:nrOfIterations      %|
 
     %----- SIMULATION OF CURRENT ITERATION --------------------------------
-Ym = simCubli( J_f, B_f, J_f, B_f );
+Ym = simCubli2( J_f, B_f, J_f, B_f );
     
 %----- ERROR CALCULATION --------------------------------------------------
 errn = sqrt(sum((Y-Ym).^2)/sum(Y.^2))*100;
 
 %----- PERFORMANCE FUNCTION -----------------------------------------------
 N = length(t); %<--setting N to degrees of freedom
-Cost  = evalCostFunction(Y, t, J_f, B_f, J_f, B_f);
+Cost  = evalCostFunction2(Y, t, J_f, B_f, J_f, B_f);
 
 %----- DISPLAY ACTUAL VALUES ----------------------------------------------
 fprintf('---------------------------------------------------\n')
@@ -229,7 +229,7 @@ end
 
 hOld = h;
 drawnow;
-
+copyobj(gcf,0);
 %--------- STORING OLD VALUES ---------------------------------------------
 if exist('errn', 'var')
     errnOld = errn; %<-- saving old error value for reference
@@ -271,11 +271,11 @@ deltaB_f = B_f+p*B_f;
 
 % Running the simulation again, now with the deviating parameter J_f
 % and storing the result of the simulation
-deltaYmJf = simCubli( deltaJ_f, B_f, J_f, B_f );
+deltaYmJf = simCubli2( deltaJ_f, B_f, J_f, B_f );
 
 % Running the simulation again, now with the deviating parameter B_f
 % and storring the result of the simulation
-deltaYmBf = simCubli( J_f, deltaB_f, J_f, B_f );
+deltaYmBf = simCubli2( J_f, deltaB_f, J_f, B_f );
 
 % Finally calculating the derivatives of the model
 YmDiffBf = ( deltaYmBf - Ym )/ p;
@@ -294,17 +294,17 @@ if exist('a','var')
       initCost  = c;
    end
 else
-   initCost  = evalCostFunction(Y, t, initJf, initBf, J_f, B_f);
+   initCost  = evalCostFunction2(Y, t, initJf, initBf, J_f, B_f);
 end
 
 %---------- THE FORWARD-BACKWARD METHOD -----------------------------------
-[ JFupper, BFupper ] = forwardBackwardCubli( J_f, B_f, Y, t, gJf, gBf, fig2, fig3 );
+[ JFupper, BFupper ] = forwardBackwardCubli2( J_f, B_f, Y, t, gJf, gBf, fig2, fig3 );
     
-Cost = evalCostFunction(Y, t, J_f, B_f, J_f, B_f );
+Cost = evalCostFunction2(Y, t, J_f, B_f, J_f, B_f );
 
 if (0) 
   figure(fig2)
-  fPupper = evalCostFunction(Y, t, JFupper, BFupper, J_f, B_f);
+  fPupper = evalCostFunction2(Y, t, JFupper, BFupper, J_f, B_f);
   plot3(JFupper, BFupper, fPupper, 'ok', ...
        'MarkerFaceColor', 'k',           ...
        'MarkerSize', 2)
@@ -318,9 +318,9 @@ if (0)
 end
     
 %--------- FIBONACCI SEARCH -----------------------------------------------
-[ a, b, isDone ] = fibonacciSearchCubli(t, Y, J_f, B_f, initJf, initBf, JFupper, BFupper);
+[ a, b, isDone ] = fibonacciSearchCubli2(t, Y, J_f, B_f, initJf, initBf, JFupper, BFupper);
     
-c = evalCostFunction(Y, t, a, b, J_f, B_f);
+c = evalCostFunction2(Y, t, a, b, J_f, B_f);
 figure(fig2)
 if c <= initCost && isDone == 0
     plot3(a, b, c, 'o',                   ...
@@ -333,7 +333,7 @@ if c <= initCost && isDone == 0
     plot3(v(:,1),v(:,2),v(:,3),...
         'LineWidth', 1.2,      ...
         'Color', '[ 1 1 1 ]')
-    copyobj(gcf,0);
+    
     figure(fig3)
     plot([initJf a], [initBf b], 'o',   ...
          'MarkerFaceColor', '[ 1 1 1 ]',...
@@ -341,7 +341,7 @@ if c <= initCost && isDone == 0
          'MarkerSize', 1,               ...
          'LineWidth', 1.2,              ...
          'LineStyle', '-')
-     copyobj(gcf,0);
+
 end
 
 

@@ -1,9 +1,9 @@
-function [ X1upper, X2upper ] = forwardBackwardCubli( J_f, B_f, Y, t, gJf, gBf, fig2, fig3 )
+function [ X1upper, X2upper ] = forwardBackwardCubli2( J_f, B_f, Y, t, gJf, gBf, fig2, fig3 )
 
     plotRange = 1;
     initX1 = J_f;
     initX2 = B_f;
-    initF = evalCostFunction(Y, t, initX1, initX2, J_f, B_f);
+    initF = evalCostFunction2(Y, t, initX1, initX2, J_f, B_f);
     dfXX1 = gJf;
     dfXX2 = gBf;
 
@@ -19,7 +19,7 @@ function [ X1upper, X2upper ] = forwardBackwardCubli( J_f, B_f, Y, t, gJf, gBf, 
         newX1 = initX1-dfXX1*step;
         newX2 = initX2-dfXX2*step;
 
-        newF = evalCostFunction(Y, t, newX1, newX2, J_f, B_f);
+        newF = evalCostFunction2(Y, t, newX1, newX2, J_f, B_f);
 
         pause(3);
         
@@ -31,7 +31,7 @@ function [ X1upper, X2upper ] = forwardBackwardCubli( J_f, B_f, Y, t, gJf, gBf, 
            newX1new = initX1-dfXX1*step;
            newX2new = initX2-dfXX2*step;
            
-           newFnew = evalCostFunction(Y, t, newX1new, newX2new, J_f, B_f);
+           newFnew = evalCostFunction2(Y, t, newX1new, newX2new, J_f, B_f);
            
            if newFnew > newF
                %The selected bracket is [ (initX1, initX2) ; (newX1new newX2new) ]
@@ -51,7 +51,7 @@ function [ X1upper, X2upper ] = forwardBackwardCubli( J_f, B_f, Y, t, gJf, gBf, 
            newX1new = initX1-dfXX1*step;
            newX2new = initX2-dfXX2*step;
            
-           newFnew = evalCostFunction(Y, t, newX1new, newX2new, J_f, B_f);
+           newFnew = evalCostFunction2(Y, t, newX1new, newX2new, J_f, B_f);
        
            if  newFnew < newF
                % The selected bracket is [ (initX1, initX2) ; (newX1 newX2) ]
@@ -78,7 +78,7 @@ function [ X1upper, X2upper ] = forwardBackwardCubli( J_f, B_f, Y, t, gJf, gBf, 
              'MarkerFaceColor', '[0 0 0]', 'MarkerEdgeColor', '[0 0 0]', ...
              'MarkerSize', 2, 'LineWidth', 1.4, 'LineStyle', ':')
         figure(fig2)
-        fXupper = evalCostFunction(Y, t, X1upper, X2upper, J_f, B_f);
+        fXupper = evalCostFunction2(Y, t, X1upper, X2upper, J_f, B_f);
         plot3(X1upper, X2upper, fXupper, 'o',...
              'MarkerFaceColor', '[.5 .5 .5]',...
              'Color', '[ .5 .5 .5  ]',       ...
