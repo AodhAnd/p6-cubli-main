@@ -111,19 +111,19 @@
     \item Reducing the problem
   \end{itemize}
     \begin{minipage}{\linewidth}
-    \begin{minipage}{0.35\linewidth}
+    \begin{minipage}{0.45\linewidth}
       \begin{figure}[H]
         \centering
-        Arbitrary 2D cost function with the gradient direction at one starting point
-        % \includegraphics[scale=0.25]{Pictures/vehicleLineDeviation.pdf}
+        % (Must be redone)
+        \includegraphics[scale=0.28]{Pictures/gradientDIrection2D2}
       \end{figure}
     \end{minipage}
     \hspace{0.03\linewidth}
     \begin{minipage}{0.45\linewidth}
       \begin{figure}[H]
         \centering
-        Plot of the 1D cost function along the gradient direction
-        % \includegraphics[scale=0.25]{Pictures/steeringDeviation.pdf}
+        % Plot of the 1D cost function along the gradient direction
+        \includegraphics[scale=0.33]{Pictures/gradientDIrection1D2.pdf}
       \end{figure}
     \end{minipage}
   \end{minipage}
@@ -220,25 +220,31 @@
   \end{figure}
 \end{frame}
 
+% \begin{frame}{Parameter Estimation}{Implementation (1)}
+%   \begin{minipage}{\linewidth}\centering
+%     \begin{minipage}{0.35\linewidth}
+%       \begin{figure}[H]
+%         \centering
+%         %\transduration<0-19>{0}
+%         %\multiinclude[<+->][format=png, graphics={width=\textwidth}]{Pictures/cost}
+%         \includegraphics[scale=0.35]{Pictures/costFunctionMinimized.pdf}       
+%       \end{figure}
+%     \end{minipage}
+%     \hspace{0.15\linewidth}
+%     \begin{minipage}{0.45\linewidth}
+%       \begin{figure}[H]
+%         \centering
+%         \includegraphics[scale=0.35]{Pictures/costFunctionMinimizedContour.pdf}
+%       \end{figure}
+%     \end{minipage}
+%   \end{minipage}
+%   Animated pictures would be better...
+% \end{frame}
+
 \begin{frame}{Parameter Estimation}{Implementation (1)}
-  \begin{minipage}{\linewidth}\centering
-    \begin{minipage}{0.35\linewidth}
-      \begin{figure}[H]
-        \centering
-        %\transduration<0-19>{0}
-        %\multiinclude[<+->][format=png, graphics={width=\textwidth}]{Pictures/cost}
-        \includegraphics[scale=0.35]{Pictures/costFunctionMinimized.pdf}       
-      \end{figure}
-    \end{minipage}
-    \hspace{0.15\linewidth}
-    \begin{minipage}{0.45\linewidth}
-      \begin{figure}[H]
-        \centering
-        \includegraphics[scale=0.35]{Pictures/costFunctionMinimizedContour.pdf}
-      \end{figure}
-    \end{minipage}
-  \end{minipage}
-  Animated pictures would be better...
+  \transduration<0-19>{.2}
+  \multiinclude[format=png, graphics={width=\textwidth}]{Pictures/optJoinedFit/cost}
+  %\animategraphics[autoplay,loop,width=\linewidth]{1}{Pictures/cost-}{0}{19}
 \end{frame}
 
 \begin{frame}{Parameter Estimation}{Implementation (2)}
