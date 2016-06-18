@@ -5,12 +5,35 @@
 %---------------------------------------------------------------------------------
 \subsection{Motivation}%----------------------------------------------------------
 %---------------------------------------------------------------------------------
+
+\begin{frame}{State Space}{Motivation}	
+  \begin{itemize}
+  	\item Angular velocity of the wheel using root locus design
+  \end{itemize}
+  \vspace{.5cm}
+  \begin{minipage}{\linewidth}
+  	\begin{minipage}{0.4\linewidth}
+  		\begin{figure}
+  			\includegraphics[scale=.35]{Pictures/positionRLTest}
+  			\centering
+  		\end{figure}
+  	\end{minipage}
+  	\hspace{0.1\linewidth}
+  	\begin{minipage}{0.45\linewidth}
+  		\begin{figure}[H]
+  			\includegraphics[scale=.35]{Pictures/wheelRLTest}
+  			\centering
+  		\end{figure}
+  	\end{minipage}
+  \end{minipage}
+\end{frame}
+
 \begin{frame}{State Space}{Motivation}
   \begin{itemize}
     \item Control of velocity for improved performance
     \item Classical cascade control is not feasible
   \end{itemize}
-  %
+  \vspace{.2cm}
   \begin{figure}[H]
     \centering
     \input{Pictures/plantWithCascade.tikz}
@@ -23,79 +46,32 @@
 
 \begin{frame}{State Space}{Model}
 
-%  \only<2>
-%  {  
-%  \tikz[overlay,xshift=12.75em,yshift=10ex]{\draw node [fontscale=\footnotesize]{
-%              \si{\ddot{\theta}_F = -\frac{B_F}{J_F + m_w \cdot {l_w}^2} \cdot \dot{\theta}_F + \frac{(m_F \cdot l_F + m_w \cdot l_w) \cdot g}{J_F + m_w \cdot {l_w}^2} \cdot sin(\theta_F)}
-%              };}
-%  \tikz[overlay,xshift=12em,yshift=6.3ex]{\draw node [fontscale=\footnotesize]{
-%               \si{- \frac{1}{J_F + m_w \cdot {l_w}^2} \cdot \tau_m + \frac{B_w}{J_F + m_w \cdot {l_w}^2} \cdot \dot{\theta}_w}
-%               };}
-%  \tikz[overlay,xshift=12.7em,yshift=0ex]{\draw node [fontscale=\footnotesize]{
-%                \si{\ddot{\theta}_w = \frac{J_w+J_F+m_w \cdot {l_w}^{2}}{J_w \cdot (J_F+m_w \cdot {l_w}^{2})} \cdot \tau_m - \frac{(J_w+J_F+{l_w}^{2} \cdot m_w) \cdot B_w}{J_w \cdot (J_F+m_w \cdot  {l_w}^2)} \cdot \dot{\theta}_w}
-%              };}
-%  \tikz[overlay,xshift=12.93em,yshift=-4ex]{\draw node [fontscale=\footnotesize]{
-%                \si{- \frac{(m_F \cdot l_F + m_w \cdot l_w) \cdot g}{J_F+m_w \cdot {l_w}^{2}} \cdot sin(\theta_F) + \frac{B_F}{J_F+m_w \cdot {l_w}^{2}} \cdot \dot{\theta}_F}
-%           };}
-%         
-%  }
+  \begin{itemize}
+  	\item State input and output variables
+  \end{itemize}
 
-  \only<2>
-  {  
-  \tikz[overlay,xshift=12em,yshift=12ex]{\draw node [fontscale=\footnotesize]{
-              \si{\ddot{\theta}_F = -\frac{B_F}{J_F + m_w \cdot {l_w}^2} \cdot \dot{\theta}_F + \frac{(m_F \cdot l_F + m_w \cdot l_w) \cdot g}{J_F + m_w \cdot {l_w}^2} \cdot \theta_F}
-              };}
-  \tikz[overlay,xshift=12em,yshift=8.3ex]{\draw node [fontscale=\footnotesize]{
-               \si{- \frac{1}{J_F + m_w \cdot {l_w}^2} \cdot \tau_m + \frac{B_w}{J_F + m_w \cdot {l_w}^2} \cdot \dot{\theta}_w}
-               };}
-  \tikz[overlay,xshift=12.7em,yshift=3ex]{\draw node [fontscale=\footnotesize]{
-                \si{\ddot{\theta}_w = \frac{J_w+J_F+m_w \cdot {l_w}^{2}}{J_w \cdot (J_F+m_w \cdot {l_w}^{2})} \cdot \tau_m - \frac{(J_w+J_F+{l_w}^{2} \cdot m_w) \cdot B_w}{J_w \cdot (J_F+m_w \cdot  {l_w}^2)} \cdot \dot{\theta}_w}
-              };}
-  \tikz[overlay,xshift=12.2em,yshift=-1ex]{\draw node [fontscale=\footnotesize]{
-                \si{- \frac{(m_F \cdot l_F + m_w \cdot l_w) \cdot g}{J_F+m_w \cdot {l_w}^{2}} \cdot \theta_F + \frac{B_F}{J_F+m_w \cdot {l_w}^{2}} \cdot \dot{\theta}_F}
-           };}
-         
-  }
-
-  \only<1>
-        {
-        \tikz[overlay,xshift=8em,yshift=6ex]{\draw node {
-          \begin{minipage}{0.01\linewidth}
-          	  \begin{flalign}
-          	  	& \hspace{1 cm} \si{\vec{\dot{x}}(t) =\ } \si{ \vec{A} \cdot \vec{x}(t) + \vec{B} \cdot \vec{u}(t)} \nonumber \\
-          	  	& \hspace{1 cm} \si{\vec{y}(t) =\ } \si{ \vec{C} \cdot \vec{x}(t) + \vec{D} \cdot \vec{u}(t)} \nonumber
-          	  \end{flalign}
-          \end{minipage}
-          };}
-      }
-      
-\only<1-2>{
-  \tikz[overlay,xshift=13.5em,yshift=-8ex]{\draw node {
-      \input{Pictures/SSBlockDiagram.tikz}
-  };}
-  \tikz[overlay,xshift=11em,yshift=-17ex]{\draw node {
-      \begin{minipage}{0.01\linewidth}
+  \begin{minipage}{0.29\linewidth}
        	\begin{flalign}
        		\vec{x} = 
        		\begin{bmatrix}
        			\theta_F \\
        			\dot{\theta}_F \\ 
        			\dot{\theta}_w \\
-       		\end{bmatrix}	\textbf{,}\ \nonumber
+       		\end{bmatrix}\nonumber
        	\end{flalign}  
       \end{minipage}
       %\hspace{0.03\linewidth}
-      \begin{minipage}{0.01\linewidth}
+      \begin{minipage}{0.29\linewidth}
        	\begin{flalign}
        		\vec{y} = 
        		\begin{bmatrix}
        			\theta_F \\
        			\dot{\theta}_w \\
-       		\end{bmatrix}	\textbf{,}\ \nonumber
+       		\end{bmatrix}\nonumber
        	\end{flalign}
       \end{minipage}
       %\hspace{0.03\linewidth}
-      \begin{minipage}{0.01\linewidth}
+      \begin{minipage}{0.29\linewidth}
        	\begin{flalign}
        		\vec{u}= 
        		\begin{bmatrix}
@@ -103,8 +79,92 @@
        		\end{bmatrix}	\nonumber
        	\end{flalign}
     \end{minipage}
-  };}
-}   
+  \vspace{.5cm}
+  \begin{itemize}
+  	\item System of differential equations
+  \end{itemize}
+  %
+  \begin{flalign}
+  	&\hspace{.85cm} \si{\vec{\dot{x}} = f(\vec{x},\vec{u})}& \nonumber \\
+  	&\hspace{.85cm} \si{\vec{y} = g(\vec{x},\vec{u})}& \nonumber
+  \end{flalign}
+\end{frame}
+
+\begin{frame}{State Space}{Model}
+
+  \only<1>
+  {
+    \tikz[overlay,xshift=4.5em,yshift=7ex]{\draw node {
+      \begin{minipage}{0.01\linewidth}
+      	  \begin{flalign}
+        	  	& \hspace{1 cm} \si{\vec{\dot{x}}(t) =\ } \si{ \vec{A} \cdot \vec{x}(t) + \vec{B} \cdot \vec{u}(t)} \nonumber \\
+        	  	& \hspace{1 cm} \si{\vec{y}(t) =\ } \si{ \vec{C} \cdot \vec{x}(t) } \nonumber
+      	  \end{flalign}
+      \end{minipage}
+      \begin{minipage}{0.01\linewidth}
+        \begin{tabular}{ p{.1cm} l l l}
+          &&\\
+          	& \si{\vec{A}=\frac{\partial}{\partial \vec{x}} \ f(\vec{x_o},\vec{u_o})}			& state     \\                       
+          	& \si{\vec{B}=\frac{\partial}{\partial \vec{u}} \ f(\vec{x_o},\vec{u_o})}			& input     \\ 
+          	& \si{\vec{C}=\frac{\partial}{\partial \vec{x}} \ g(\vec{x_o},\vec{u_o})}			& output
+        \end{tabular} 
+      \end{minipage}
+    };}
+  }
+  
+  \only<2>
+  {  
+    \tikz[overlay,xshift=9.5em,yshift=13ex]{\draw node [fontscale=\footnotesize]{
+                \si{\ddot{\theta}_F = -\frac{B_F}{J_F + m_w \cdot {l_w}^2} \cdot \dot{\theta}_F + \frac{(m_F \cdot l_F + m_w \cdot l_w) \cdot g}{J_F + m_w \cdot {l_w}^2} \cdot \theta_F}
+                };}
+    \tikz[overlay,xshift=9.5em,yshift=9.3ex]{\draw node [fontscale=\footnotesize]{
+                 \si{- \frac{1}{J_F + m_w \cdot {l_w}^2} \cdot \tau_m + \frac{B_w}{J_F + m_w \cdot {l_w}^2} \cdot \dot{\theta}_w}
+                 };}
+    \tikz[overlay,xshift=10.2em,yshift=4ex]{\draw node [fontscale=\footnotesize]{
+                  \si{\ddot{\theta}_w = \frac{J_w+J_F+m_w \cdot {l_w}^{2}}{J_w \cdot (J_F+m_w \cdot {l_w}^{2})} \cdot \tau_m - \frac{(J_w+J_F+{l_w}^{2} \cdot m_w) \cdot B_w}{J_w \cdot (J_F+m_w \cdot  {l_w}^2)} \cdot \dot{\theta}_w}
+                };}
+    \tikz[overlay,xshift=9.7em,yshift=0ex]{\draw node [fontscale=\footnotesize]{
+                  \si{- \frac{(m_F \cdot l_F + m_w \cdot l_w) \cdot g}{J_F+m_w \cdot {l_w}^{2}} \cdot \theta_F + \frac{B_F}{J_F+m_w \cdot {l_w}^{2}} \cdot \dot{\theta}_F}
+             };} 
+  }
+  
+  \only<1-2>
+  {
+    \tikz[overlay,xshift=11.5em,yshift=-7ex]{\draw node {
+        \input{Pictures/SSBlockDiagram.tikz}
+    };}
+    \tikz[overlay,xshift=7.5em,yshift=-16ex]{\draw node {
+        \begin{minipage}{0.01\linewidth}
+         	\begin{flalign}
+         		\vec{x} = 
+         		\begin{bmatrix}
+         			\theta_F \\
+         			\dot{\theta}_F \\ 
+         			\dot{\theta}_w \\
+         		\end{bmatrix}	\textbf{,}\ \nonumber
+         	\end{flalign}  
+        \end{minipage}
+        %\hspace{0.03\linewidth}
+        \begin{minipage}{0.01\linewidth}
+         	\begin{flalign}
+         		\vec{y} = 
+         		\begin{bmatrix}
+         			\theta_F \\
+         			\dot{\theta}_w \\
+         		\end{bmatrix}	\textbf{,}\ \nonumber
+         	\end{flalign}
+        \end{minipage}
+        %\hspace{0.03\linewidth}
+        \begin{minipage}{0.01\linewidth}
+         	\begin{flalign}
+         		\vec{u}= 
+         		\begin{bmatrix}
+         			\tau_m\\
+         		\end{bmatrix}	\nonumber
+         	\end{flalign}
+      \end{minipage}
+    };}
+  }   
 \end{frame}
 
 %---------------------------------------------------------------------------------
@@ -126,15 +186,13 @@
   \end{figure}
 \end{frame}
 
-%---------------------------------------------------------------------------------
-\subsection{Controller Analysis}%-------------------------------------------------
-%---------------------------------------------------------------------------------
-\begin{frame}{State Space}{Controller Analysis}
+\begin{frame}{State Space}{Controller Design}
   \begin{itemize}
     \item Controller reacting to disturbance
     \item Different pole placements
+    \item The yellow was chosen
   \end{itemize}
-  \vspace{1cm}
+  \vspace{.5cm}
   \hspace{0.03\linewidth}
   \begin{minipage}{\linewidth}
    	\begin{minipage}{0.45\linewidth}
@@ -153,38 +211,27 @@
   \end{minipage}
 \end{frame}
 
-\begin{frame}{State Space}{Controller Analysis}
-  \begin{itemize}
-    \item Catching responses
-    \item The yellow was chosen
-  \end{itemize}
-  %
-  \vspace{1cm}
-  \hspace{0.03\linewidth}
-  \begin{minipage}{\linewidth}
-  	\begin{minipage}{0.45\linewidth}
-  		\begin{figure}[H]
-  			\includegraphics[scale=.35]{Pictures/catchingStateSpace}
-  			\centering
-  		\end{figure}
-  	\end{minipage}
-  	\hspace{0.03\linewidth}
-  	\begin{minipage}{0.45\linewidth}
-  		\begin{figure}[H]
-  			\includegraphics[scale=.35]{Pictures/catchingStateSpaceWheel}
-  			\centering
-  		\end{figure}
-  	\end{minipage}
-  \end{minipage}
-\end{frame}
+%---------------------------------------------------------------------------------
+\subsection{Controller Analysis}%-------------------------------------------------
+%---------------------------------------------------------------------------------
 
 \begin{frame}{State Space}{Controller Analysis}
-  \begin{itemize}
-    \item The velocity is controlled to zero
-  \end{itemize}
-
-  \vspace{1cm}
-  \hspace{1\linewidth}
+    \begin{minipage}{\linewidth}
+    	\begin{minipage}{0.4\linewidth}
+    		\begin{figure}
+    			\includegraphics[scale=.35]{Pictures/positionRLTest}
+    			\centering
+    		\end{figure}
+    	\end{minipage}
+    	\hspace{0.1\linewidth}
+    	\begin{minipage}{0.45\linewidth}
+    		\begin{figure}[H]
+    			\includegraphics[scale=.35]{Pictures/wheelRLTest}
+    			\centering
+    		\end{figure}
+    	\end{minipage}
+    \end{minipage}
+  \vspace{.5cm}
   \begin{minipage}{\linewidth}
    	\begin{minipage}{0.45\linewidth}
    		\begin{figure}[H]
