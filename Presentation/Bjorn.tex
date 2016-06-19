@@ -119,7 +119,7 @@
 		\includegraphics[scale=0.40]{Pictures/freeBodyFrame.pdf}%
 	\end{textblock*}
 	}
-	\only<1>{
+	\only<1| handout:1>{
 	\begin{textblock*}{15cm}(0cm,8cm)
 	\begin{displaymath}
 	\si{J_F \vec{\ddot{\theta}_F} =}
@@ -128,7 +128,7 @@
 	\end{textblock*}
 	
 }
-	\only<2>{
+	\only<2| handout:2>{
 		\begin{textblock*}{15cm}(0cm,8cm)
 		\begin{displaymath}
 		\si{ \vec{l_w} \times \vec{F} = (-{l_w}^2 \cdot m_w \ddot{\theta}_F + l_w\ sin(\theta_F)\ m_w \cdot g ) \cdot \hat{k}} %\nonumber
@@ -204,9 +204,10 @@
 
 \pause
 	\begin{itemize}
-		\item {Operating point \si{\theta_{F_0}} = 0}
+		\item {Operating point} 
 		\begin{itemize}
-			\item {\si{\theta_{w_0}} = 0}
+			\item {\si{\theta_{F_0}\ =\ 0\ rad}}
+			\item {\si{\dot{\theta}_{w_0}\ =\ 0\ rad \cdot s^{-1}}}
 			\item {variation around operating point is \si{\Delta \theta_F}}
 		\end{itemize}
 	\end{itemize}
@@ -226,7 +227,7 @@
 \begin{frame}{Model}{Linearization}
 		\small
 		\begin{flalign}
-		\si{(J_F+m_w \cdot {l_w}^{2}) \Delta \ddot{\theta}_F } &= \cancelto{0}{\si{f( \dot{\theta}_{F_0}, \ \theta_{F_0}, \ \tau_{m_0},\ \ddot{\theta}_{w_0} )}}   \nonumber\\
+		\si{(J_F+m_w \cdot {l_w}^{2}) \Delta \ddot{\theta}_F } &= \cancelto{0}{\si{f( \dot{\theta}_{F_0}, \ \theta_{F_0}, \ \tau_{m_0},\ \dot{\theta}_{w_0} )}}   \nonumber\\
 		&\ \ \ \ \si{+ \frac{\partial}{\partial \dot{\theta}_F} f\cdot \Delta \dot{\theta}_F + \frac{\partial}{\partial \theta_F} f\cdot \Delta \theta_F + \frac{\partial}{\partial \tau_m} f\cdot \Delta \tau_m + \frac{\partial}{\partial \dot{\theta}_w} f\cdot \Delta \dot{\theta}_w} \nonumber
 		\end{flalign}
 		\normalsize

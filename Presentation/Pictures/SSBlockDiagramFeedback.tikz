@@ -8,7 +8,7 @@
 	\draw%-----------------------------------------------------------------------------------------
 	%Drawing Input/Output:
 	node[shape=coordinate][](input1) at (0,0){}
-	node[shape=coordinate][](inputFeedback) at (.3,0){}
+	node[shape=coordinate][](inputFeedback) at (0,0){}
 	node[shape=coordinate][](output1) at (8,0){}
 	%Drawing the Equation Blocks:   	
 	node(A) at (4,-1.5) [block] {A} 

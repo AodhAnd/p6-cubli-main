@@ -37,7 +37,7 @@
     \item Mass of the frame
   \end{itemize}
   }
-  \only<2>{
+  \only<2| handout:2>{
     \begin{figure}[H]
       \centering
       \includegraphics[scale=0.2]{Pictures/scale.jpg}
@@ -49,7 +49,7 @@
     \item Center of mass
   \end{itemize}
   }
-  \only<3>{
+  \only<3| handout:3>{
   \begin{figure}[H]
     \centering
     \includegraphics[scale=0.35]{Pictures/centerOfMassDiagram.pdf}
@@ -61,7 +61,7 @@
     \item Friction and moment of inertia of the frame
   \end{itemize}
   }
-  \only<4>{
+  \only<4| handout:4>{
     \begin{figure}[H]
     \centering
     \includegraphics[scale=0.4]{Pictures/InitialModelParameterCompare.pdf}
@@ -95,7 +95,7 @@
   \begin{figure}[H]
     \centering
     % (Must be redone)
-    \includegraphics[scale=0.28]{Pictures/gradientDIrection2D4}
+    \includegraphics[scale=0.6]{Pictures/gradientDIrection2D4}
   \end{figure}
 \end{frame}
 
@@ -103,7 +103,7 @@
   \begin{figure}[H]
     \centering
     % Plot of the 1D cost function along the gradient direction
-    \includegraphics[scale=0.33]{Pictures/gradientDIrection1D3}
+    \includegraphics[scale=0.6]{Pictures/gradientDIrection1D3}
   \end{figure}
 \end{frame}
 
@@ -111,25 +111,25 @@
 \begin{frame}{Parameter Estimation}{Fibonacci Line Search}
   \begin{minipage}{\linewidth}
     \begin{minipage}{0.40\linewidth}
-      \only<1>{
+      \only<1| handout:0>{
       \begin{figure}[H]
         \centering
         \includegraphics[scale=0.40]{Pictures/fibonacciIntervalSystem0}
       \end{figure}
       }
-      \only<2>{
+      \only<2| handout:0>{
       \begin{figure}[H]
         \centering
         \includegraphics[scale=0.40]{Pictures/fibonacciIntervalSystem1}
       \end{figure}
       }
-      \only<3>{
+      \only<3| handout:0>{
       \begin{figure}[H]
         \centering
         \includegraphics[scale=0.40]{Pictures/fibonacciIntervalSystem2}
       \end{figure}
       }
-      \only<4->{
+      \only<4-| handout:1>{
       \begin{figure}[H]
         \centering
         \includegraphics[scale=0.40]{Pictures/fibonacciIntervalSystem3}
@@ -187,16 +187,6 @@
 
 
 %----------------------------------------------------------------
-\begin{frame}{Parameter Estimation}{Forward-Backward Method}
-  \begin{itemize}
-    \item Goal: find an initial bracket
-    \item Principle: high-low-high geometry
-  \end{itemize}
-  \begin{figure}[H]
-    \centering
-    \includegraphics[scale=1.5]{Pictures/forward-backward.pdf}
-  \end{figure}
-\end{frame}
 
 % \begin{frame}{Parameter Estimation}{Implementation (1)}
 %   \begin{minipage}{\linewidth}\centering
