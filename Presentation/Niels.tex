@@ -86,15 +86,15 @@
   %
   \begin{flalign}
   	&\hspace{.85cm} \si{\vec{\dot{x}} = f(\vec{x},\vec{u})}& \nonumber \\
-  	&\hspace{.85cm} \si{\vec{y} = g(\vec{x},\vec{u})}& \nonumber
+  	&\hspace{.85cm} \si{\vec{y} = g(\vec{x})}& \nonumber
   \end{flalign}
 \end{frame}
 
 \begin{frame}{State Space}{Model}
 
-  \only<1>
+  \only<1-2>
   {
-    \tikz[overlay,xshift=4.5em,yshift=7ex]{\draw node {
+    \tikz[overlay,xshift=4.5em,yshift=10ex]{\draw node {
       \begin{minipage}{0.01\linewidth}
       	  \begin{flalign}
         	  	& \hspace{1 cm} \si{\vec{\dot{x}}(t) =\ } \si{ \vec{A} \cdot \vec{x}(t) + \vec{B} \cdot \vec{u}(t)} \nonumber \\
@@ -106,33 +106,38 @@
           &&\\
           	& \si{\vec{A}=\frac{\partial}{\partial \vec{x}} \ f(\vec{x_o},\vec{u_o})}			& state     \\                       
           	& \si{\vec{B}=\frac{\partial}{\partial \vec{u}} \ f(\vec{x_o},\vec{u_o})}			& input     \\ 
-          	& \si{\vec{C}=\frac{\partial}{\partial \vec{x}} \ g(\vec{x_o},\vec{u_o})}			& output
+          	& \si{\vec{C}=\frac{\partial}{\partial \vec{x}} \ g(\vec{x_o})}			& output
         \end{tabular} 
       \end{minipage}
     };}
   }
   
-  \only<2>
-  {  
-    \tikz[overlay,xshift=9.5em,yshift=13ex]{\draw node [fontscale=\footnotesize]{
+  \only<1>
+  {
+  \begin{textblock*}{15cm}(3cm,5.25cm)
+    \tikz[overlay,xshift=9.5em,yshift=3ex]{\draw node [fontscale=\footnotesize]{
                 \si{\ddot{\theta}_F = -\frac{B_F}{J_F + m_w \cdot {l_w}^2} \cdot \dot{\theta}_F + \frac{(m_F \cdot l_F + m_w \cdot l_w) \cdot g}{J_F + m_w \cdot {l_w}^2} \cdot \theta_F}
                 };}
-    \tikz[overlay,xshift=9.5em,yshift=9.3ex]{\draw node [fontscale=\footnotesize]{
+    \tikz[overlay,xshift=9.5em,yshift=-0.7ex]{\draw node [fontscale=\footnotesize]{
                  \si{- \frac{1}{J_F + m_w \cdot {l_w}^2} \cdot \tau_m + \frac{B_w}{J_F + m_w \cdot {l_w}^2} \cdot \dot{\theta}_w}
                  };}
-    \tikz[overlay,xshift=10.2em,yshift=4ex]{\draw node [fontscale=\footnotesize]{
+    \tikz[overlay,xshift=10.2em,yshift=-6ex]{\draw node [fontscale=\footnotesize]{
                   \si{\ddot{\theta}_w = \frac{J_w+J_F+m_w \cdot {l_w}^{2}}{J_w \cdot (J_F+m_w \cdot {l_w}^{2})} \cdot \tau_m - \frac{(J_w+J_F+{l_w}^{2} \cdot m_w) \cdot B_w}{J_w \cdot (J_F+m_w \cdot  {l_w}^2)} \cdot \dot{\theta}_w}
                 };}
-    \tikz[overlay,xshift=9.7em,yshift=0ex]{\draw node [fontscale=\footnotesize]{
+    \tikz[overlay,xshift=9.7em,yshift=-10ex]{\draw node [fontscale=\footnotesize]{
                   \si{- \frac{(m_F \cdot l_F + m_w \cdot l_w) \cdot g}{J_F+m_w \cdot {l_w}^{2}} \cdot \theta_F + \frac{B_F}{J_F+m_w \cdot {l_w}^{2}} \cdot \dot{\theta}_F}
-             };} 
+             };}
+  \end{textblock*}
   }
   
-  \only<1-2>
+  \only<2>
   {
-    \tikz[overlay,xshift=11.5em,yshift=-7ex]{\draw node {
-        \input{Pictures/SSBlockDiagram.tikz}
-    };}
+    \begin{textblock*}{15cm}(3cm,5cm)
+    	\input{Pictures/SSBlockDiagram.tikz}
+  	\end{textblock*}
+  }
+  \only<1-2>
+    {
     \tikz[overlay,xshift=7.5em,yshift=-16ex]{\draw node {
         \begin{minipage}{0.01\linewidth}
          	\begin{flalign}
@@ -172,7 +177,7 @@
 %---------------------------------------------------------------------------------
 \begin{frame}{State Space}{Controller Design}
   \begin{itemize}
-    \item Eigenvalues of \si{A - BK}
+    \item Eigenvalues of \si{(\vec{A} - \vec{B} \vec{K})}
     \item Pole placement
   \end{itemize}
 
