@@ -91,42 +91,20 @@
 \end{frame}
 
 %- 4 -%
-\begin{frame}{Parameter Estimation}{Steepest Descent}
-  \begin{itemize}
-    \item Taylor series expansion (1\si{^{st}} order)
-  \end{itemize}
-  \begin{displaymath}
-    \si{f(\vec{x}+\vec{\delta}) \approx f(\vec{x}) + \vec{g}^T \vec{\delta}}% + \frac{1}{2} \vec{\delta}^{T} \vec{H}\vec{\delta} + \dots}
-  \end{displaymath}
-  \begin{displaymath}
-    \vdots
-  \end{displaymath}
-  \begin{displaymath}
-    \si{\nabla\ f(\vec{x}+\vec{\delta}) \approx \vec{g}}
-  \end{displaymath}
-  \vspace{-12pt}
-  %%
-  \pause
-  \begin{itemize}
-    \item Reducing the problem
-  \end{itemize}
-    \begin{minipage}{\linewidth}
-    \begin{minipage}{0.45\linewidth}
-      \begin{figure}[H]
-        \centering
-        % (Must be redone)
-        \includegraphics[scale=0.28]{Pictures/gradientDIrection2D2}
-      \end{figure}
-    \end{minipage}
-    \hspace{0.03\linewidth}
-    \begin{minipage}{0.45\linewidth}
-      \begin{figure}[H]
-        \centering
-        % Plot of the 1D cost function along the gradient direction
-        \includegraphics[scale=0.33]{Pictures/gradientDIrection1D2.pdf}
-      \end{figure}
-    \end{minipage}
-  \end{minipage}
+\begin{frame}{Parameter Estimation}{Steepest Descent (1)}
+  \begin{figure}[H]
+    \centering
+    % (Must be redone)
+    \includegraphics[scale=0.28]{Pictures/gradientDIrection2D2}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Parameter Estimation}{Steepest Descent (2)}
+  \begin{figure}[H]
+    \centering
+    % Plot of the 1D cost function along the gradient direction
+    \includegraphics[scale=0.33]{Pictures/gradientDIrection1D2.pdf}
+  \end{figure}
 \end{frame}
 
 %- 5 -%
@@ -242,7 +220,14 @@
 % \end{frame}
 
 \begin{frame}{Parameter Estimation}{Implementation (1)}
-  \transduration<0-19>{.2}
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Pictures/optJoinedFit/cost-0.png}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Parameter Estimation}{Implementation (1)}
+  \transduration<1-19>{0.75}
   \multiinclude[format=png, graphics={width=\textwidth}]{Pictures/optJoinedFit/cost}
   %\animategraphics[autoplay,loop,width=\linewidth]{1}{Pictures/cost-}{0}{19}
 \end{frame}
